@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DiscoverComponent } from './discover/discover.component';
+import { DiscoverListComponent } from './discover/discover-list/discover-list.component';
+import { DiscoverEventsComponent } from './discover/discover-list/discover-events/discover-events.component';
+import { DiscoverDetailsComponent } from './discover/discover-details/discover-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    DiscoverComponent
+    DiscoverComponent,
+    DiscoverListComponent,
+    DiscoverEventsComponent,
+    DiscoverDetailsComponent
   ],
   imports: [
     BrowserModule,
