@@ -15,3 +15,20 @@ h1 {
     font-size: 20px;
     font-family: cursive;
 }
+.box {
+    background-color : #EAE0E5;
+    text-align : center;
+    height : 5em;
+    width : 20em;
+    margin-left : 80px;
+    margin-top : 20px;
+    border : 1px solid black;
+    border-radius : 5px;
+}
+.follow {
+    margin-top : 5px;
+    background-color : transparent;
+    border-radius: 10px;
+    color:#FA0580;
+    border : 2px solid #FA0580;
+}

@@ -10,6 +10,7 @@ import { DiscoverListComponent } from './discover/discover-list/discover-list.co
 import { DiscoverEventsComponent } from './discover/discover-list/discover-events/discover-events.component';
 import { DiscoverDetailsComponent } from './discover/discover-details/discover-details.component';
 import { DiscoverHomeComponent } from './discover/discover-home/discover-home.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { DiscoverHomeComponent } from './discover/discover-home/discover-home.co
     DiscoverListComponent,
     DiscoverEventsComponent,
     DiscoverDetailsComponent,
-    DiscoverHomeComponent
+    DiscoverHomeComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+.color {
+    background-color : #5B5056;
+    color : white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.colorend {
+    background-color: black;
+    color : white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
