@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { DiscoverHomeComponent } from './discover/discover-home/discover-home.component';
 import { DiscoverDetailsComponent } from './discover/discover-details/discover-details.component';
+import { CreateComponent } from './create/create.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
    { path:'discover', component: DiscoverComponent, children: [
      { path:'', component : DiscoverHomeComponent },
      { path:':id', component: DiscoverDetailsComponent }
-   ] }
+   ] },
+   { path:'create', component: CreateComponent },
 ];
 
 @NgModule({

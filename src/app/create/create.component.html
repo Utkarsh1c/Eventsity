@@ -1,0 +1,106 @@
+<div class="box">
+<div class="row">
+        <div class="col-xs-12">
+            <form (ngSubmit)="onCreate(f)" #f="ngForm">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="ename">Event Name</label>
+                            <input
+                            type="text" 
+                            id="ename" 
+                            name="ename"
+                            class="form-control"
+                            ngModel
+                            required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="imagePath">Event Image URL</label>
+                            <input
+                            type="text" 
+                            id="imagePath" 
+                            class="form-control"
+                            ngModel
+                            required
+                            #imagePath>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <img [src]="imagePath.value" class="image-responsive">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="venue">Short Venue</label>
+                            <input
+                            type="text" 
+                            id="venue" 
+                            name="venue"
+                            class="form-control"
+                            ngModel
+                            required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="fvenue">Full Venue</label>
+                            <input
+                            type="text" 
+                            id="fvenue" 
+                            name="fvenue"
+                            class="form-control"
+                            ngModel
+                            required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="date">Date</label>
+                            <input 
+                            type="text"
+                            id="date"
+                            name="date"
+                            class="form-control"
+                            ngModel
+                            required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="orgname">Organiser Name</label>
+                            <input
+                            type="text" 
+                            id="orgname" 
+                            name="orgname"
+                            class="form-control"
+                            ngModel
+                            required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button 
+                        type="submit" 
+                        class="btn btn-success"
+                        [disabled]="!f.valid" style="margin-right : 10px;">Create</button>
+                        <button type="button" class="btn btn-danger"(click)="onClear()">Clear</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

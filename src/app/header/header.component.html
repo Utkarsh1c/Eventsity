@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default head">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a routerLink="/" class="navbar-brand fstyle" style="color:white">EventSity®</a>
+            <a routerLink="/" class="navbar-brand fstyle" style="color:white">EventSity</a>
         </div>
         <div class="navbar-default">
             <ul class="nav navbar-nav">
@@ -9,15 +9,9 @@
                 <li routerLinkActive="active" class="hcolor"><a routerLink='/create' style="color:white;">Create</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right content">
-                <li 
-                class="dropdown"
-                appDropdown>
-                    <a style="cursor:pointer;" class="dropdown-toggle" role="button" style="color:white;">Manage <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a style="cursor:pointer;">Save Data</a></li>
-                        <li><a style="cursor:pointer;">Fetch Data</a></li>
-                    </ul>
-                </li>
+                <li><button class="user">LogIn</button></li>
+                <li><button class="user">SignUp</button></li>
+                <li><button class="user">LogOut</button></li>
             </ul>
         </div>
     </div>

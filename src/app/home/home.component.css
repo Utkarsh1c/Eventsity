@@ -17,4 +17,8 @@
 }
 .line {
     border : 7px solid white;
+    box-shadow: 10px 10px 5px black;
+}
+.shadow {
+    text-shadow: 10px 10px 5px black;
 }

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +12,7 @@ import { DiscoverEventsComponent } from './discover/discover-list/discover-event
 import { DiscoverDetailsComponent } from './discover/discover-details/discover-details.component';
 import { DiscoverHomeComponent } from './discover/discover-home/discover-home.component';
 import { FooterComponent } from './footer/footer.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,11 @@ import { FooterComponent } from './footer/footer.component';
     DiscoverEventsComponent,
     DiscoverDetailsComponent,
     DiscoverHomeComponent,
-    FooterComponent
+    FooterComponent,
+    CreateComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule
   ],
