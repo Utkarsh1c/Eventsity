@@ -1,6 +1,11 @@
 .main img{
-    /* background-image: url('assets/images/ss1.jpe'); */
+    /* background-image:'assets/images/ss1.jpe'; */
     height:85vh;
     width:100%;
+    /* animation: bkimg 10s infinite alternate; */
     /* opacity : 0.8; */
 }
+/* @keyframes bkimg {
+    from{background-image:'assets/images/ss1.jpg';}
+    to{background-image:'assets/images/ss2.jpg';}
+} */

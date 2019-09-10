@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Discover } from '../discover.model';
+import { DiscoverService } from '../discover.service';
 
 @Component({
   selector: 'app-discover-list',
@@ -7,14 +8,12 @@ import { Discover } from '../discover.model';
   styleUrls: ['./discover-list.component.css']
 })
 export class DiscoverListComponent implements OnInit {
-  discover : Discover[] = [
-    new Discover('Marathon', 'RDC', 'assets/images/marathon.jpg'),
-    new Discover('EDM Night','AKG','assets/images/edm.jpg'),
-  ];
+  discover : Discover[];
 
-  constructor() { }
+  constructor(private discoverservice: DiscoverService) { }
 
   ngOnInit() {
+    this.discover = this.discoverservice.getEvents();
   }
 
 }

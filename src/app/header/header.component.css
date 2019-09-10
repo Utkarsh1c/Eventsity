@@ -4,3 +4,6 @@
 .hcolor:hover {
     background-color : orangered;
 }
+.fstyle {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

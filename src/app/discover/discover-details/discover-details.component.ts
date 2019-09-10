@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import { Discover } from '../discover.model';
+import { DiscoverService } from '../discover.service';
 
 @Component({
   selector: 'app-discover-details',
@@ -6,10 +10,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./discover-details.component.css']
 })
 export class DiscoverDetailsComponent implements OnInit {
+  discover:Discover;
+  id:number;
 
-  constructor() { }
+  constructor(private discoverservice: DiscoverService,
+              private route:ActivatedRoute) {}
 
   ngOnInit() {
+    this.route.params
+    .subscribe(
+      (params: Params) => {
+        this.id = +params['id'];
+        this.discover = this.discoverservice.getEvent(this.id);
+      }
+    )
   }
 
 }

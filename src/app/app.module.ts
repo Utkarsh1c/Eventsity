@@ -9,6 +9,7 @@ import { DiscoverComponent } from './discover/discover.component';
 import { DiscoverListComponent } from './discover/discover-list/discover-list.component';
 import { DiscoverEventsComponent } from './discover/discover-list/discover-events/discover-events.component';
 import { DiscoverDetailsComponent } from './discover/discover-details/discover-details.component';
+import { DiscoverHomeComponent } from './discover/discover-home/discover-home.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DiscoverDetailsComponent } from './discover/discover-details/discover-d
     DiscoverComponent,
     DiscoverListComponent,
     DiscoverEventsComponent,
-    DiscoverDetailsComponent
+    DiscoverDetailsComponent,
+    DiscoverHomeComponent
   ],
   imports: [
     BrowserModule,

@@ -11,9 +11,6 @@ export class DiscoverEventsComponent implements OnInit {
   @Input() discover: Discover;
   @Input() index: number;
 
-  constructor() { }
-
   ngOnInit() {
   }
-
 }
