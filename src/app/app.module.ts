@@ -13,6 +13,8 @@ import { DiscoverDetailsComponent } from './discover/discover-details/discover-d
 import { DiscoverHomeComponent } from './discover/discover-home/discover-home.component';
 import { FooterComponent } from './footer/footer.component';
 import { CreateComponent } from './create/create.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { CreateComponent } from './create/create.component';
     DiscoverDetailsComponent,
     DiscoverHomeComponent,
     FooterComponent,
-    CreateComponent
+    CreateComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     FormsModule,

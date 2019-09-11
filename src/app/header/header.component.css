@@ -8,12 +8,17 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .user {
-    margin-right : 5px;
+    padding : 5px 20px;
+    margin-right : 15px;
     margin-top : 10px;
     background-color : transparent;
     border-radius: 10px;
     color:white;
     border : 2px solid white;
+}
+.user a {
+    color:white;
+    text-decoration:none;
 }
 .user:hover {
     background-color: #FB2929;
