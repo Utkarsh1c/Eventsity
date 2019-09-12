@@ -14,3 +14,8 @@
 .line {
     border : 3px solid #0DBDE0;
 }
+.link {
+    color : #B3A0BD;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 0.5px;
+}

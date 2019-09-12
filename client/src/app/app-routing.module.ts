@@ -9,6 +9,7 @@ import { CreateComponent } from './create/create.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { DisplayDiscoverDetailsComponent } from './display-discover-details/display-discover-details.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
    ] },
    { path:'create', component: CreateComponent },
    { path:'login', component: LoginComponent },
-   { path:'signup', component: SignupComponent }
+   { path:'signup', component: SignupComponent },
+   { path:'aboutus', component: AboutusComponent },
 ];
 
 @NgModule({
