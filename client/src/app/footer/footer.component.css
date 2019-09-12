@@ -1,10 +1,16 @@
 .color {
     background-color : #5B5056;
     color : white;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    letter-spacing: 0.5px;
 }
 .colorend {
     background-color: black;
+    letter-spacing:1px;
     color : white;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding : 5px;
+    font-family: initial;
+}
+.line {
+    border : 3px solid #0DBDE0;
 }

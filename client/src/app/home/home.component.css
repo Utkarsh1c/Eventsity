@@ -1,14 +1,12 @@
 .main{
-    animation : bkimg 5s infinite alternate;
-    background-repeat : no-repeat;
-    background-size : cover;
+    background-size:cover;
+    animation : bkimg 8s infinite alternate;
     height:85vh;
-    width:100%;
     border-radius : 10px;
 }
 @keyframes bkimg {
-    0%{background:url( C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\ss3.jpe);}
-    50%{background-image:url( C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\ss2.jpe);}
+    0%{background:url( C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\ss2.jpg);}
+    50%{background-image:url( C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\ss3.jpg);}
     100%{background-image:url( C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\ss1.jpg);}
 }
 .content {

@@ -1,5 +1,10 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 box">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 box">
+        <div class="head">
+            <h4>HAPPY TO SEE YOU BACK!</h4>
+            <p>Let’s see how your events are doing</p>
+        </div>
         <form (ngSubmit)="onLogin(f)" #f="ngForm">
             <div class="form-group">
                 <label for="email">E-Mail</label>
@@ -11,5 +16,22 @@
             </div>
             <button type="submit" class="mybutton">LogIn</button>
         </form>
+        <p class="foot">Don't have an account ? <a routerLink='/signup'>SignUp</a></p>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<hr style="opacity: 0;">
+<div class="row">
+    <div class="col-xs-12 head">
+        <h4>- LOGIN AND GET CONNECTED -</h4>
+    </div>
+</div>
+<hr style="opacity: 0;">
+<div class="row">
+    <div class="col-sm-6 size head">
+        <img src="assets/images/login2.png" alt="login">
+    </div>
+    <div class="col-sm-6 size head">
+        <img src="assets/images/login3.png" alt="login">
     </div>
 </div>

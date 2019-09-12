@@ -1,5 +1,10 @@
 <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 box">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="head">
+            <h4>LET'S CREATE YOUR ACCOUNT</h4>
+            <p>It won't take more than a few minutes, we promise :)</p>
+        </div>
         <form (ngSubmit)="onSignup(f)" #f="ngForm">
                 <div class="form-group">
                     <label for="name">Name</label>
@@ -18,8 +23,16 @@
                     ngModel 
                     class="form-control" 
                     minlenght=6>
-                </div>
-                <button type="submit" class="mybutton">SignUp</button>
-            </form>
-        </div>
+            </div>
+            <button type="submit" class="mybutton">SignUp</button>
+        </form>
+        <p class="foot">Already on EventSity ? <a routerLink='/login'>LogIn</a></p>
     </div>
+    <div class="col-md-2"></div>
+</div>
+<div class="row">
+    <div class="col-xs-12 head">
+        <h4>- OUR HAPPY USERS -</h4>
+        <img src="assets/images/signup.jpg" alt="signup">
+    </div>
+</div>
