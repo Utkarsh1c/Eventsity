@@ -10,6 +10,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { DisplayDiscoverDetailsComponent } from './display-discover-details/display-discover-details.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,7 @@ const routes: Routes = [
    { path:'login', component: LoginComponent },
    { path:'signup', component: SignupComponent },
    { path:'aboutus', component: AboutusComponent },
+   { path:'contactus', component: ContactusComponent },
 ];
 
 @NgModule({

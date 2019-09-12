@@ -17,6 +17,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { DisplayDiscoverDetailsComponent } from './display-discover-details/display-discover-details.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
     SignupComponent,
     DisplayDiscoverDetailsComponent,
     AboutusComponent,
+    ContactusComponent,
   ],
   imports: [
     FormsModule,
