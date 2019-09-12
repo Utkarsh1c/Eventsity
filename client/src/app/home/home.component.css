@@ -1,0 +1,79 @@
+.main{
+    animation : bkimg 5s infinite alternate;
+    background-repeat : no-repeat;
+    background-size : cover;
+    height:85vh;
+    width:100%;
+    border-radius : 10px;
+}
+@keyframes bkimg {
+    0%{background:url( C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\ss3.jpe);}
+    50%{background-image:url( C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\ss2.jpe);}
+    100%{background-image:url( C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\ss1.jpg);}
+}
+.content {
+    margin-top : 14em;
+    margin-left : 20em;
+    position : absolute;
+    color : white;
+}
+.line {
+    border : 7px solid white;
+    box-shadow: 10px 10px 5px black;
+}
+.shadow {
+    text-shadow: 10px 10px 5px black;
+}
+.ent {
+    background : url(C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\entertainmenthome.jpe);
+    height : 25em;
+    background-size : cover;
+    border-radius : 10px;
+}
+.soc {
+    background : url(C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\socialhome.jpe);
+    height : 11em;
+    background-size : cover;
+    border-radius : 10px;
+}
+.sports {
+    background : url(C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\marathonhome.jpe);
+    height : 11em;
+    background-size : cover;
+    border-radius : 10px;
+}
+.tech {
+    background : url(C:\Users\User\Desktop\GitHub\Eventsity\client\src\assets\images\techhome.jpe);
+    height : 25em;
+    background-size : cover;
+    border-radius : 10px;
+}
+.fullimg {
+    padding : 12em 10em;
+    color : white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    letter-spacing: 3px;
+}
+.halfimg {
+    padding : 5em 10em;
+    color : white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    letter-spacing: 3px;
+}
+.box:hover {
+    animation : increase 1s ; 
+}
+@keyframes increase {
+    0%{transform : scale(1.01);}
+    50%{transform : scale(1.07);}
+}
+.category {
+    text-align : center;
+    color : #BB0DE0;
+    padding : 10px;
+}
+.desc {
+    text-align : center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding : 10px;
+}
