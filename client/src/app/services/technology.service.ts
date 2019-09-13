@@ -1,27 +1,13 @@
 import { EventEmitter } from '@angular/core';
 
-import { Discover } from './discover.model';
+import { Discover } from '../discover/discover.model';
 import { Subject } from 'rxjs';
 
-export class DiscoverService {
+export class TechnologyService {
     discoverChanged = new Subject<Discover[]>();
     eventSelected = new EventEmitter<Discover>();
 
     private discover : Discover[] = [
-        new Discover(
-        'Marathon', 
-        'RDC', 
-        'Near Talwakars, City Complex, Ghaziabad', 
-        'assets/images/marathon.jpg',
-        '26 Sept\'19',
-        'Tanishq Bhardwaj'),
-        new Discover(
-            'EDM Night',
-            'AKG',
-            'Adhyatmik Nagar, AKG College, Ghaziabad',
-            'assets/images/edm.jpg',
-            '29 September\'19',
-            'Utkarsh Mittal'),
         new Discover(
             'Technocrat',
             'ABES',
@@ -31,7 +17,7 @@ export class DiscoverService {
             'Ritik Gupta'),
     ];
 
-    getEvents() { //sending copy of array to list
+    getTechnology() { //sending copy of array to list
         return this.discover.slice();
     }
 
@@ -39,7 +25,7 @@ export class DiscoverService {
         return this.discover[index];
     }
 
-    adddiscover(discovers: Discover) {
+    addTechnology(discovers: Discover) {
         this.discover.push(discovers);
         this.discoverChanged.next(this.discover.slice());
     }

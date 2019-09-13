@@ -1,6 +1,18 @@
-<div class="box">
+<div class="row head">
+    <h3 style="text-align:center;color:#9E36DA;">LET'S CREATE YOUR EVENT.</h3>
+    <img src="assets/images/create1.png" alt="create">
+</div>
+<hr style="opacity: 0;">
+<h4 style="text-align:center;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:#9E36DA;">
+    CREATE YOUR EVENT SO THAT EVERYONE MAY ACCESS OR KNOW ABOUT THE EVENT.
+</h4>
+<p style="text-align:center;color:#9E36DA;">
+    Start creating your event by entering your details below.
+</p>
+<hr style="opacity: 0;">
 <div class="row">
-        <div class="col-xs-12">
+    <div class="col-md-3"></div>
+        <div class="col-md-6">
             <form (ngSubmit)="onCreate(f)" #f="ngForm">
                 <div class="row">
                     <div class="col-xs-12">
@@ -38,11 +50,42 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
-                            <label for="venue">Short Venue</label>
+                            <label for="category">Category of Event</label>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <input 
+                                    type="radio" 
+                                    (click)="onAddToEntertainment"
+                                    name="category"
+                                    style="margin : 5px 5px;"> Entertainment
+                                    <input 
+                                    type="radio"
+                                    (click)="onAddToSocial" 
+                                    name="category"
+                                    style="margin : 5px 5px;"> Social
+                                    <input 
+                                    type="radio" 
+                                    (click)="onAddToSports"
+                                    name="category"
+                                    style="margin : 5px 5px;"> Sports
+                                    <input 
+                                    type="radio"
+                                    (click)="onAddToTechnology" 
+                                    name="category" 
+                                    style="margin : 5px 5px;"> Technology
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="evenue">Short Venue</label>
                             <input
                             type="text" 
-                            id="venue" 
-                            name="venue"
+                            id="evenue" 
+                            name="evenue"
                             class="form-control"
                             ngModel
                             required>
@@ -52,11 +95,11 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
-                            <label for="fvenue">Full Venue</label>
+                            <label for="fevenue">Full Venue</label>
                             <input
                             type="text" 
-                            id="fvenue" 
-                            name="fvenue"
+                            id="fevenue" 
+                            name="fevenue"
                             class="form-control"
                             ngModel
                             required>
@@ -102,5 +145,5 @@
                 </div>
             </form>
         </div>
+        <div class="col-md-3"></div>
     </div>
-</div>

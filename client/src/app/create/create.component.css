@@ -1,12 +1,6 @@
-.box {
-    /* background-color:#EAE7E7; */
-    background-image: linear-gradient(to bottom, #B7FFDE, white);
-    height:38em;
-    width:30em;
-    padding:10px;
-    border-radius:10px;
-    margin-left:25em;
-    box-shadow:1px 1px 20px black;
+.head img {
+    height:35em;
+    width:100%
 }
 input.ng-invalid.ng-touched {
     border : 2px solid red;

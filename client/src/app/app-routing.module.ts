@@ -8,9 +8,10 @@ import { DiscoverDetailsComponent } from './discover/discover-details/discover-d
 import { CreateComponent } from './create/create.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { DisplayDiscoverDetailsComponent } from './display-discover-details/display-discover-details.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
+import { DisplayDiscoverDetailsComponent } from './discover/display-discover-details/display-discover-details.component';
+
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
      { path:'', component : DiscoverHomeComponent },
      { path:':id', component: DiscoverDetailsComponent }
    ] },
+  //  { path:':id', component: DisplayDiscoverDetailsComponent },
    { path:'create', component: CreateComponent },
    { path:'login', component: LoginComponent },
    { path:'signup', component: SignupComponent },

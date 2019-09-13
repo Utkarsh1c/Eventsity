@@ -9,7 +9,7 @@ import { Discover } from './discover.model';
   styleUrls: ['./discover.component.css']
 })
 export class DiscoverComponent implements OnInit {
-  selectedEvent: Discover;
+  selectedEvent : Discover;
 
   constructor(private discoverservice:DiscoverService) { }
 
