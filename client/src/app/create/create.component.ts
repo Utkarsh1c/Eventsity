@@ -6,6 +6,10 @@ import { EntertainmentService } from '../services/entertainment.service';
 import { SportsService } from '../services/sports.service';
 import { SocialService } from '../services/social.service';
 import { TechnologyService } from '../services/technology.service';
+import { Entertainment } from '../model/entertainment.model';
+import { Sports } from '../model/sports.model';
+import { Social } from '../model/social.model';
+import { Technology } from '../model/technology.model';
 
 @Component({
   selector: 'app-create',
@@ -44,25 +48,44 @@ export class CreateComponent implements OnInit {
     this.techtype = true;
   }
 
+  // if(this.enttype) {
+  //   onCreate(form : NgForm) {
+  //     const value = form.value;
+  //     const newDiscover = new Entertainment(value.ename, value.evenue, value.fevenue, value.imagePath, 
+  //       value.date, value.orgname);
+  //       this.entservice.addEntertainment(newDiscover);
+  //       this.enttype = false;      
+  //   }
+  // }
+
   onCreate(form : NgForm) {
     const value = form.value;
-    const newDiscover = new Discover(value.ename, value.evenue, value.fevenue, value.imagePath, 
-      value.date, value.orgname);
+    // const newDiscover = new Discover(value.ename, value.evenue, value.fevenue, value.imagePath, 
+    //   value.date, value.orgname);
     // this.dservice.adddiscover(newDiscover);
     if(this.enttype) {
-      this.entservice.addEntertainment(newDiscover);
+      const newEntertainment = new Entertainment(value.ename, value.evenue, value.fevenue, value.imagePath, 
+        value.date, value.orgname);
+      this.entservice.addEntertainment(newEntertainment);
       this.enttype = false;
+      console.log('Entertainment Added');
     }
     if(this.sportstype) {
-      this.sportsservice.addSports(newDiscover);
+      const newSports = new Sports(value.ename, value.evenue, value.fevenue, value.imagePath, 
+        value.date, value.orgname);
+      this.sportsservice.addSports(newSports);
       this.sportstype = false;
     }
     if(this.socialtype) {
-      this.socialservice.addSocial(newDiscover);
+      const newSocial = new Social(value.ename, value.evenue, value.fevenue, value.imagePath, 
+        value.date, value.orgname);
+      this.socialservice.addSocial(newSocial);
       this.socialtype = false;
     }
     if(this.techtype) {
-      this.techservice.addTechnology(newDiscover);
+      const newTechnology = new Technology(value.ename, value.evenue, value.fevenue, value.imagePath, 
+        value.date, value.orgname);
+      this.techservice.addTechnology(newTechnology);
       this.techtype = false;
     }
     form.reset();

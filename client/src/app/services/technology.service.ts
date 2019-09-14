@@ -1,14 +1,14 @@
 import { EventEmitter } from '@angular/core';
 
-import { Discover } from '../discover/discover.model';
 import { Subject } from 'rxjs';
+import { Technology } from '../model/technology.model';
 
 export class TechnologyService {
-    discoverChanged = new Subject<Discover[]>();
-    eventSelected = new EventEmitter<Discover>();
+    discoverChanged = new Subject<Technology[]>();
+    eventSelected = new EventEmitter<Technology>();
 
-    private discover : Discover[] = [
-        new Discover(
+    private technology : Technology[] = [
+        new Technology(
             'Technocrat',
             'ABES',
             'Crossing Republik, ABES College, Ghaziabad',
@@ -18,15 +18,15 @@ export class TechnologyService {
     ];
 
     getTechnology() { //sending copy of array to list
-        return this.discover.slice();
+        return this.technology.slice();
     }
 
     getEvent(index:number) { //sending details of the event in array
-        return this.discover[index];
+        return this.technology[index];
     }
 
-    addTechnology(discovers: Discover) {
-        this.discover.push(discovers);
-        this.discoverChanged.next(this.discover.slice());
+    addTechnology(discovers: Technology) {
+        this.technology.push(discovers);
+        this.discoverChanged.next(this.technology.slice());
     }
 }

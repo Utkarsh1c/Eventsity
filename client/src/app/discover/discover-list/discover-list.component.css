@@ -1,4 +1,31 @@
-h1 {
-    color : red;
-    text-shadow : 5px 5px 8px black;
+h1{
+    color : #9E36DA;
+    text-align : center;
+}
+button {
+    height : 10em;
+    width : 10em;
+    color : white;
+    border : 0px;
+    border-radius: 10px;
+    text-decoration:none;
+}
+button:hover {
+    border : 5px solid #31FC3D;
+}
+.entcat {
+    background : url(../../../assets/images/entertainmenthome.jpe);
+    background-size : cover;
+}
+.soccat {
+    background : url(../../../assets/images/socialhome.jpe);
+    background-size : cover;
+}
+.techcat {
+    background : url(../../../assets/images/techhome.jpe);
+    background-size : cover;
+}
+.sportscat {
+    background : url(../../../assets/images/marathonhome.jpe);
+    background-size : cover;
 }

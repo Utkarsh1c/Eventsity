@@ -19,6 +19,10 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { DisplayDiscoverDetailsComponent } from './discover/display-discover-details/display-discover-details.component';
+import { EntertainmentService } from './services/entertainment.service';
+import { SocialService } from './services/social.service';
+import { TechnologyService } from './services/technology.service';
+import { SportsService } from './services/sports.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,12 @@ import { DisplayDiscoverDetailsComponent } from './discover/display-discover-det
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    EntertainmentService,
+    SocialService,
+    TechnologyService,
+    SportsService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

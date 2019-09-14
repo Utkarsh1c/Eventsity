@@ -1,14 +1,14 @@
 import { EventEmitter } from '@angular/core';
 
-import { Discover } from '../discover/discover.model';
 import { Subject } from 'rxjs';
+import { Sports } from '../model/sports.model';
 
 export class SportsService {
-    discoverChanged = new Subject<Discover[]>();
-    eventSelected = new EventEmitter<Discover>();
+    discoverChanged = new Subject<Sports[]>();
+    eventSelected = new EventEmitter<Sports>();
 
-    private discover : Discover[] = [
-        new Discover(
+    private sports : Sports[] = [
+        new Sports(
         'Saksham', 
         'AKG', 
         'Adhyatmik Nagar, Ghaziabad', 
@@ -18,15 +18,15 @@ export class SportsService {
     ];
 
     getSports() { //sending copy of array to list
-        return this.discover.slice();
+        return this.sports.slice();
     }
 
     getEvent(index:number) { //sending details of the event in array
-        return this.discover[index];
+        return this.sports[index];
     }
 
-    addSports(discovers: Discover) {
-        this.discover.push(discovers);
-        this.discoverChanged.next(this.discover.slice());
+    addSports(discovers: Sports) {
+        this.sports.push(discovers);
+        this.discoverChanged.next(this.sports.slice());
     }
 }

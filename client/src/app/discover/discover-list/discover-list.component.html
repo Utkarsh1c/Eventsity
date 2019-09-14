@@ -1,6 +1,23 @@
 <div class="row">
     <div class="col-xs-12">
-        <h1>Events!!</h1>  
+        <h1>Events By Category</h1>
+    </div>
+</div>
+<hr style="opacity: 0;">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="col-md-3">
+            <button (click)="showEntertainment()" class="entcat">Entertainment</button>
+        </div>
+        <div class="col-md-3">
+            <button (click)="showSocial()" class="soccat">Social</button>
+        </div>
+        <div class="col-md-3">
+            <button (click)="showTechnology()" class="techcat">Technology</button>
+        </div>
+        <div class="col-md-3">
+            <button (click)="showSports()" class="sportscat">Sports</button>
+        </div> 
     </div>
 </div>
 <hr>
@@ -8,7 +25,7 @@
     <div class="col-xs-12">
         <app-discover-events
         *ngFor="let discover of discover; let i = index"
-        [discover]="discover"
+        [discover]="discover" 
         [index]="i"></app-discover-events>
     </div>
 </div>

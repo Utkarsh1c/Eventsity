@@ -1,14 +1,14 @@
 import { EventEmitter } from '@angular/core';
 
 import { Subject } from 'rxjs';
-import { Discover } from '../discover/discover.model';
+import { Social } from '../model/social.model';
 
 export class SocialService {
-    discoverChanged = new Subject<Discover[]>();
-    eventSelected = new EventEmitter<Discover>();
+    discoverChanged = new Subject<Social[]>();
+    eventSelected = new EventEmitter<Social>();
 
-    private discover : Discover[] = [
-        new Discover(
+    private social : Social[] = [
+        new Social(
         'Marathon', 
         'RDC', 
         'Near Talwakars, City Complex, Ghaziabad', 
@@ -18,15 +18,15 @@ export class SocialService {
     ];
 
     getSocial() { //sending copy of array to list
-        return this.discover.slice();
+        return this.social.slice();
     }
 
     getEvent(index:number) { //sending details of the event in array
-        return this.discover[index];
+        return this.social[index];
     }
 
-    addSocial(discovers: Discover) {
-        this.discover.push(discovers);
-        this.discoverChanged.next(this.discover.slice());
+    addSocial(discovers: Social) {
+        this.social.push(discovers);
+        this.discoverChanged.next(this.social.slice());
     }
 }

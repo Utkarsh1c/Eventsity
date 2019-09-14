@@ -2,14 +2,14 @@ import { EventEmitter } from '@angular/core';
 
 
 import { Subject } from 'rxjs';
-import { Discover } from '../discover/discover.model';
+import { Entertainment } from '../model/entertainment.model';
 
 export class EntertainmentService {
-    discoverChanged = new Subject<Discover[]>();
-    eventSelected = new EventEmitter<Discover>();
+    discoverChanged = new Subject<Entertainment[]>();
+    eventSelected = new EventEmitter<Entertainment>();
 
-    private discover : Discover[] = [
-        new Discover(
+    private entertainment : Entertainment[] = [
+        new Entertainment(
             'EDM Night',
             'AKG',
             'Adhyatmik Nagar, AKG College, Ghaziabad',
@@ -19,15 +19,15 @@ export class EntertainmentService {
     ];
 
     getEntertainment() {
-        return this.discover.slice();
+        return this.entertainment.slice();
     }
 
     getEvent(index:number) {
-        return this.discover[index];
+        return this.entertainment[index];
     }
 
-    addEntertainment(discovers: Discover) {
-        this.discover.push(discovers);
-        this.discoverChanged.next(this.discover.slice());
+    addEntertainment(discovers: Entertainment) {
+        this.entertainment.push(discovers);
+        this.discoverChanged.next(this.entertainment.slice());
     }
 }
