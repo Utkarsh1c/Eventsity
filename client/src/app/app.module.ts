@@ -23,6 +23,7 @@ import { EntertainmentService } from './services/entertainment.service';
 import { SocialService } from './services/social.service';
 import { TechnologyService } from './services/technology.service';
 import { SportsService } from './services/sports.service';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SportsService } from './services/sports.service';
     AboutusComponent,
     ContactusComponent,
     DisplayDiscoverDetailsComponent,
+    DropdownDirective,
   ],
   imports: [
     HttpClientModule,

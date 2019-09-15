@@ -34,18 +34,34 @@ export class CreateComponent implements OnInit {
 
   onAddToEntertainment() {
     this.enttype = true;
+    this.sportstype=false;
+    this.socialtype=false;
+    this.techtype=false;
+    console.log('Enter to enttype true');
   }
 
   onAddToSports() {
     this.sportstype = true;
+    this.enttype=false;
+    this.socialtype=false;
+    this.techtype=false;
+    console.log('Enter to sportstype true');
   }
   
   onAddToSocial() {
     this.socialtype = true;
+    this.enttype=false;
+    this.sportstype=false;
+    this.techtype=false;
+    console.log('Enter to socialtype true');
   }  
 
   onAddToTechnology() {
     this.techtype = true;
+    this.enttype=false;
+    this.sportstype=false;
+    this.socialtype=false;
+    console.log('Enter to techtype true');
   }
 
   // if(this.enttype) {
@@ -59,6 +75,7 @@ export class CreateComponent implements OnInit {
   // }
 
   onCreate(form : NgForm) {
+    console.log('Entered Create');
     const value = form.value;
     // const newDiscover = new Discover(value.ename, value.evenue, value.fevenue, value.imagePath, 
     //   value.date, value.orgname);
@@ -75,18 +92,21 @@ export class CreateComponent implements OnInit {
         value.date, value.orgname);
       this.sportsservice.addSports(newSports);
       this.sportstype = false;
+      console.log('Sports Added');
     }
     if(this.socialtype) {
       const newSocial = new Social(value.ename, value.evenue, value.fevenue, value.imagePath, 
         value.date, value.orgname);
       this.socialservice.addSocial(newSocial);
       this.socialtype = false;
+      console.log('Social Added');
     }
     if(this.techtype) {
       const newTechnology = new Technology(value.ename, value.evenue, value.fevenue, value.imagePath, 
         value.date, value.orgname);
       this.techservice.addTechnology(newTechnology);
       this.techtype = false;
+      console.log('Technology Added');
     }
     form.reset();
   }
