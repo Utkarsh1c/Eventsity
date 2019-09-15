@@ -24,7 +24,12 @@
                             name="ename"
                             class="form-control"
                             ngModel
-                            required>
+                            required
+                            #ename="ngModel">
+                            <span 
+                            class="help-block" 
+                            *ngIf="!ename.valid && ename.touched"
+                            style="color:red;">Enter a valid Event Name</span>
                         </div>
                     </div>
                 </div>
@@ -39,7 +44,12 @@
                             class="form-control"
                             ngModel
                             required
-                            #imagePath>
+                            #imagePath
+                            #imgPath="ngModel">
+                            <span 
+                            class="help=block" 
+                            *ngIf="!imgPath.valid && imgPath.touched"
+                            style="color:red;">Enter a Valid Image URL</span>
                         </div>
                     </div>
                 </div>
@@ -102,7 +112,12 @@
                             name="evenue"
                             class="form-control"
                             ngModel
-                            required>
+                            required
+                            #evenue="ngModel">
+                            <span
+                            class="help-block"
+                            *ngIf="!evenue.valid && evenue.touched"
+                            style="color:red;">Enter Venue of Event</span>
                         </div>
                     </div>
                 </div>
@@ -116,7 +131,12 @@
                             name="fevenue"
                             class="form-control"
                             ngModel
-                            required>
+                            required
+                            #fevenue="ngModel">
+                            <span
+                            class="help-block"
+                            *ngIf="!fevenue.valid && fevenue.touched"
+                            style="color:red;">Enter Detailed Address</span>
                         </div>
                     </div>
                 </div>
@@ -130,7 +150,12 @@
                             name="date"
                             class="form-control"
                             ngModel
-                            required>
+                            required
+                            #date="ngModel">
+                            <span
+                            class="help-block"
+                            *ngIf="!date.valid && date.touched"
+                            style="color:red;">Enter Date of Event</span>
                         </div>
                     </div>
                 </div>
@@ -144,7 +169,12 @@
                             name="orgname"
                             class="form-control"
                             ngModel
-                            required>
+                            required
+                            #orgname="ngModel">
+                            <span
+                            class="help-block"
+                            *ngIf="!orgname.valid && orgname.touched"
+                            style="color:red;">Enter Name of Organiser</span>
                         </div>
                     </div>
                 </div>
@@ -154,7 +184,7 @@
                         type="submit" 
                         class="btn btn-success"
                         [disabled]="!f.valid" style="margin-right : 10px;">Create</button>
-                        <button type="button" class="btn btn-danger"(click)="onClear()">Clear</button>
+                        <button type="button" class="btn btn-danger"(click)="onCancel()">Cancel</button>
                     </div>
                 </div>
             </form>

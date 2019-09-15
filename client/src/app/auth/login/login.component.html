@@ -8,11 +8,34 @@
         <form (ngSubmit)="onLogin(f)" #f="ngForm">
             <div class="form-group">
                 <label for="email">E-Mail</label>
-                <input type="email" id="email" name="email" ngModel class="form-control" required>
+                <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                ngModel 
+                class="form-control" 
+                required
+                #email="ngModel">
+                <span 
+                class="help-block"
+                *ngIf="!email.valid && email.touched"
+                style="color:red;">Enter a valid Email</span>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" ngModel class="form-control" required>
+                <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                ngModel 
+                class="form-control" 
+                required
+                [minlength]="6"
+                #password="ngModel">
+                <span
+                class="help-block"
+                *ngIf="!password.valid && password.touched"
+                style="color:red;">Enter minimum 6 character password</span>
             </div>
             <button type="submit" class="mybutton">LogIn</button>
         </form>

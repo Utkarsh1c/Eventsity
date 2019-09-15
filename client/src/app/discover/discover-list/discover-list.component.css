@@ -14,18 +14,18 @@ button:hover {
     border : 5px solid #31FC3D;
 }
 .entcat {
-    background : url(../../../assets/images/entertainmenthome.jpe);
+    background : url(../../../assets/images/entertainmentdiscover.jpe);
     background-size : cover;
 }
 .soccat {
-    background : url(../../../assets/images/socialhome.jpe);
+    background : url(../../../assets/images/socialdiscover.jpe);
     background-size : cover;
 }
 .techcat {
-    background : url(../../../assets/images/techhome.jpe);
+    background : url(../../../assets/images/technologydiscover.jpe);
     background-size : cover;
 }
 .sportscat {
-    background : url(../../../assets/images/marathonhome.jpe);
+    background : url(../../../assets/images/sportsdiscover.jpe);
     background-size : cover;
 }

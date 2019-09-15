@@ -10,6 +10,7 @@ import { Entertainment } from '../model/entertainment.model';
 import { Sports } from '../model/sports.model';
 import { Social } from '../model/social.model';
 import { Technology } from '../model/technology.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -27,7 +28,8 @@ export class CreateComponent implements OnInit {
               private entservice : EntertainmentService,
               private sportsservice : SportsService,
               private socialservice : SocialService,
-              private techservice : TechnologyService) { }
+              private techservice : TechnologyService,
+              private router : Router) { }
 
   ngOnInit() {
   }
@@ -109,6 +111,9 @@ export class CreateComponent implements OnInit {
       console.log('Technology Added');
     }
     form.reset();
+    this.router.navigate(['/discover']);
   }
-
+  onCancel() {
+    this.router.navigate(['/discover']);
+  }
 }
