@@ -23,10 +23,10 @@ export class DiscoverEventsComponent implements OnInit {
 
   @Input() passent : boolean;
   @Input() discover: Discover;
-  if(passent) {
-    // @Input() discover:Entertainment;
-    console.log('passent child');
-  }
+  // if(this.passent) {
+  //   @Input() entertainment:Entertainment;
+  //   console.log('passent child');
+  // }
   @Input() index: number;
 
   ngOnInit() {

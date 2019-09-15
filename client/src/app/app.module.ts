@@ -24,6 +24,14 @@ import { SocialService } from './services/social.service';
 import { TechnologyService } from './services/technology.service';
 import { SportsService } from './services/sports.service';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { EntertainmentListComponent } from './discover/entertainment-list/entertainment-list.component';
+import { EntertainmentEventsComponent } from './discover/entertainment-list/entertainment-events/entertainment-events.component';
+import { SocialListComponent } from './discover/social-list/social-list.component';
+import { SocialEventsComponent } from './discover/social-list/social-events/social-events.component';
+import { SportsListComponent } from './discover/sports-list/sports-list.component';
+import { SportsEventsComponent } from './discover/sports-list/sports-events/sports-events.component';
+import { TechnologyListComponent } from './discover/technology-list/technology-list.component';
+import { TechnologyEventsComponent } from './discover/technology-list/technology-events/technology-events.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +51,14 @@ import { DropdownDirective } from './shared/dropdown.directive';
     ContactusComponent,
     DisplayDiscoverDetailsComponent,
     DropdownDirective,
+    EntertainmentListComponent,
+    EntertainmentEventsComponent,
+    SocialListComponent,
+    SocialEventsComponent,
+    SportsListComponent,
+    SportsEventsComponent,
+    TechnologyListComponent,
+    TechnologyEventsComponent,
   ],
   imports: [
     HttpClientModule,
