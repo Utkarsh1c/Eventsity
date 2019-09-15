@@ -1,4 +1,5 @@
 const express = require('express');
+const sequelize = require('./util/database');
 const feedRoutes = require('./routes/feed');
 
 const app = express();
@@ -14,4 +15,19 @@ app.use((req, res, next) => {
 
 app.use('/feed', feedRoutes);
 
-app.listen(8080);
+app.use((error, req, res, next) => {
+  console.log(error);
+  const status = error.statusCode || 500;
+  const message = error.message;
+  res.status(status).json({ message: message })
+})
+
+sequelize
+  // .sync({ force: true })
+  .sync()
+  .then(cart => {
+    app.listen(8080);
+  })
+  .catch(err => {
+    console.log(err);
+  });
