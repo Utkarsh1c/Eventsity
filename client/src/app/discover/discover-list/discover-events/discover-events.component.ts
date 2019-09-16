@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 
 // import { Discover } from '../../discover.model';
-import { Entertainment } from 'src/app/model/entertainment.model';
+
 import { DiscoverListComponent } from '../discover-list.component';
 import { Subject } from 'rxjs';
 import { Discover } from '../../discover.model';
@@ -21,13 +21,13 @@ export class DiscoverEventsComponent implements OnInit {
   // }
   
 
-  @Input() passent : boolean;
-  @Input() discover: Discover;
+  // @Input() passent : boolean;
+  // @Input() discover: Discover;
   // if(this.passent) {
   //   @Input() entertainment:Entertainment;
   //   console.log('passent child');
   // }
-  @Input() index: number;
+  // @Input() index: number;
 
   ngOnInit() {
   }

@@ -9,14 +9,16 @@ export class DiscoverService {
 
     private discover : Discover[] = [
         new Discover(
-        'Marathon', 
-        'RDC', 
-        'Near Talwakars, City Complex, Ghaziabad', 
-        'assets/images/marathon.jpg',
-        '26 Sept\'19',
-        'Tanishq Bhardwaj'),
+            'Marathon', 
+            'Sports',
+            'RDC', 
+            'Near Talwakars, City Complex, Ghaziabad', 
+            'assets/images/marathon.jpg',
+            '26 Sept\'19',
+            'Tanishq Bhardwaj'),
         new Discover(
             'EDM Night',
+            'Entertainment',
             'AKG',
             'Adhyatmik Nagar, AKG College, Ghaziabad',
             'assets/images/edm.jpg',
@@ -24,11 +26,21 @@ export class DiscoverService {
             'Utkarsh Mittal'),
         new Discover(
             'Technocrat',
+            'Technology',
             'ABES',
             'Crossing Republik, ABES College, Ghaziabad',
             'assets/images/tech.jpg',
             '5 October\'19',
             'Ritik Gupta'),
+        new Discover(
+            'Saksham',
+            'Sports', 
+            'AKG', 
+            'Adhyatmik Nagar, Ghaziabad', 
+            'assets/images/marathon.jpg',
+            '29 Sept\'19',
+            'Om Prakash',
+        ),
     ];
 
     getEvents() { //sending copy of array to list

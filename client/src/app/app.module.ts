@@ -19,19 +19,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { DisplayDiscoverDetailsComponent } from './discover/display-discover-details/display-discover-details.component';
-import { EntertainmentService } from './services/entertainment.service';
-import { SocialService } from './services/social.service';
-import { TechnologyService } from './services/technology.service';
-import { SportsService } from './services/sports.service';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { EntertainmentListComponent } from './discover/entertainment-list/entertainment-list.component';
-import { EntertainmentEventsComponent } from './discover/entertainment-list/entertainment-events/entertainment-events.component';
-import { SocialListComponent } from './discover/social-list/social-list.component';
-import { SocialEventsComponent } from './discover/social-list/social-events/social-events.component';
-import { SportsListComponent } from './discover/sports-list/sports-list.component';
-import { SportsEventsComponent } from './discover/sports-list/sports-events/sports-events.component';
-import { TechnologyListComponent } from './discover/technology-list/technology-list.component';
-import { TechnologyEventsComponent } from './discover/technology-list/technology-events/technology-events.component';
+
 
 @NgModule({
   declarations: [
@@ -51,14 +40,6 @@ import { TechnologyEventsComponent } from './discover/technology-list/technology
     ContactusComponent,
     DisplayDiscoverDetailsComponent,
     DropdownDirective,
-    EntertainmentListComponent,
-    EntertainmentEventsComponent,
-    SocialListComponent,
-    SocialEventsComponent,
-    SportsListComponent,
-    SportsEventsComponent,
-    TechnologyListComponent,
-    TechnologyEventsComponent,
   ],
   imports: [
     HttpClientModule,
@@ -66,12 +47,7 @@ import { TechnologyEventsComponent } from './discover/technology-list/technology
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [
-    EntertainmentService,
-    SocialService,
-    TechnologyService,
-    SportsService,
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

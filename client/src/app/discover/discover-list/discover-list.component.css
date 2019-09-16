@@ -29,3 +29,16 @@ button:hover {
     background : url(../../../assets/images/sportsdiscover.jpe);
     background-size : cover;
 }
+.box {
+    background-color : black;
+}
+.box:hover {
+    background-color : black;
+    border : 1px solid black;
+    box-shadow : 5px 5px 15px black;
+    animation : increase 1s ; 
+}
+@keyframes increase {
+    0%{transform : scale(1.01);}
+    50%{transform : scale(1.03);}
+}
