@@ -37,7 +37,7 @@ exports.createPost = (req, res, next) => {
         .then(result => {
             console.log(result);
             res.status(201).json({
-                message: "Post created successfully",
+             result
             })
         })
         .catch(err => {
@@ -69,10 +69,10 @@ exports.getPost = (req, res, next) => {
 
 exports.updatePost = (req, res, next) => {
     const postId = req.params.postId;
-    const imageUrl = "sample url 2";
+    // const imageUrl = "sample url 2";
     const title = req.body.title;
-    const content = req.body.content;
-    const creator = "Mark"
+    // const content = req.body.content;
+    // const creator = "Mark"
     Post.findByPk(postId)
     .then(post => {
         console.log(post,'...........')
@@ -83,9 +83,9 @@ exports.updatePost = (req, res, next) => {
         }
         post.update({
             title: title,
-            content: content,
-            imageUrl: imageUrl,
-            creator: creator
+            // content: content,
+            // imageUrl: imageUrl,
+            // creator: creator
         })
         res.status(201).json({ message: 'Post updated', post: post 
     })
