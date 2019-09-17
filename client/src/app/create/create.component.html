@@ -69,22 +69,29 @@
                                     (click)="onAddToEntertainment()"
                                     name="category"
                                     value="Entertainment"
-                                    style="margin : 5px 5px;"> Entertainment
+                                    style="margin : 5px 5px;"
+                                    ngModel> Entertainment
                                     <input 
                                     type="radio"
                                     (click)="onAddToSocial()" 
                                     name="category"
-                                    style="margin : 5px 5px;"> Social
+                                    value="Social"
+                                    style="margin : 5px 5px;"
+                                    ngModel> Social
                                     <input 
                                     type="radio" 
                                     (click)="onAddToSports()"
                                     name="category"
-                                    style="margin : 5px 5px;"> Sports
+                                    value="Sports"
+                                    style="margin : 5px 5px;"
+                                    ngModel> Sports
                                     <input 
                                     type="radio"
                                     (click)="onAddToTechnology()" 
                                     name="category" 
-                                    style="margin : 5px 5px;"> Technology
+                                    value="Technology"
+                                    style="margin : 5px 5px;"
+                                    ngModel> Technology
                                 </div>
                             </div>
                             <!-- <div class="btn-group" dropdown>
@@ -160,7 +167,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="orgname">Organiser Name</label>
@@ -178,7 +185,7 @@
                             style="color:red;">Enter Name of Organiser</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="row">
                     <div class="col-xs-12">
                         <button 

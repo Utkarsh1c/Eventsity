@@ -81,6 +81,7 @@ export class CreateComponent implements OnInit {
     const value = form.value;
     const newDiscover = new Discover(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
       value.date, value.orgname);
+      console.log(newDiscover);
     this.dservice.adddiscover(newDiscover);
     // if(this.enttype) {
     //   const newEntertainment = new Entertainment(value.ename,value.category, value.evenue, value.fevenue, value.imagePath, 

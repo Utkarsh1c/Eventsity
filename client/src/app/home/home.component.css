@@ -6,7 +6,7 @@
 }
 @keyframes bkimg {
     0%{background:url( ../../assets/images/ss2.jpg);}
-    50%{background-image:url( ../../assets/images/ss3.jpg);}
+    50%{background:url( ../../assets/images/ss3.jpg);}
     100%{background-image:url( ../../assets/images/ss1.jpg);}
 }
 .content {
