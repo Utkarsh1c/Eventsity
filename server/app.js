@@ -1,8 +1,12 @@
 const express = require('express');
 const sequelize = require('./util/database');
 
+const User = require('./models/user');
+const Events = require('./models/events');
+
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -17,6 +21,7 @@ app.use((req, res, next) => {
 
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 app.use((error, req, res, next) => {
   console.log(error);
@@ -25,6 +30,10 @@ app.use((error, req, res, next) => {
   const data = error.data;
   res.status(status).json({ message: message, data: data })
 })
+
+Events.belongsTo(User);
+// User.hasMany(User, {as: 'Followed'});
+// User.hasMany(Events, {as: 'Interested'})
 
 sequelize
   // .sync({ force: true })

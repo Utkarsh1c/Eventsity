@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator');
 
-const Post = require('../models/post');
+const Post = require('../models/events');
 
 exports.getPosts = (req, res, next) => {
     Post.findAll()
@@ -35,9 +35,9 @@ exports.createPost = (req, res, next) => {
         creator: "John"
     })
         .then(result => {
-            console.log(result);
             res.status(201).json({
-             result
+                message: 'Post created',
+                result: result
             })
         })
         .catch(err => {

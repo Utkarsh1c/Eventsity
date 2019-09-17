@@ -25,6 +25,7 @@ const samUser = sequelize.define('user', {
         type: Sequelize.STRING,
         defaultValue: "I am new!"
       },  
+  
 
 })
 

@@ -6,10 +6,12 @@ const authController = require('../controllers/auth');
 
 const router = express.Router();
 
-router.put('/signup', [
+router.post('/signup',
+ 
+[
     body('email')
     .isEmail()
-    .withMessage('Please emter a valid email')
+
     .custom((value) => {
         return User.findOne({ 
             where: { email: value }
@@ -23,7 +25,7 @@ router.put('/signup', [
     .normalizeEmail(),
     body('password')
         .trim()
-        .isLength({ min:5 }),
+        .isLength({ min:6 }),
     body('name')
         .trim()
         .not()
