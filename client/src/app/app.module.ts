@@ -8,9 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DiscoverComponent } from './discover/discover.component';
-import { DiscoverListComponent } from './discover/discover-list/discover-list.component';
-import { DiscoverEventsComponent } from './discover/discover-list/discover-events/discover-events.component';
-import { DiscoverDetailsComponent } from './discover/discover-details/discover-details.component';
+import { DiscoverDetailsComponent } from './discover-details/discover-details.component';
 import { DiscoverHomeComponent } from './discover/discover-home/discover-home.component';
 import { FooterComponent } from './footer/footer.component';
 import { CreateComponent } from './create/create.component';
@@ -18,8 +16,8 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
-import { DisplayDiscoverDetailsComponent } from './discover/display-discover-details/display-discover-details.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { AuthService } from './auth/auth.service';
 
 
 @NgModule({
@@ -28,8 +26,6 @@ import { DropdownDirective } from './shared/dropdown.directive';
     HeaderComponent,
     HomeComponent,
     DiscoverComponent,
-    DiscoverListComponent,
-    DiscoverEventsComponent,
     DiscoverDetailsComponent,
     DiscoverHomeComponent,
     FooterComponent,
@@ -38,7 +34,6 @@ import { DropdownDirective } from './shared/dropdown.directive';
     SignupComponent,
     AboutusComponent,
     ContactusComponent,
-    DisplayDiscoverDetailsComponent,
     DropdownDirective,
   ],
   imports: [
@@ -47,7 +42,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

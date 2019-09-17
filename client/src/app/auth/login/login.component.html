@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8 box">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 box">
         <div class="head">
             <h4>HAPPY TO SEE YOU BACK!</h4>
             <p>Let’s see how your events are doing</p>
@@ -37,11 +37,11 @@
                 *ngIf="!password.valid && password.touched"
                 style="color:red;">Enter minimum 6 character password</span>
             </div>
-            <button type="submit" class="mybutton">LogIn</button>
+            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">LogIn</button>
         </form>
         <p class="foot">Don't have an account ? <a routerLink='/signup'>SignUp</a></p>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-4"></div>
 </div>
 <hr style="opacity: 0;">
 <div class="row">

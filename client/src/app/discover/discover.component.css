@@ -1,0 +1,44 @@
+h1{
+    color : #9E36DA;
+    text-align : center;
+}
+button {
+    height : 10em;
+    width : 10em;
+    color : white;
+    border : 0px;
+    border-radius: 10px;
+    text-decoration:none;
+}
+button:hover {
+    border : 5px solid #31FC3D;
+}
+.entcat {
+    background : url(../../assets/images/entertainmentdiscover.jpe);
+    background-size : cover;
+}
+.soccat {
+    background : url(../../assets/images/socialdiscover.jpe);
+    background-size : cover;
+}
+.techcat {
+    background : url(../../assets/images/technologydiscover.jpe);
+    background-size : cover;
+}
+.sportscat {
+    background : url(../../assets/images/sportsdiscover.jpe);
+    background-size : cover;
+}
+.box {
+    background-color : black;
+}
+.box:hover {
+    background-color : black;
+    border : 1px solid black;
+    box-shadow : 5px 5px 15px black;
+    animation : increase 1s ; 
+}
+@keyframes increase {
+    0%{transform : scale(1.01);}
+    50%{transform : scale(1.03);}
+}

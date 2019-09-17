@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
-import { Discover } from '../discover.model';
-import { DiscoverService } from '../discover.service';
+import { Discover } from '../discover/discover.model';
+import { DiscoverService } from '../discover/discover.service';
 
 @Component({
   selector: 'app-discover-details',

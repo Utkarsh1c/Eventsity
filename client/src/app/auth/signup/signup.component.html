@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
         <div class="head">
             <h4>LET'S CREATE YOUR ACCOUNT</h4>
             <p>It won't take more than a few minutes, we promise :)</p>
@@ -26,10 +26,11 @@
                     <input 
                     type="email" 
                     id="email" 
-                    name="email" 
-                    ngModel 
-                    class="form-control" 
-                    required 
+                    name="email"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    ngModel
+                    class="form-control"
+                    required
                     #email="ngModel">
                     <span 
                     class="help-block"
@@ -52,11 +53,11 @@
                     *ngIf="!password.valid && password.touched"
                     style="color:red;">Enter minimum 6 character password</span>
                 </div>
-            <button type="submit" class="mybutton">SignUp</button>
+            <button type="submit" class="btn btn-success mybutton" [disabled]="!f.valid">SignUp</button>
         </form>
         <p class="foot">Already on EventSity ? <a routerLink='/login'>LogIn</a></p>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-4"></div>
 </div>
 <div class="row">
     <div class="col-xs-12 head">
