@@ -18,6 +18,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { AuthService } from './auth/auth.service';
+import { CreateService } from './create/create.service';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { AuthService } from './auth/auth.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, CreateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

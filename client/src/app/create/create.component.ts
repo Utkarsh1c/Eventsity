@@ -11,6 +11,7 @@ import { Discover } from '../discover/discover.model';
 // import { Social } from '../model/social.model';
 // import { Technology } from '../model/technology.model';
 import { Router } from '@angular/router';
+import { CreateService } from './create.service';
 
 @Component({
   selector: 'app-create',
@@ -29,7 +30,8 @@ export class CreateComponent implements OnInit {
               // private sportsservice : SportsService,
               // private socialservice : SocialService,
               // private techservice : TechnologyService,
-              private router : Router) { }
+              private router : Router,
+              private createservice : CreateService) { }
 
   ngOnInit() {
   }
@@ -81,8 +83,16 @@ export class CreateComponent implements OnInit {
     const value = form.value;
     const newDiscover = new Discover(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
       value.date, value.orgname);
-      console.log(newDiscover);
+      console.log(value);
     this.dservice.adddiscover(newDiscover);
+    this.createservice.createEvent(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
+      value.date)
+      .subscribe(
+        (response) => console.log(response),
+        (error) => console.log(error),
+      );
+
+
     // if(this.enttype) {
     //   const newEntertainment = new Entertainment(value.ename,value.category, value.evenue, value.fevenue, value.imagePath, 
     //     value.date, value.orgname);

@@ -5,7 +5,6 @@ export class Discover {
     public fevenue : string;
     public imagePath : string;
     public date : string;
-    public orgname : string;
 
     constructor(ename:string, category:string, evenue:string, fevenue:string, imagePath:string, date:string, orgname:string) {
         this.ename = ename;
@@ -14,6 +13,5 @@ export class Discover {
         this.fevenue = fevenue;
         this.imagePath = imagePath;
         this.date = date;
-        this.orgname = orgname;
     }
 }
