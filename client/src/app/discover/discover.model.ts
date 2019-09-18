@@ -6,7 +6,7 @@ export class Discover {
     public imagePath : string;
     public date : string;
 
-    constructor(ename:string, category:string, evenue:string, fevenue:string, imagePath:string, date:string, orgname:string) {
+    constructor(ename:string, category:string, evenue:string, fevenue:string, imagePath:string, date:string) {
         this.ename = ename;
         this.category = category;
         this.evenue = evenue;

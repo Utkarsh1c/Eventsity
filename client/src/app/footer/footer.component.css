@@ -1,7 +1,10 @@
+.pad {
+    padding-top : 20px;
+}
 .color {
     background-color : #5B5056;
     color : white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
     letter-spacing: 0.5px;
 }
 .colorend {
@@ -9,13 +12,13 @@
     letter-spacing:1px;
     color : white;
     padding : 5px;
-    font-family: initial;
+    font-family: 'Roboto', sans-serif;
 }
 .line {
     border : 3px solid #0DBDE0;
 }
 .link {
     color : #B3A0BD;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Manjari', sans-serif;
     letter-spacing: 0.5px;
 }

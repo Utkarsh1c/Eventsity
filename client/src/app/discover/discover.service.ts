@@ -15,7 +15,7 @@ export class DiscoverService {
             'Near Talwakars, City Complex, Ghaziabad', 
             'assets/images/marathon.jpg',
             '26 Sept\'19',
-            ''),
+            ),
         new Discover(
             'EDM Night',
             'Entertainment',
@@ -23,7 +23,7 @@ export class DiscoverService {
             'Adhyatmik Nagar, AKG College, Ghaziabad',
             'assets/images/edm.jpg',
             '29 September\'19',
-            ''),
+            ),
         new Discover(
             'Technocrat',
             'Technology',
@@ -31,7 +31,7 @@ export class DiscoverService {
             'Crossing Republik, ABES College, Ghaziabad',
             'assets/images/tech.jpg',
             '5 October\'19',
-            ''),
+            ),
         new Discover(
             'Saksham',
             'Sports', 
@@ -39,8 +39,14 @@ export class DiscoverService {
             'Adhyatmik Nagar, Ghaziabad', 
             'assets/images/marathon.jpg',
             '29 Sept\'19',
-            ''),
+            ),
     ];
+
+    setDiscover(discover: Discover[]) {
+        this.discover = discover;
+        console.log(this.discover.slice());
+        this.discoverChanged.next(this.discover.slice());
+    }
 
     getEvents() { //sending copy of array to list
         return this.discover.slice();

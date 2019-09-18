@@ -11,7 +11,7 @@ import { Discover } from '../discover/discover.model';
 // import { Social } from '../model/social.model';
 // import { Technology } from '../model/technology.model';
 import { Router } from '@angular/router';
-import { CreateService } from './create.service';
+import { ServerService } from '../services/server.service';
 
 @Component({
   selector: 'app-create',
@@ -31,7 +31,7 @@ export class CreateComponent implements OnInit {
               // private socialservice : SocialService,
               // private techservice : TechnologyService,
               private router : Router,
-              private createservice : CreateService) { }
+              private serverservice : ServerService) { }
 
   ngOnInit() {
   }
@@ -82,10 +82,10 @@ export class CreateComponent implements OnInit {
     console.log('Entered Create');
     const value = form.value;
     const newDiscover = new Discover(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
-      value.date, value.orgname);
+      value.date);
       console.log(value);
     this.dservice.adddiscover(newDiscover);
-    this.createservice.createEvent(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
+    this.serverservice.createEvent(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
       value.date)
       .subscribe(
         (response) => console.log(response),

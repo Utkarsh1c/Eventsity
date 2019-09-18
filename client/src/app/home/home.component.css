@@ -66,9 +66,11 @@
     50%{transform : scale(1.05);}
 }
 .category {
+    font-family: 'Exo 2', sans-serif;
+    font-size:40px;
     text-align : center;
     color : #BB0DE0;
-    padding : 10px;
+    padding-bottom : 30px;
 }
 .desc {
     text-align : center;

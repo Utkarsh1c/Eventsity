@@ -1,3 +1,6 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Livvic|Ubuntu&display=swap');
+</style>
 <nav class="navbar navbar-default head">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -5,7 +8,10 @@
         </div>
         <div class="navbar-default">
             <ul class="nav navbar-nav">
-                <li routerLinkActive="active" class="hcolor"><a routerLink='/discover' style="color:white">Discover</a></li>
+                <li routerLinkActive="active" class="hcolor"><a 
+                    routerLink='/discover' 
+                    style="color:white"
+                    (click)="getDiscover()">Discover</a></li>
                 <li routerLinkActive="active" class="hcolor"><a routerLink='/create' style="color:white;">Create</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right content">

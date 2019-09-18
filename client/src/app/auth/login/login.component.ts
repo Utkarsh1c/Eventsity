@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { ServerService } from 'src/app/services/server.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authservice : AuthService) { }
+  constructor(private serverservice : ServerService) { }
 
   ngOnInit() {
   }
@@ -17,12 +17,19 @@ export class LoginComponent implements OnInit {
   onLogin(form : NgForm) {
     console.log(JSON.stringify(form.value));
     const value = form.value;
-    this.authservice.logInUser(value.email,value.password)
+    this.serverservice.logInUser(value.email,value.password)
     .subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error),
+      (response) => {
+        console.log(response),
+        localStorage.setItem('token', response.token)
+        alert("Successfully Logged In");
+      },
+      (error) => {
+        console.log(error),
+        alert("Invalid Inputs. LogIn Again");
+      },
     );
-    // form.reset();
+    form.reset();
   }
 
 }
