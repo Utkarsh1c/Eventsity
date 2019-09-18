@@ -26,13 +26,19 @@ exports.createPost = (req, res, next) => {
         throw error;
         }
 
-    const title = req.body.title;
-    const content = req.body.content;
+    const ename = req.body.ename;
+    const imagePath = req.body.imagePath;
+    const evenue = req.body.evenue;
+    const fevenue = req.body.fevenue;
+    const category = req.body.category;
+    const date = req.body.date;
     Post.create({
-        title: title,
-        content: content,
-        imageUrl: "sample url",
-        creator: "John"
+        ename: ename,
+        imagePath: imagePath,
+        evenue: evenue,
+        fevenue: fevenue,
+        category: category,
+        date: date,
     })
         .then(result => {
             res.status(201).json({
@@ -68,11 +74,13 @@ exports.getPost = (req, res, next) => {
 }
 
 exports.updatePost = (req, res, next) => {
+    const ename = req.body.ename;
+    const imagePath = req.body.imagePath;
+    const evenue = req.body.evenue;
+    const fevenue = req.body.fevenue;
+    const category = req.body.category;
+    const date = req.body.date;
     const postId = req.params.postId;
-    // const imageUrl = "sample url 2";
-    const title = req.body.title;
-    // const content = req.body.content;
-    // const creator = "Mark"
     Post.findByPk(postId)
     .then(post => {
         console.log(post,'...........')
@@ -82,10 +90,12 @@ exports.updatePost = (req, res, next) => {
             throw error;
         }
         post.update({
-            title: title,
-            // content: content,
-            // imageUrl: imageUrl,
-            // creator: creator
+            ename: ename,
+            imagePath: imagePath,
+            evenue: evenue,
+            fevenue: fevenue,
+            category: category,
+            date: date
         })
         res.status(201).json({ message: 'Post updated', post: post 
     })

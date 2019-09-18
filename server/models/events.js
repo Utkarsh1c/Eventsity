@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
-const samProd = sequelize.define('events', {
+const fevents = sequelize.define('events', {
     
     id: {
         type: Sequelize.INTEGER,
@@ -9,22 +9,30 @@ const samProd = sequelize.define('events', {
         allowNull: false,
         primaryKey: true
       },
-    title: {
+    ename: {
         type: Sequelize.STRING,
         allowNull: false
       },
-    imageUrl: {
+    imagePath: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    content: {
+    evenue: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    creator: {
+    fevenue: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    category: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    date: {
         type: Sequelize.STRING,
         allowNull: false
     }
 })
 
-module.exports = samProd;
+module.exports = fevents;

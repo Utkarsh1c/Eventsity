@@ -11,15 +11,16 @@ module.exports = (req, res, next) => {
     let decodedToken;
     try {
         decodedToken = jwt.verify(token, 'somesupersecretsecret');
-    } catch (err) {
-        err.statusCode = 500;
+    } 
+    catch (err) {
+        err = new Error('Not authenticated.');
+        err.statusCode = 401;
         throw err;
+        // err.statusCode = 500;
+        // throw err;
     }
-    if(!decodedToken) {
-        const error = new Error('Not authenticated.');
-        error.statusCode = 401;
-        throw error;
-    }
+    // if(!decodedToken) {
+    // }
     req.userId = decodedToken.userId;
     next();
 };

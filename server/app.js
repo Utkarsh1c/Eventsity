@@ -11,6 +11,7 @@ const userRoutes = require('./routes/user');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({extended: false}))
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,8 +33,8 @@ app.use((error, req, res, next) => {
 })
 
 Events.belongsTo(User);
-// User.hasMany(User, {as: 'Followed'});
-// User.hasMany(Events, {as: 'Interested'})
+// User.hasMany(User, {as: 'Followed', through: 'Followed'});
+// User.hasMany(Events, {as: 'Interested'}) 
 
 sequelize
   // .sync({ force: true })
