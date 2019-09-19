@@ -1,12 +1,17 @@
-import { Injectable } from '@angular/core';
-import { ServerService } from './server.service';
 
-@Injectable()
 export class AuthService {
 
-    constructor(private serverservice: ServerService) {}
+    constructor() {}
 
-    // loggedIn() {
-    //     return !!localStorage.getItem('token');
-    // }
+    loggedIn() {
+        return !!localStorage.getItem('token');
+    }
+
+    logout() {
+        localStorage.removeItem('token');
+    }
+
+    getToken() {
+        return localStorage.getItem('token');
+    }
 }

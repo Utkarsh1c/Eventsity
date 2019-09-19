@@ -15,9 +15,9 @@
                 <li routerLinkActive="active" class="hcolor"><a routerLink='/create' style="color:white;">Create</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right content">
-                <li><button class="user"><a routerLink='/login'>LogIn</a></button></li>
-                <li><button class="user"><a routerLink='/signup'>SignUp</a></button></li>
-                <li><button class="user">LogOut</button></li>
+                <li><button class="user" *ngIf="!authservice.loggedIn()"><a routerLink='/login'>LogIn</a></button></li>
+                <li><button class="user" *ngIf="!authservice.loggedIn()"><a routerLink='/signup'>SignUp</a></button></li>
+                <li><button class="user" *ngIf="authservice.loggedIn()" (click)="authservice.logout()">LogOut</button></li>
             </ul>
         </div>
     </div>

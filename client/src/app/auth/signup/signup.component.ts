@@ -22,6 +22,5 @@ export class SignupComponent implements OnInit {
       (response) => console.log(response),
       (error) => console.log(error),
     );
-    form.reset();
   }
 }

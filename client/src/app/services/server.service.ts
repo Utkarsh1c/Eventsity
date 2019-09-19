@@ -9,17 +9,17 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://e5fcbe2a.ngrok.io";
+    private rootUrl = "https://aebdf28f.ngrok.io";
 
     constructor(private http: HttpClient,
                 // private discoverservice: DiscoverService
                 ) {}
 
 
-    signUpUser(name:string,email:string,password:string) {
+    signUpUser(name:string,email:string,password:string,cpassword:string) {
         const headers = new HttpHeaders({'Content-Type':'application/json'})
         // console.log(JSON.stringify({name,email,password}));
-        return this.http.post(this.rootUrl+'/auth/signup',JSON.stringify({name,email,password}),
+        return this.http.post(this.rootUrl+'/auth/signup',JSON.stringify({name,email,password,cpassword}),
         {headers: headers});
     }
 
@@ -55,9 +55,13 @@ export class ServerService {
         // );
     }
 
-    loggedIn() {
-        return !!localStorage.getItem('token');
-    }
+    // loggedIn() {
+    //     return !!localStorage.getItem('token');
+    // }
+
+    // getToken() {
+    //     return localStorage.getItem('token');
+    // }
 }
 
 // <{access_token: string}>

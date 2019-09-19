@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ServerService } from 'src/app/services/server.service';
 import { HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private serverservice : ServerService) { }
+  constructor(private serverservice : ServerService,
+              private route: Router) { }
 
   ngOnInit() {
   }
@@ -24,14 +26,11 @@ export class LoginComponent implements OnInit {
         console.log(response);
         const tk = response ;
         localStorage.setItem('token', tk.token);
-        alert("Successfully Logged In");
+        this.route.navigate(['/']);
       },
-      (error) => {
-        console.log(error),
-        alert("Invalid Inputs. LogIn Again");
-      },
+      (error) => console.log(error),
+
     );
-    form.reset();
   }
 
 }

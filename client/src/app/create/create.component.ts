@@ -82,7 +82,7 @@ export class CreateComponent implements OnInit {
         (error) => console.log(error),
       );
     form.reset();
-    this.router.navigate(['/discover']);
+    // this.router.navigate(['/discover']);
   }
   onCancel() {
     this.router.navigate(['/discover']);

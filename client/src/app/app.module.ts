@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { DiscoverService } from './discover/discover.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
+import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
 @NgModule({
@@ -47,7 +48,12 @@ import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [ServerService, DiscoverService, AuthService, AuthGuard],
+  providers: [ServerService, DiscoverService, AuthService, AuthGuard,
+  {
+    provide : HTTP_INTERCEPTORS,
+    useClass : HttpinterceptorService,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
