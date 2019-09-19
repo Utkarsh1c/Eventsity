@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { DiscoverService } from './discover.service';
 import { Discover } from './discover.model';
+import { ServerService } from '../services/server.service';
 
 @Component({
   selector: 'app-discover',
@@ -15,6 +16,7 @@ export class DiscoverComponent implements OnInit {
   soc = false;
   spo = false;
   tech = false;
+
   
   needentertainment() {
     console.log('Entertainment is true');
@@ -42,7 +44,8 @@ export class DiscoverComponent implements OnInit {
     this.tech = true;
   }
 
-  constructor(private discoverservice:DiscoverService) { }
+  constructor(private discoverservice:DiscoverService,
+              private serverservice: ServerService) { }
 
   ngOnInit() {
     // this.discoverservice.eventSelected
@@ -51,7 +54,13 @@ export class DiscoverComponent implements OnInit {
     //     this.selectedEvent = discover;
     //   }
     // )
-    this.discover = this.discoverservice.getEvents();
+    // this.discover = this.discoverservice.getEvents();
+    this.serverservice.getCreatedEvents()
+    .subscribe(
+      (response) => {
+        console.log(response);
+      }
+    )
   }
 
 }

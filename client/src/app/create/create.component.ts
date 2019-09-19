@@ -68,16 +68,6 @@ export class CreateComponent implements OnInit {
     console.log('Enter to techtype true');
   }
 
-  // if(this.enttype) {
-  //   onCreate(form : NgForm) {
-  //     const value = form.value;
-  //     const newDiscover = new Entertainment(value.ename, value.evenue, value.fevenue, value.imagePath, 
-  //       value.date, value.orgname);
-  //       this.entservice.addEntertainment(newDiscover);
-  //       this.enttype = false;      
-  //   }
-  // }
-
   onCreate(form : NgForm) {
     console.log('Entered Create');
     const value = form.value;
@@ -91,36 +81,6 @@ export class CreateComponent implements OnInit {
         (response) => console.log(response),
         (error) => console.log(error),
       );
-
-
-    // if(this.enttype) {
-    //   const newEntertainment = new Entertainment(value.ename,value.category, value.evenue, value.fevenue, value.imagePath, 
-    //     value.date, value.orgname);
-    //   this.entservice.addEntertainment(newEntertainment);
-    //   this.enttype = false;
-    //   console.log('Entertainment Added');
-    // }
-    // if(this.sportstype) {
-    //   const newSports = new Sports(value.ename, value.evenue, value.fevenue, value.imagePath, 
-    //     value.date, value.orgname);
-    //   this.sportsservice.addSports(newSports);
-    //   this.sportstype = false;
-    //   console.log('Sports Added');
-    // }
-    // if(this.socialtype) {
-    //   const newSocial = new Social(value.ename, value.evenue, value.fevenue, value.imagePath, 
-    //     value.date, value.orgname);
-    //   this.socialservice.addSocial(newSocial);
-    //   this.socialtype = false;
-    //   console.log('Social Added');
-    // }
-    // if(this.techtype) {
-    //   const newTechnology = new Technology(value.ename, value.evenue, value.fevenue, value.imagePath, 
-    //     value.date, value.orgname);
-    //   this.techservice.addTechnology(newTechnology);
-    //   this.techtype = false;
-    //   console.log('Technology Added');
-    // }
     form.reset();
     this.router.navigate(['/discover']);
   }

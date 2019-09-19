@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
   onSignup(form : NgForm) {
     console.log(JSON.stringify(form.value));
     const value = form.value;
-    this.serverservice.signUpUser(value.name,value.email,value.password)
+    this.serverservice.signUpUser(value.name,value.email,value.password,value.cpassword)
     .subscribe(
       (response) => console.log(response),
       (error) => console.log(error),

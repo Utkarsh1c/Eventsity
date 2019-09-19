@@ -1,4 +1,9 @@
 h1{
+    font-family: 'Montserrat', sans-serif;
+    /* font-family: 'Poppins', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+    font-family: 'Bree Serif', serif; */
     color : #9E36DA;
     text-align : center;
 }

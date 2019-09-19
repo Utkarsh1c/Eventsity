@@ -11,6 +11,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { DiscoverDetailsComponent } from './discover-details/discover-details.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 
@@ -23,7 +24,7 @@ const routes: Routes = [
     //  { path:':id', component: DiscoverDetailsComponent }
    ] },
    { path:'discover/:id', component: DiscoverDetailsComponent },
-   { path:'create', component: CreateComponent },
+   { path:'create', component: CreateComponent, canActivate: [AuthGuard] },
    { path:'login', component: LoginComponent },
    { path:'signup', component: SignupComponent },
    { path:'aboutus', component: AboutusComponent },

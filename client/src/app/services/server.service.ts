@@ -3,29 +3,30 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Discover } from '../discover/discover.model';
 import { DiscoverService } from '../discover/discover.service';
-import { ClientResponse } from 'http';
 import { map } from 'rxjs/operators';
 
 
 @Injectable()
 export class ServerService {
 
+    private rootUrl = "https://e5fcbe2a.ngrok.io";
 
     constructor(private http: HttpClient,
-                private discoverservice: DiscoverService) {}
+                // private discoverservice: DiscoverService
+                ) {}
 
 
     signUpUser(name:string,email:string,password:string) {
         const headers = new HttpHeaders({'Content-Type':'application/json'})
         // console.log(JSON.stringify({name,email,password}));
-        return this.http.post('https://e5fcbe2a.ngrok.io/auth/signup',JSON.stringify({name,email,password}),
+        return this.http.post(this.rootUrl+'/auth/signup',JSON.stringify({name,email,password}),
         {headers: headers});
     }
 
     logInUser(email:string,password:string) {
         const headers = new HttpHeaders({'Content-Type':'application/json'})
         // console.log(JSON.stringify({name,email,password}));
-        return this.http.post('https://e5fcbe2a.ngrok.io/auth/login',
+        return this.http.post(this.rootUrl+'/auth/login',
         JSON.stringify({email,password}),
         {headers: headers});
     }
@@ -34,21 +35,28 @@ export class ServerService {
         date: string) {
             const headers = new HttpHeaders({'Content-Type':'application/json'})
             console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date}));
-            return this.http.post('https://e5fcbe2a.ngrok.io/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date}),
+            return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date}),
             {headers: headers});
     }
 
     getCreatedEvents() {
-        this.http.get('https://e5fcbe2a.ngrok.io/feed/posts')
-        
-        .subscribe(
-            
-            (response: Response) => {
-                console.log(response.json());
-                const discover:Discover[]=response.json();
-                this.discoverservice.setDiscover(discover);
-            }
-        );
+        return this.http.get(this.rootUrl+'/feed/posts');
+        // .map(
+        //     (response: Response) => {
+        //         console.log(response.json());
+        //         const discover:Discover[]=response.json();
+        //     }
+        // )
+        // .subscribe(
+        //     (discover: Discover[]) => {
+                
+        //         this.discoverservice.setDiscover(discover);
+        //     }
+        // );
+    }
+
+    loggedIn() {
+        return !!localStorage.getItem('token');
     }
 }
 

@@ -1,11 +1,15 @@
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 import { Discover } from './discover.model';
 import { Subject } from 'rxjs';
+import { ServerService } from '../services/server.service';
 
+@Injectable()
 export class DiscoverService {
     discoverChanged = new Subject<Discover[]>();
     eventSelected = new EventEmitter<Discover>();
+
+    constructor(private serverservice : ServerService) {}
 
     private discover : Discover[] = [
         new Discover(

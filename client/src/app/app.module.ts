@@ -19,6 +19,9 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { ServerService } from './services/server.service';
 import { DiscoverService } from './discover/discover.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guard/auth.guard';
+import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
 
 
 @NgModule({
@@ -36,6 +39,7 @@ import { DiscoverService } from './discover/discover.service';
     AboutusComponent,
     ContactusComponent,
     DropdownDirective,
+    ConfrimPasswordDirective,
   ],
   imports: [
     HttpClientModule,
@@ -43,7 +47,7 @@ import { DiscoverService } from './discover/discover.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [ServerService, DiscoverService],
+  providers: [ServerService, DiscoverService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

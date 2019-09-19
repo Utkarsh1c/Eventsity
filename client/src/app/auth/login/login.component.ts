@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ServerService } from 'src/app/services/server.service';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +21,9 @@ export class LoginComponent implements OnInit {
     this.serverservice.logInUser(value.email,value.password)
     .subscribe(
       (response) => {
-        console.log(response),
-        localStorage.setItem('token', response.token)
+        console.log(response);
+        const tk = response ;
+        localStorage.setItem('token', tk.token);
         alert("Successfully Logged In");
       },
       (error) => {
