@@ -18,14 +18,21 @@ router.post('/signup',
         })
         .then(userDoc => {
             if(userDoc) {
-                return Promise.reject('E-mail address already exists')
+                // return Promise.reject('E-mail address already exists')
+                throw new Error('E-mail address already exists');
             }
         })
     })
     .normalizeEmail(),
-    body('password')
+    body('password', 'cpassword')
         .trim()
-        .isLength({ min:6 }),
+        .isLength({ min:6 })
+        .custom((pass, { req }) => {
+            if (pass !== req.body.cpassword.trim())
+            // return Promise.reject('Password confirmation does not match password');
+            throw new Error('Password confirmation does not match password');
+            return true;
+    }),
     body('name')
         .trim()
         .not()
