@@ -47,6 +47,7 @@ export class DiscoverComponent implements OnInit {
   constructor(private discoverservice:DiscoverService,
               private serverservice: ServerService) { }
 
+
   ngOnInit() {
     // this.discoverservice.eventSelected
     // .subscribe(
@@ -55,12 +56,15 @@ export class DiscoverComponent implements OnInit {
     //   }
     // )
     // this.discover = this.discoverservice.getEvents();
+
+
     this.serverservice.getCreatedEvents()
-    .subscribe(
-      (response) => {
-        console.log(response);
-      }
-    )
+    .subscribe(res => this.discover = res);
   }
 
 }
+
+// (response) => {
+//   console.log(response);
+//   this.discoverservice.setDiscover(this.discover);
+// }

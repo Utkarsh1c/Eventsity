@@ -11,43 +11,45 @@ export class DiscoverService {
 
     constructor(private serverservice : ServerService) {}
 
-    private discover : Discover[] = [
-        new Discover(
-            'Marathon', 
-            'Sports',
-            'RDC', 
-            'Near Talwakars, City Complex, Ghaziabad', 
-            'assets/images/marathon.jpg',
-            '26 Sept\'19',
-            ),
-        new Discover(
-            'EDM Night',
-            'Entertainment',
-            'AKG',
-            'Adhyatmik Nagar, AKG College, Ghaziabad',
-            'assets/images/edm.jpg',
-            '29 September\'19',
-            ),
-        new Discover(
-            'Technocrat',
-            'Technology',
-            'ABES',
-            'Crossing Republik, ABES College, Ghaziabad',
-            'assets/images/tech.jpg',
-            '5 October\'19',
-            ),
-        new Discover(
-            'Saksham',
-            'Sports', 
-            'AKG', 
-            'Adhyatmik Nagar, Ghaziabad', 
-            'assets/images/marathon.jpg',
-            '29 Sept\'19',
-            ),
-    ];
+    discover : Discover[] 
+    // = [
+    //     new Discover(
+    //         'Marathon', 
+    //         'Sports',
+    //         'RDC', 
+    //         'Near Talwakars, City Complex, Ghaziabad', 
+    //         'assets/images/marathon.jpg',
+    //         '26 Sept\'19',
+    //         ),
+    //     new Discover(
+    //         'EDM Night',
+    //         'Entertainment',
+    //         'AKG',
+    //         'Adhyatmik Nagar, AKG College, Ghaziabad',
+    //         'assets/images/edm.jpg',
+    //         '29 September\'19',
+    //         ),
+    //     new Discover(
+    //         'Technocrat',
+    //         'Technology',
+    //         'ABES',
+    //         'Crossing Republik, ABES College, Ghaziabad',
+    //         'assets/images/tech.jpg',
+    //         '5 October\'19',
+    //         ),
+    //     new Discover(
+    //         'Saksham',
+    //         'Sports', 
+    //         'AKG', 
+    //         'Adhyatmik Nagar, Ghaziabad', 
+    //         'assets/images/marathon.jpg',
+    //         '29 Sept\'19',
+    //         ),
+    // ];
 
-    setDiscover(discover: Discover[]) {
-        this.discover = discover;
+    setDiscover(discovers: Discover[]) {
+        console.log(discovers);
+        this.discover = discovers;
         console.log(this.discover.slice());
         this.discoverChanged.next(this.discover.slice());
     }

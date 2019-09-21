@@ -1,19 +1,31 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Acme|Montserrat|Poppins&display=swap');
+</style>
 <div class="row">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="head">Welcome :)</h2>
+                <p style="font-size: 20px;" class="head">Excited for the Event? Move On Explore!!</p>
+            </div>
+        </div>
+    <div class="col-md-8">
+    <div class="row">
         <div class="col-xs-12">
             <img 
             [src]="discover.imagePath" 
             alt="{{ discover.ename }}" 
             class="img-responsive img"
-            style="max-height: 300px;">
+            >
         </div>
     </div>
-    <div class="row" style="color : black;">
+    <div class="row">
         <div class="col-xs-12">
             <h1>{{ discover.ename }}</h1>
         </div>
     </div>
     <hr>
-    <div class="row" style="color : black;">
+    <div class="row">
         <div class="col-xs-12 font">
             Venue : {{ discover.fevenue }}
         </div>
@@ -23,9 +35,15 @@
             Date : {{ discover.date }}
         </div>
     </div>
-    <div class="row">
-        <!-- <div class="col-xs-12 box" style="padding-top:10px;font-family: cursive;">
-            Organiser : {{ discover.orgname }}
-            <button class="follow">+ FOLLOW</button>
-        </div> -->
     </div>
+    <div class="col-md-4">
+            <div class="row">
+                <div class="col-xs-12 box" style="padding-top:10px;font-family: cursive;">
+                    <!-- Organiser : {{ discover.orgname }} -->
+                    <button class="follow" (click)="needfollow()" *ngIf="!follow">+ FOLLOW</button>
+                    <button class="follow" (click)="change()" *ngIf="follow">FOLLOWED</button>
+                </div>
+            </div>
+    </div>
+    </div>
+</div>

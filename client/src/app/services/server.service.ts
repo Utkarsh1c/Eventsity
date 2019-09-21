@@ -4,14 +4,17 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Discover } from '../discover/discover.model';
 import { DiscoverService } from '../discover/discover.service';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://aebdf28f.ngrok.io";
+    private rootUrl = "https://1bdfc41f.ngrok.io";
 
     constructor(private http: HttpClient,
+                private authservice:AuthService,
                 // private discoverservice: DiscoverService
                 ) {}
 
@@ -35,12 +38,12 @@ export class ServerService {
         date: string) {
             const headers = new HttpHeaders({'Content-Type':'application/json'})
             console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date}));
-            return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date}),
+            return this.http.post(this.rootUrl+'/feed/posts/1',JSON.stringify({ename, category, evenue, fevenue, imagePath, date}),
             {headers: headers});
     }
 
-    getCreatedEvents() {
-        return this.http.get(this.rootUrl+'/feed/posts');
+    getCreatedEvents(): Observable<Discover[]> {
+         return this.http.get<Discover[]>(this.rootUrl+'/feed/posts');
         // .map(
         //     (response: Response) => {
         //         console.log(response.json());
@@ -55,13 +58,14 @@ export class ServerService {
         // );
     }
 
-    // loggedIn() {
-    //     return !!localStorage.getItem('token');
-    // }
-
-    // getToken() {
-    //     return localStorage.getItem('token');
-    // }
+    getLoggedInUser(): Observable<any> {
+        const token = localStorage.getItem('token')
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer `+token,
+        })
+        return this.http.get(this.rootUrl+'/auth/login', { headers: headers });
+    }
 }
 
 // <{access_token: string}>

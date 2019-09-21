@@ -1,18 +1,23 @@
 .main{
+    position:relative;
     background-size:cover;
-    animation : bkimg 8s infinite alternate;
+    overflow:hidden;
+    background-repeat: no-repeat;
+    animation : slide 8s infinite;
     height:85vh;
     border-radius : 10px;
 }
-@keyframes bkimg {
+@keyframes slide {
     0%{background:url( ../../assets/images/ss2.jpg);}
     50%{background:url( ../../assets/images/ss3.jpg);}
     100%{background-image:url( ../../assets/images/ss1.jpg);}
 }
 .content {
-    margin-top : 14em;
-    margin-left : 20em;
+    /* margin-top : 14em;
+    margin-left : 20em; */
     position : absolute;
+    top:35%;
+    left:25%;
     color : white;
 }
 .line {

@@ -9,6 +9,7 @@ import { ServerService } from 'src/app/services/server.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  err:any;
 
   constructor(private serverservice : ServerService) { }
 
@@ -19,8 +20,19 @@ export class SignupComponent implements OnInit {
     const value = form.value;
     this.serverservice.signUpUser(value.name,value.email,value.password,value.cpassword)
     .subscribe(
-      (response) => console.log(response),
+      (response) => {
+        console.log(response);
+        alert('Successfully SignedUp now LogIn to continue');
+        form.reset();
+      },
       (error) => console.log(error),
-    );
+        //  this.err = error.msg;
+        //  console.log(this.err);
+
+        // if(this.err==="E-mail address already exists")
+        // {alert('E-mail address already exists');}
+
+            
+      );
   }
 }

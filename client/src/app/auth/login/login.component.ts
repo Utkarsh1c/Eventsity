@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  tk :any;
   constructor(private serverservice : ServerService,
               private route: Router) { }
 
@@ -24,12 +24,11 @@ export class LoginComponent implements OnInit {
     .subscribe(
       (response) => {
         console.log(response);
-        const tk = response ;
-        localStorage.setItem('token', tk.token);
+        this.tk = response ;
+        localStorage.setItem('token', this.tk.token);
         this.route.navigate(['/']);
       },
       (error) => console.log(error),
-
     );
   }
 

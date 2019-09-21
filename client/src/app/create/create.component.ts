@@ -71,10 +71,10 @@ export class CreateComponent implements OnInit {
   onCreate(form : NgForm) {
     console.log('Entered Create');
     const value = form.value;
-    const newDiscover = new Discover(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
-      value.date);
-      console.log(value);
-    this.dservice.adddiscover(newDiscover);
+    // const newDiscover = new Discover(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
+    //   value.date);
+    //   console.log(value);
+    // this.dservice.adddiscover(newDiscover);
     this.serverservice.createEvent(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
       value.date)
       .subscribe(

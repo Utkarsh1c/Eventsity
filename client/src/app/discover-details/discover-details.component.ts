@@ -12,10 +12,14 @@ import { DiscoverService } from '../discover/discover.service';
 export class DiscoverDetailsComponent implements OnInit {
   discover:Discover;
   id:number;
+  follow = false;
 
   constructor(private discoverservice: DiscoverService,
               private route:ActivatedRoute) {}
 
+  needfollow() {
+    this.follow = true;
+  }
   ngOnInit() {
     this.route.params
     .subscribe(

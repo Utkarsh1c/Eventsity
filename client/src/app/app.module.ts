@@ -22,7 +22,7 @@ import { DiscoverService } from './discover/discover.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
-import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
+// import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
 @NgModule({
@@ -49,11 +49,12 @@ import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
     AppRoutingModule
   ],
   providers: [ServerService, DiscoverService, AuthService, AuthGuard,
-  {
-    provide : HTTP_INTERCEPTORS,
-    useClass : HttpinterceptorService,
-    multi : true
-  }],
+  // {
+  //   provide : HTTP_INTERCEPTORS,
+  //   useClass : HttpinterceptorService,
+  //   multi : true
+  // }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
