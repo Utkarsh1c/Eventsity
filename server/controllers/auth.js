@@ -73,7 +73,36 @@ exports.signup = (req, res, next) => {
     })
 }
 
-
+exports.resetOtp = (req, res, next) => {
+    const userId = req.params.userId;
+    const email= req.body.email;
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    console.log(otp);
+    bcrypt.hash(otp, 8)
+    .then(hashedOtp => {
+        Otp.findByPk(userId)
+        .then(otp => {
+            otp.update({
+                otp: hashedOtp
+            })
+        .catch(err => {
+            throw err
+        })
+        transporter.sendMail({
+            to: email,
+            from: 'eventsity@gmail.com',
+            subject: 'Reset otp!',
+            html: `<h1>Your otp ${otp}</h1>`
+        })
+    })
+    .catch(err => {
+        if(!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    })
+})
+}
 
 exports.verifyUser = (req, res, next) => {
     const userId = req.params.userId;

@@ -48,7 +48,7 @@ User.hasMany(Event);
 // User.hasOne(Otp)
 
 // User.hasMany(User, {as: 'Followed', through: 'Followed'});
-// User.hasMany(Events, {as: 'Interested'}) 
+User.belongsToMany(Event, {through: 'Interested'}) 
 
 sequelize
   .sync({ force: true })
