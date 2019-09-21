@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
-const samUser = sequelize.define('otp', {
+const samUser = sequelize.define('otps', {
 
   id: {
     type: Sequelize.INTEGER,
@@ -11,7 +11,7 @@ const samUser = sequelize.define('otp', {
   },
   otp: {
     type: Sequelize.STRING,
-    defaultValue: null
+    allowNull: false,
     }
 
 })

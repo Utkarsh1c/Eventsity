@@ -44,15 +44,15 @@ app.use((error, req, res, next) => {
 
 Event.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 User.hasMany(Event);
-Otp.belongsTo(User);
+// Otp.belongsTo(User);
 // User.hasOne(Otp)
 
 // User.hasMany(User, {as: 'Followed', through: 'Followed'});
 // User.hasMany(Events, {as: 'Interested'}) 
 
 sequelize
-  // .sync({ force: true })
-  .sync()
+  .sync({ force: true })
+  // .sync()
   .then(cart => {
     app.listen(8080);
   })

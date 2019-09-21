@@ -45,4 +45,8 @@ router.post('/login', authController.login);
 
 router.delete('/delete/:userId', authController.delUser);
 
+router.post('/verify/:userId', authController.verifyUser);
+
+// router.post('/reset/:userId', authController.resetOtp);
+
 module.exports = router;

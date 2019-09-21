@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
-const samUser = sequelize.define('user', {
+const samUser = sequelize.define('users', {
 
     id: {
         type: Sequelize.INTEGER,
@@ -24,8 +24,8 @@ const samUser = sequelize.define('user', {
     isVerified: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
-      },  
-  
+      }
+      
 
 })
 

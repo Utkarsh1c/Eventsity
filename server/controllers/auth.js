@@ -22,15 +22,12 @@ exports.signup = (req, res, next) => {
     }
 
         
-    // const otp = Math.floor(100000 + Math.random() * 900000);
-    // const email= req.body.email;
-    // const name = req.body.name;
-    // const password = req.body.password;
-
-    // bcrypt.hash(otp, 8)
-   
-
-   
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    console.log(otp);
+    const email= req.body.email;
+    const name = req.body.name;
+    const password = req.body.password;
+    
     // var token = new Token({ userId: user._id, token: crypto.randomBytes(16).toString('hex') });
     bcrypt.hash(password, 8)
     .then(hashedPw => {
@@ -43,18 +40,30 @@ exports.signup = (req, res, next) => {
     })
     .then(result => {
         // const hostUrl = process.env.hostURL;
+        bcrypt.hash(otp, 8)
+        .then(hashedOtp => {
+            const otp = new Otp({
+                otp: hashedOtp,
+            })
+            otp.save();
+        })
+        .catch(err => {
+            throw err
+        })
+        
         transporter.sendMail({
-            to: 'email',
+            to: email,
             from: 'eventsity@gmail.com',
             subject: 'Signup succeeded!',
-            html: '<h1>You successfully signed up!</h1>'
+            html: `<h1>Your otp ${otp}</h1>`
+
             // content: [
             //     {
             //       type: 'text/plain',
             //       value: `Click on this link to verify your email ${hostUrl}/verification?token=${token}&email=${to}`
             //     }
         })
-        res.status(201).json({ message: 'User created', userId: result.id })
+        res.status(201).json({ message: 'Succesfully signed up', userId: result.id })
     })
     .catch(err => {
         if(!err.statusCode) {
@@ -64,11 +73,62 @@ exports.signup = (req, res, next) => {
     })
 }
 
+
+
+exports.verifyUser = (req, res, next) => {
+    const userId = req.params.userId;
+    const userOtp = req.body.otp;
+    Otp.findByPk(userId)
+    .then(otp => {
+        setTimeout(function() {
+            otp.destroy();
+        }, 60000)
+        if (!otp) {
+            const error = new Error('Otp expired!');
+            error.statusCode = 400;
+            throw error;
+        }
+        return bcrypt.compare(userOtp, otp.otp)
+    })
+    .then(isEqual => {
+        
+        if (!isEqual) {
+            const error = new Error('Wrong otp!');
+            error.statusCode = 401;
+            throw error;
+        }
+        return User.findByPk(userId)
+            .then(user => {
+                if (!user) {
+                    const error = new Error('Could not find user.');
+                    error.statusCode = 404;
+                    throw error;
+                }
+                user.update({
+                    isVerified: true
+                })
+            })
+
+        })
+
+    .then(result => {
+        res.status(200).json({ message: 'User verified' })
+    })
+
+    .catch(err => {
+        if(!err.statusCode) {
+            err.statusCode = 500;
+        }
+    next(err);
+})
+}
+
+
 exports.login = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password.trim();
     let loadedUser;
-    User.findOne({where: { email: email }})
+    User.findOne({ where: { email: email }})
     .then(user => 
         {
             if(!user) {
