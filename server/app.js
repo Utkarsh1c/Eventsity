@@ -2,7 +2,8 @@ const express = require('express');
 const sequelize = require('./util/database');
 
 const User = require('./models/user');
-const Events = require('./models/events');
+const Event = require('./models/events');
+const Otp = require('./models/otp');
 
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
@@ -20,6 +21,15 @@ app.use((req, res, next) => {
     next();  
 })
 
+app.use((req, res, next) => {
+  User.findByPk(1)
+    .then(user => {
+        req.user = user;
+        next();
+    })
+   .catch(err => console.log(err))
+})
+
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
@@ -32,7 +42,11 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message, data: data })
 })
 
-Events.belongsTo(User);
+Event.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
+User.hasMany(Event);
+Otp.belongsTo(User);
+// User.hasOne(Otp)
+
 // User.hasMany(User, {as: 'Followed', through: 'Followed'});
 // User.hasMany(Events, {as: 'Interested'}) 
 

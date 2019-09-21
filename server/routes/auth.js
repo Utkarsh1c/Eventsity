@@ -24,7 +24,7 @@ router.post('/signup',
         })
     })
     .normalizeEmail(),
-    body('password', 'cpassword')
+    body('password')
         .trim()
         .isLength({ min:6 })
         .custom((pass, { req }) => {
@@ -42,5 +42,7 @@ router.post('/signup',
 );
 
 router.post('/login', authController.login);
+
+router.delete('/delete/:userId', authController.delUser);
 
 module.exports = router;

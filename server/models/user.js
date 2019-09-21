@@ -21,9 +21,9 @@ const samUser = sequelize.define('user', {
         type: Sequelize.STRING,
         allowNull: false
       },  
-    status: {
-        type: Sequelize.STRING,
-        defaultValue: "I am new!"
+    isVerified: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },  
   
 

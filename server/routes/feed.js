@@ -6,10 +6,10 @@ const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
-router.get('/posts', feedController.getPosts);
+router.get('/posts', feedController.getEvents);
 
 router.post(
-    '/posts', 
+    '/posts/:userId',
 //    [
 //     body('title')
 //     .trim()
@@ -18,12 +18,12 @@ router.post(
 //     .trim()
 //     .isLength({ min:5 }),
 //    ],
-feedController.createPost);
+feedController.createEvent);
 
-router.get('/posts/:postId', feedController.getPost)
+router.get('/posts/:eventId', feedController.getEvent)
 
-router.put('/posts/:postId', feedController.updatePost)
+router.put('/posts/:eventId', feedController.updateEvent)
 
-router.delete('/posts/:postId', feedController.deletePost)
+router.delete('/posts/:eventId', feedController.deleteEvent)
 
 module.exports = router;
