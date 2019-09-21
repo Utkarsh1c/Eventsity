@@ -1,7 +1,36 @@
 .head img {
-    height:35em;
-    width:100%
+    height:30em;
+    width:90%;
 }
 input.ng-invalid.ng-touched {
     border : 2px solid red;
+}
+.box {
+    width:41%;
+    padding: 20px 35px ;
+    margin-top:20px;
+    box-shadow: 2px 2px 18px 5px rgba(0,0,0,0.1);
+}
+.man {
+    height : 65rem;
+    width: 45rem;
+}
+.button {
+    margin-left : 15rem;
+}
+.mybutton {
+    border: 2px solid yellowgreen;
+    background-color : transparent;
+    color : yellowgreen;
+}
+.mybutton2 {
+    border: 2px solid red;
+    background-color : transparent;
+    color : red;
+}
+.mybuton2:hover {
+    background-color: green;
+    color:white;
+    border : 2px solid green;
+    transition: all 0.8 ease-in-out;
 }

@@ -12,6 +12,7 @@ import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { DiscoverDetailsComponent } from './discover-details/discover-details.component';
 import { AuthGuard } from './guard/auth.guard';
+import { VerificationComponent } from './verification/verification.component';
 
 
 
@@ -27,6 +28,7 @@ const routes: Routes = [
    { path:'create', component: CreateComponent, canActivate: [AuthGuard] },
    { path:'login', component: LoginComponent },
    { path:'signup', component: SignupComponent },
+   { path:'verify', component:VerificationComponent },
    { path:'aboutus', component: AboutusComponent },
    { path:'contactus', component: ContactusComponent },
 ];

@@ -6,7 +6,7 @@ input.ng-invalid.ng-touched {
     color : #9E36DA;
 }
 .mybutton {
-    margin-left : 10em;
+    margin-left : 9em;
     padding : 6px 20px;
     border : 2px solid #4957FF;
     background-color : transparent;
@@ -17,6 +17,7 @@ input.ng-invalid.ng-touched {
     background-color : green;
     color : white;
     border : 2px solid green; 
+    transition: all 0.5s ease-in-out;
 }
 .foot {
     text-align:center;
@@ -24,4 +25,21 @@ input.ng-invalid.ng-touched {
 }
 .size img{
     width : 30em;
+}
+.box {
+    padding: 10px 25px ;
+    margin-top:20px;
+    box-shadow: 2px 2px 18px 5px rgba(0,0,0,0.1);
+}
+.man {
+    margin-left : 50px;
+    margin-top:20px;
+    height : 35rem;
+    width : 20rem;
+}
+.man2 {
+    margin-left : 50px;
+    margin-top:20px;
+    height : 35rem;
+    width : 30rem;
 }

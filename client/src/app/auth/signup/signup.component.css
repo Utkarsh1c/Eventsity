@@ -6,7 +6,7 @@ input.ng-invalid.ng-touched {
     color : #9E36DA;
 }
 .mybutton {
-    margin-left : 9em;
+    margin-left : 8em;
     padding : 6px 20px;
     border : 2px solid black;
     background-color : transparent;
@@ -21,4 +21,16 @@ input.ng-invalid.ng-touched {
 .foot {
     text-align:center;
     padding : 10px;
+}
+.box {
+    width:35%;
+    margin-left:15rem;
+    padding: 20px 35px ;
+    margin-top:20px;
+    box-shadow: 2px 2px 18px 5px rgba(0,0,0,0.1);
+}
+.man {
+    margin-top:40px;
+    height:45rem;
+    width:40rem;
 }

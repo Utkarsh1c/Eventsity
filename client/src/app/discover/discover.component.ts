@@ -11,7 +11,7 @@ import { ServerService } from '../services/server.service';
 })
 export class DiscoverComponent implements OnInit {
   selectedEvent : Discover;
-  discover:Discover[];
+  discover: Discover[];
   ent = false;
   soc = false;
   spo = false;
@@ -59,7 +59,13 @@ export class DiscoverComponent implements OnInit {
 
 
     this.serverservice.getCreatedEvents()
-    .subscribe(res => this.discover = res);
+    .subscribe(
+      (response) =>{
+        console.log(response.events);
+        this.discover = response.events;
+      },
+      (error) => console.log(error),
+      );
   }
 
 }

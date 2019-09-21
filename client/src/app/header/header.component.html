@@ -4,21 +4,25 @@
 <nav class="navbar navbar-default head">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a routerLink="/" class="navbar-brand fstyle" style="color:white">EventSity</a>
+            <a routerLink="/" 
+            class="navbar-brand fstyle" 
+            style="color:black;margin-top:5px;">
+            <span><img src="assets/images/tab.png" class="logo" alt="logo">  EventSity</span></a>
         </div>
         <div class="navbar-default">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active" class="hcolor"><a 
                     routerLink='/discover' 
-                    style="color:white"
+                    style="color:black;margin-top:5px;"
                     >Discover</a></li>
-                <li routerLinkActive="active" class="hcolor"><a routerLink='/create' style="color:white;">Create</a></li>
+                <li routerLinkActive="active" class="hcolor"><a routerLink='/create' style="color:black;margin-top:5px;">Create</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right content">
-                <li><button class="user" *ngIf="!authservice.loggedIn()"><a routerLink='/login'>LogIn</a></button></li>
-                <li><button class="user" *ngIf="!authservice.loggedIn()"><a routerLink='/signup'>SignUp</a></button></li>
-                <li><button class="user" style="color:#5B5056;" *ngIf="authservice.loggedIn()" (click)="authservice.logout()">LogOut</button></li>
+                <li><a routerLink='/login' class="user"><button class="mybutton" *ngIf="!authservice.loggedIn()">LogIn</button></a></li>
+                <li><a routerLink='/signup' class="user"><button class="mybutton" *ngIf="!authservice.loggedIn()">SignUp</button></a></li>
+                <li><button class="mybutton2" style="color:#5B5056;" *ngIf="authservice.loggedIn()" (click)="authservice.logout()">LogOut</button></li>
             </ul>
         </div>
     </div>
+    <div class="line"></div>
 </nav>

@@ -10,12 +10,13 @@ import { DiscoverService } from '../discover/discover.service';
   styleUrls: ['./discover-details.component.css']
 })
 export class DiscoverDetailsComponent implements OnInit {
-  discover:Discover;
+  public discover : [];
   id:number;
   follow = false;
 
   constructor(private discoverservice: DiscoverService,
               private route:ActivatedRoute) {}
+
 
   needfollow() {
     this.follow = true;

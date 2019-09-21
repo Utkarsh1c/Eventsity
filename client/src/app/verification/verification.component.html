@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <form (ngSubmit)="Verify(f)" #f="ngForm">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="otp">Verify</label>
+                            <input
+                            type="text" 
+                            id="otp" 
+                            name="otp"
+                            class="form-control"
+                            ngModel
+                            required
+                            #verify="ngModel">
+                            <!-- <span 
+                            class="help-block" 
+                            *ngIf="!otp.valid && otp.touched"
+                            style="color:red;">Enter a valid Event Name</span> -->
+                        </div>
+                    </div>
+                </div>
+                <button 
+                        type="submit" 
+                        class="btn btn-success mybutton"
+                        [disabled]="!f.valid" style="margin-right : 10px;">Verify</button>
+                </form>
+        </div>
+    </div>
+</div> 

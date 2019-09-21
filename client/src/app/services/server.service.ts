@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://1bdfc41f.ngrok.io";
+    private rootUrl = "https://7d995213.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -42,20 +42,8 @@ export class ServerService {
             {headers: headers});
     }
 
-    getCreatedEvents(): Observable<Discover[]> {
-         return this.http.get<Discover[]>(this.rootUrl+'/feed/posts');
-        // .map(
-        //     (response: Response) => {
-        //         console.log(response.json());
-        //         const discover:Discover[]=response.json();
-        //     }
-        // )
-        // .subscribe(
-        //     (discover: Discover[]) => {
-                
-        //         this.discoverservice.setDiscover(discover);
-        //     }
-        // );
+    getCreatedEvents() {
+         return this.http.get(this.rootUrl+'/feed/posts');
     }
 
     getLoggedInUser(): Observable<any> {
@@ -65,6 +53,14 @@ export class ServerService {
           'Authorization': `Bearer `+token,
         })
         return this.http.get(this.rootUrl+'/auth/login', { headers: headers });
+    }
+
+    verifyUser(otp:string) {
+        const headers = new HttpHeaders({'Content-Type':'application/json'})
+        // console.log(JSON.stringify({name,email,password}));
+        return this.http.post(this.rootUrl+'/verify',
+        JSON.stringify({otp}),
+        {headers: headers});
     }
 }
 

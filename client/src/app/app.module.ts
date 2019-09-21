@@ -22,6 +22,7 @@ import { DiscoverService } from './discover/discover.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
+import { VerificationComponent } from './verification/verification.component';
 // import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
@@ -41,6 +42,7 @@ import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
     ContactusComponent,
     DropdownDirective,
     ConfrimPasswordDirective,
+    VerificationComponent,
   ],
   imports: [
     HttpClientModule,

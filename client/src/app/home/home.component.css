@@ -1,16 +1,16 @@
 .main{
     position:relative;
     background-size:cover;
-    overflow:hidden;
     background-repeat: no-repeat;
-    animation : slide 8s infinite;
-    height:85vh;
-    border-radius : 10px;
+    animation : slide 8s alternate infinite;
+    height:90vh;
+    width:100%;
 }
 @keyframes slide {
-    0%{background:url( ../../assets/images/ss2.jpg);}
-    50%{background:url( ../../assets/images/ss3.jpg);}
-    100%{background-image:url( ../../assets/images/ss1.jpg);}
+    0%{background:url( ../../assets/images/ss1.jpg);}
+    25%{background:url( ../../assets/images/ss3.jpe);}
+    50%{background:url( ../../assets/images/ss2.jpe);}
+    100%{background-image:url( ../../assets/images/ss5.jpe);}
 }
 .content {
     /* margin-top : 14em;
