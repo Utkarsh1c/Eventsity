@@ -22,6 +22,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
 import { VerificationComponent } from './verification/verification.component';
+import { MyeventsComponent } from './myevents/myevents.component';
 // import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
@@ -41,6 +42,7 @@ import { VerificationComponent } from './verification/verification.component';
     DropdownDirective,
     ConfrimPasswordDirective,
     VerificationComponent,
+    MyeventsComponent,
   ],
   imports: [
     HttpClientModule,

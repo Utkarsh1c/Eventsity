@@ -32,7 +32,8 @@
     z-index:2;
 }
 .shadow {
-    /* text-shadow: 2px 2px 10px 2px white; */
+    font-family: 'Lobster', cursive;
+    letter-spacing : 2px;
     position: relative;
     z-index:2;
 }

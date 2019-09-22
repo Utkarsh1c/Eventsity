@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ServerService } from 'src/app/services/server.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { DiscoverService } from 'src/app/discover/discover.service';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +14,10 @@ export class LoginComponent implements OnInit {
   tk :any;
   errormsg:string;
   uid:any;
+  name:any;
   constructor(private serverservice : ServerService,
-              private route: Router) { }
+              private route: Router,
+              private discoverservice : DiscoverService) { }
 
   ngOnInit() {
   }
@@ -27,6 +30,9 @@ export class LoginComponent implements OnInit {
       (response) => {
         console.log(response);
         this.tk = response ;
+        this.name = response;
+        // console.log(this.name.name);
+        this.discoverservice.transferUsername(this.name.name);
         localStorage.setItem('token', this.tk.token);
         this.route.navigate(['/']);
       },

@@ -10,7 +10,7 @@ export class DiscoverService {
     eventSelected = new EventEmitter<Discover>();
 
     constructor(private serverservice : ServerService) {}
-
+    name:string;
     discover : Discover[] 
     // = [
     //     new Discover(
@@ -48,6 +48,16 @@ export class DiscoverService {
     // ];
 
     setDiscover(discovers: Discover[]) {
+        console.log(discovers);
+        this.discover = discovers;
+        this.discoverChanged.next(this.discover);
+    }
+
+    transferUsername(uname:string) {
+        this.name = uname;
+    }
+
+    setMyEvents(discovers: Discover[]) {
         console.log(discovers);
         this.discover = discovers;
         this.discoverChanged.next(this.discover);

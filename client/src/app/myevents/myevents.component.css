@@ -1,0 +1,23 @@
+.box {
+    background-color : black;
+}
+.box:hover {
+    background-color : black;
+    border : 1px solid black;
+    box-shadow : 5px 5px 15px black;
+    animation : increase 1s ; 
+}
+.col-xs-12 {
+    padding : 0px 0px;
+}
+.font h2 {
+    font-family: 'Righteous', cursive;
+    /* font-family: 'Ubuntu', sans-serif; */
+    color:#BB0DE0;
+    font-size : 45px;
+}
+.font p {
+    font-family: 'Ubuntu', sans-serif;
+    color : #0DBDE0;
+    font-size : 25px;
+}

@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://d9e2c6d5.ngrok.io";
+    private rootUrl = "https://8c9ea39e.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -36,9 +36,13 @@ export class ServerService {
 
     createEvent(ename: string,category: string,evenue: string,fevenue: string,imagePath: string, 
         date: string) {
-            const headers = new HttpHeaders({'Content-Type':'application/json'})
+            const token = localStorage.getItem('token')
+            const headers = new HttpHeaders({
+                'Content-Type':'application/json',
+                'Authorization': `Bearer `+token,
+            })
             console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date}));
-            return this.http.post(this.rootUrl+'/feed/posts/1',JSON.stringify({ename, category, evenue, fevenue, imagePath, date}),
+            return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date}),
             {headers: headers});
     }
 
@@ -67,6 +71,15 @@ export class ServerService {
         const headers = new HttpHeaders({'Content-Type':'application/json'})
         return this.http.post(this.rootUrl+'/auth/resend/'+id,
         {headers: headers});
+    }
+
+    getMyEvents() {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer `+token,
+        })
+        return this.http.get(this.rootUrl+'/feed/myevents', { headers: headers });
     }
 }
 
