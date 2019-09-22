@@ -9,7 +9,7 @@ const router = express.Router();
 router.get('/posts', feedController.getEvents);
 
 router.post(
-    '/posts/:userId',
+    '/posts', isAuth,
 //    [
 //     body('title')
 //     .trim()
@@ -20,7 +20,7 @@ router.post(
 //    ],
 feedController.createEvent);
 
-router.get('/posts/:eventId', feedController.getEvent)
+router.get('/myevents', isAuth, feedController.userEvents)
 
 router.put('/posts/:eventId', feedController.updateEvent)
 

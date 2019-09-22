@@ -52,8 +52,8 @@ User.belongsToMany(Event, {through: 'Interested'});
 // User.belongsToMany(User, {through: 'Followed'}) 
 
 sequelize
-  .sync({ force: true })
-  // .sync()
+  // .sync({ force: true })
+  .sync()
   .then(cart => {
     app.listen(8080);
   })

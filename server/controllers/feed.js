@@ -21,7 +21,7 @@ exports.getEvents = (req, res, next) => {
     }
 
 exports.createEvent = (req, res, next) => {
-    const userId = req.params.userId;
+    const userId = req.userId;
     const errors = validationResult(req);
     if (!errors.isEmpty()){
         const error = new Error("Validation failed, entered data is incorrect.");
@@ -62,9 +62,8 @@ exports.createEvent = (req, res, next) => {
     .catch(err => console.log(err))
 }
 
-exports.getEvent = (req, res, next) => {
-    const eventId = req.params.eventId;
-    Event.findByPk(eventId)
+exports.userEvents = (req, res, next) => {
+    Event.findAll({ where: { userId: req.userId }})
     .then(event => {
         if (!event) {
             const error = new Error('Could not find event.');

@@ -159,7 +159,9 @@ exports.verifyUser = (req, res, next) => {
 exports.login = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password.trim();
-    let loadedUser;
+    // let loadedUser;
+
+
     User.findOne({ where: { email: email }})
     .then(user => 
         {
@@ -190,7 +192,7 @@ exports.login = (req, res, next) => {
                     //     html: `<h1>Your otp ${otp}</h1>`
                     // })
                 })
-
+                
                 .catch(err => {
                     if(!err.statusCode) {
                         err.statusCode = 500;
@@ -198,14 +200,22 @@ exports.login = (req, res, next) => {
                     next(err);
                 })
 
-                const error = new Error('User is not verified');
-                error.statusCode = 401;
-                throw error;
+                return res
+                .status(401)
+                .json({
+                    message: 'User is not verified',
+                    userId: user.id
+            })
+
+                // const error = new Error('User is not verified');
+                // error.userId = user.id;
+                // error.statusCode = 401;
+                // throw error;
             }
 
-            loadedUser = user;
-            return bcrypt.compare(password, user.password);
-        })
+            // loadedUser = user;
+            return bcrypt.compare(password, user.password)
+        
     .then(isEqual => {
         if (!isEqual) {
             // console.log('pass................');
@@ -214,15 +224,16 @@ exports.login = (req, res, next) => {
             throw error;
         }
         const token = jwt.sign({
-            email: loadedUser.email,
-            userId: loadedUser.id
+            email: user.email,
+            userId: user.id
         },
         'somesupersecretsecret',
         { expiresIn: '1h' }
         )
-        res.status(200).json({ token: token, userId: loadedUser.id
+        res.status(200).json({ token: token, userId: user.id, name: user.name
         })
     })
+})
     .catch(err => {
         if(!err.statusCode) {
             err.statusCode = 500;
