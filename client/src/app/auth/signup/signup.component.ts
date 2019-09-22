@@ -26,10 +26,10 @@ export class SignupComponent implements OnInit {
     this.serverservice.signUpUser(value.name,value.email,value.password,value.cpassword)
     .subscribe(
       (response) => {
-        this.uid = response.userId;
-        console.log(this.uid);
+        this.uid = response;
+        // console.log(this.uid.userId);
         alert('Successfully SignedUp now LogIn to continue');
-        this.route.navigate(['/verify',this.uid])
+        this.route.navigate(['/verify',this.uid.userId])
         // this.route.navigate(['/verify']);
         form.reset();
       },

@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://ad587a13.ngrok.io";
+    private rootUrl = "https://d9e2c6d5.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -56,10 +56,16 @@ export class ServerService {
     }
 
     verifyUser(otp:string, id:any) {
+        // console.log(id);
         const headers = new HttpHeaders({'Content-Type':'application/json'})
-        // console.log(JSON.stringify({name,email,password}));
-        return this.http.post(this.rootUrl+'/auth//verify/'+id,
+        return this.http.post(this.rootUrl+'/auth/verify/'+id,
         JSON.stringify({otp}),
+        {headers: headers});
+    }
+
+    resendOtp(id:any) {
+        const headers = new HttpHeaders({'Content-Type':'application/json'})
+        return this.http.post(this.rootUrl+'/auth/resend/'+id,
         {headers: headers});
     }
 }

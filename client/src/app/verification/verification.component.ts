@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../services/server.service';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-verification',
@@ -10,24 +10,41 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class VerificationComponent implements OnInit {
   id:any;
-  email=false;
+  resend=false;
 
   constructor(private serverservice: ServerService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
-    this.id = this.route.params;
-    console.log(this.id);
-    // setTimeout(() => {
-    //   this.email=true;
-    // }, 120000);
+    this.id = this.route.snapshot.params.id;
+    // console.log(this.id);
+    setTimeout(() => {
+      this.resend=true;
+    }, 120000);
+  }
+
+  onResend() {
+    this.resend = false;
+    setTimeout(() => {
+      this.resend = true;
+    }, 120000);
+    this.serverservice.resendOtp(this.id)
+    .subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error),
+    );
   }
   
   Verify(form : NgForm) {
     const value = form.value;
+    console.log(this.id);
     this.serverservice.verifyUser(value.otp, this.id)
     .subscribe(
-      (response) => console.log(response),
+      (response) =>{ 
+        console.log(response);
+        this.router.navigate(['/login']);
+      },
       (error) => console.log(error)
     );
   }

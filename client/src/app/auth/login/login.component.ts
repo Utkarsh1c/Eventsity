@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   tk :any;
   errormsg:string;
+  uid:any;
   constructor(private serverservice : ServerService,
               private route: Router) { }
 
@@ -32,6 +33,11 @@ export class LoginComponent implements OnInit {
       (error: HttpErrorResponse) =>{
         console.log(error)
         this.errormsg = error.error.message;
+        if(this.errormsg === "User is not verified") {
+          this.uid = error.error;
+          console.log(this.uid.userId);
+          this.route.navigate(['/verify',this.uid.userId])
+        }
         alert(this.errormsg || "Server Error");
       },
     );

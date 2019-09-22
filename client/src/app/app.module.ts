@@ -9,7 +9,6 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { DiscoverComponent } from './discover/discover.component';
 import { DiscoverDetailsComponent } from './discover-details/discover-details.component';
-import { DiscoverHomeComponent } from './discover/discover-home/discover-home.component';
 import { FooterComponent } from './footer/footer.component';
 import { CreateComponent } from './create/create.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -23,7 +22,6 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
 import { VerificationComponent } from './verification/verification.component';
-import { ResendotpComponent } from './resendotp/resendotp.component';
 // import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
@@ -34,7 +32,6 @@ import { ResendotpComponent } from './resendotp/resendotp.component';
     HomeComponent,
     DiscoverComponent,
     DiscoverDetailsComponent,
-    DiscoverHomeComponent,
     FooterComponent,
     CreateComponent,
     LoginComponent,
@@ -44,7 +41,6 @@ import { ResendotpComponent } from './resendotp/resendotp.component';
     DropdownDirective,
     ConfrimPasswordDirective,
     VerificationComponent,
-    ResendotpComponent,
   ],
   imports: [
     HttpClientModule,

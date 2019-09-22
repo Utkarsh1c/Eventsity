@@ -16,8 +16,8 @@ button {
     text-decoration:none;
 }
 button:hover {
-    transform:scale(1.01);
     box-shadow:2px 2px 18px 5px rgba(0,0,0,0.5);
+    transition: all 0.3s ease-in-out;
 }
 .entcat {
     background : url(../../assets/images/entertainmentdiscover.jpe);
@@ -49,11 +49,24 @@ button:hover {
     50%{transform : scale(1.03);}
 }
 .cust {
-    height : 80px;
-    width:250px;
+    height : 60px;
+    width:200px;
 }
 .org {
     font-family: 'Montserrat', sans-serif;
     color:#9E36DA;
     text-align:center;
+}
+.background {
+    background: url('../../assets/images/parentbackground.jpe');
+}
+.overlay {
+    position:absolute;
+    /* padding:1px 6px; */
+    width: 10em;
+    height: 10em;
+    background-color: rgba(0,0,0,0.4);
+    border-radius:10px;
+    top:0;
+    left:14px;
 }

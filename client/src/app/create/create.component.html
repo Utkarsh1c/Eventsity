@@ -1,10 +1,11 @@
-<div class="container">
-<div class="row head">
-    <h3 style="text-align:center;color:#9E36DA;">LET'S CREATE YOUR EVENT.</h3>
-    <img src="assets/images/create1.png" alt="create">
-</div>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Mansalva|Noto+Sans|Poppins|Source+Sans+Pro&display=swap');
+</style>
+<div class="container fonts">
 <hr style="opacity: 0;">
-<h4 style="text-align:center;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;color:#9E36DA;">
+<h3 style="text-align:center;color:#9E36DA;"><b>LET'S CREATE YOUR EVENT</b></h3>
+<hr>
+<h4 style="text-align:center;color:#9E36DA;">
     CREATE YOUR EVENT SO THAT EVERYONE MAY ACCESS OR KNOW ABOUT THE EVENT.
 </h4>
 <p style="text-align:center;color:#9E36DA;">
@@ -12,7 +13,7 @@
 </p>
 </div>
 <hr style="opacity: 0;">
-<div class="container-fluid">
+<div class="container">
 <div class="row">
     <div class="col-md-5"><img src="assets/images/createcartoon.png" class="man" alt="lets create"></div>
         <div class="col-md-7 box">
@@ -20,7 +21,7 @@
             <form (ngSubmit)="onCreate(f)" #f="ngForm">
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="form-group">
+                        <div class="form-group formfont">
                             <label for="ename">Event Name</label>
                             <input
                             type="text" 
@@ -74,28 +75,32 @@
                                     name="category"
                                     value="Entertainment"
                                     style="margin : 5px 5px;"
-                                    ngModel> Entertainment
+                                    ngModel
+                                    required> Entertainment
                                     <input 
                                     type="radio"
                                     (click)="onAddToSocial()" 
                                     name="category"
                                     value="Social"
                                     style="margin : 5px 5px;"
-                                    ngModel> Social
+                                    ngModel
+                                    required> Social
                                     <input 
                                     type="radio" 
                                     (click)="onAddToSports()"
                                     name="category"
                                     value="Sports"
                                     style="margin : 5px 5px;"
-                                    ngModel> Sports
+                                    ngModel
+                                    required> Sports
                                     <input 
                                     type="radio"
                                     (click)="onAddToTechnology()" 
                                     name="category" 
                                     value="Technology"
                                     style="margin : 5px 5px;"
-                                    ngModel> Technology
+                                    ngModel
+                                    required> Technology
                                 </div>
                             </div>
                             <!-- <div class="btn-group" dropdown>

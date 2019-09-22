@@ -7,6 +7,7 @@ input.ng-invalid.ng-touched {
 }
 .box {
     width:41%;
+    margin-left:100px;
     padding: 20px 35px ;
     margin-top:20px;
     box-shadow: 2px 2px 18px 5px rgba(0,0,0,0.1);
@@ -16,7 +17,7 @@ input.ng-invalid.ng-touched {
     width: 45rem;
 }
 .button {
-    margin-left : 15rem;
+    margin-left : 13rem;
 }
 .mybutton {
     border: 2px solid yellowgreen;
@@ -33,4 +34,16 @@ input.ng-invalid.ng-touched {
     color:white;
     border : 2px solid green;
     transition: all 0.8 ease-in-out;
+}
+.fonts h3 {
+    font-family: 'Mansalva', cursive;
+}
+.fonts h4 {
+    font-family: 'Noto Sans', sans-serif;
+}
+.fonts p {
+    font-family: 'Poppins', sans-serif;
+}
+.formfont {
+    font-family: 'Source Sans Pro', sans-serif;
 }

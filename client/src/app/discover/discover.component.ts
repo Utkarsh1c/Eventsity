@@ -16,7 +16,7 @@ export class DiscoverComponent implements OnInit {
   soc = false;
   spo = false;
   tech = false;
-
+  res:any;
   
   needentertainment() {
     console.log('Entertainment is true');
@@ -61,8 +61,9 @@ export class DiscoverComponent implements OnInit {
     this.serverservice.getCreatedEvents()
     .subscribe(
       (response) =>{
-        console.log(response.events);
-        this.discover = response.events;
+        this.res = response;
+        console.log(this.res.events);
+        this.discover = this.res.events;
         this.discoverservice.setDiscover(this.discover);
         // console.log(this.discover);
       },

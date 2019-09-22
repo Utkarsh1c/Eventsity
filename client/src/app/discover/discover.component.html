@@ -4,22 +4,6 @@
 <div class="container">
 <div class="row">
     <div class="col-xs-12">
-        <h2 class="org"><b>Organising Events For Some Of The Best Names In Country</b></h2>
-    </div>
-</div>
-<hr style="opacity: 0;">
-<hr style="opacity: 0;">
-<div class="row">
-    <div class="col-xs-12">
-        <div class="col-md-3"><img src="../../assets/images/ted.png" class="cust" alt="TEDx"></div>
-        <div class="col-md-3"><img src="../../assets/images/rubyconf.png" class="cust" alt="rubyconf"></div>
-        <div class="col-md-3"><img src="../../assets/images/Sul.png" class="cust" alt="startup"></div>
-        <div class="col-md-3"><img src="../../assets/images/indonesiacomic.png" class="cust" alt="ic"></div>
-    </div>
-</div>
-<hr style="opacity: 0;">
-<div class="row">
-    <div class="col-xs-12">
         <h1><b>Events By Category</b></h1>
     </div>
 </div>
@@ -28,16 +12,24 @@
     <div class="col-xs-12">
         <div class="col-md-2"></div>
         <div class="col-md-2">
-            <button (click)="needentertainment()" class="entcat">Entertainment</button>
+            <button 
+            (click)="needentertainment()" 
+            class="entcat"><b>Entertainment</b></button>
         </div>
         <div class="col-md-2">
-            <button (click)="needsocial()" class="soccat">Social</button>
+            <button
+            (click)="needsocial()" 
+            class="soccat"><b>Social</b></button>
         </div>
         <div class="col-md-2">
-            <button (click)="needtechnology()" class="techcat">Technology</button>
+            <button 
+            (click)="needtechnology()" 
+            class="techcat"><b>Technology</b></button>
         </div>
         <div class="col-md-2">
-            <button (click)="needsports()" class="sportscat">Sports</button>
+            <button 
+            (click)="needsports()" 
+            class="sportscat"><b>Sports</b></button>
         </div> 
         <div class="col-md-2"></div>
     </div>
@@ -51,7 +43,7 @@
         <div
         *ngFor="let discover of discover; index as id"
         >
-        <div *ngIf="discover.category === 'Entertainment'">
+        <div *ngIf="discover.category === 'Entertainment'" class="background">
             <a 
                 style="cursor : pointer;"
                 [routerLink]="['/discover',id]"   
@@ -175,24 +167,20 @@
     </div>
 </div>
 </div>
-</div>        
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="row">
-        <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-            <app-discover-list></app-discover-list>
-        </div>
-</div>
+<hr style="opacity: 0;">
 <div class="row">
-    <div class="col-md-12">
-        <router-outlet></router-outlet>
-     </div>
-</div> -->
+        <div class="col-xs-12">
+            <h2 class="org"><b>Organising Events For Some Of The Best Names In Country</b></h2>
+        </div>
+    </div>
+    <hr style="opacity: 0;">
+    <hr style="opacity: 0;">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="col-md-3"><img src="../../assets/images/ted.png" class="cust" alt="TEDx"></div>
+            <div class="col-md-3"><img src="../../assets/images/rubyconf.png" class="cust" alt="rubyconf"></div>
+            <div class="col-md-3"><img src="../../assets/images/Sul.png" class="cust" alt="startup"></div>
+            <div class="col-md-3"><img src="../../assets/images/indonesiacomic.png" class="cust" alt="ic"></div>
+        </div>
+    </div>
+</div>

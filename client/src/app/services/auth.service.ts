@@ -1,8 +1,10 @@
+import { Router } from '@angular/router';
+import { Injectable } from '@angular/core';
 
-
+@Injectable()
 export class AuthService {
 
-    constructor() {}
+    constructor(private route:Router) {}
 
     loggedIn() {
         return !!localStorage.getItem('token');
@@ -10,6 +12,7 @@ export class AuthService {
 
     logout() {
         localStorage.removeItem('token');
+        this.route.navigate(['/']);
     }
 
     getToken() {
