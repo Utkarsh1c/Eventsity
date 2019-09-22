@@ -25,7 +25,6 @@ const samUser = sequelize.define('users', {
         type: Sequelize.BOOLEAN,
         defaultValue: false
       }
-      
 
 })
 

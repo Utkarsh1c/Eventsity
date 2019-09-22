@@ -14,7 +14,7 @@ const fevents = sequelize.define('events', {
         allowNull: false
       },
     imagePath: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
     },
     evenue: {

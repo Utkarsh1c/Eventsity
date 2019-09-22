@@ -3,6 +3,8 @@ const userController = require('../controllers/user');
 
 const router = express.Router();
 
-router.post('/followed', userController.updateFollow);
+router.post('/follow', userController.updateFollow);
+
+router.post('/interest', userController.updateInterest);
 
 module.exports = router;

@@ -2,12 +2,12 @@ const User = require('../models/user');
 const Otp = require('../models/otp');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
-const sendgridTransport = require('nodemailer-sendgrid-transport');
-const transporter = nodemailer.createTransport(sendgridTransport({
-    auth: {
-        api_key: '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'
-    }
-}));
+// const sendgridTransport = require('nodemailer-sendgrid-transport');
+// const transporter = nodemailer.createTransport(sendgridTransport({
+//     auth: {
+//         api_key: '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'
+//     }
+// }));
 const jwt = require('jsonwebtoken');
 
 const { validationResult } = require('express-validator');
@@ -51,18 +51,18 @@ exports.signup = (req, res, next) => {
             throw err
         })
         
-        transporter.sendMail({
-            to: email,
-            from: 'eventsity@gmail.com',
-            subject: 'Signup succeeded!',
-            html: `<h1>Your otp ${otp}</h1>`
+        // transporter.sendMail({
+        //     to: email,
+        //     from: 'eventsity@gmail.com',
+        //     subject: 'Signup succeeded!',
+        //     html: `<h1>Your otp ${otp}</h1>`
 
-            // content: [
-            //     {
-            //       type: 'text/plain',
-            //       value: `Click on this link to verify your email ${hostUrl}/verification?token=${token}&email=${to}`
-            //     }
-        })
+        //     // content: [
+        //     //     {
+        //     //       type: 'text/plain',
+        //     //       value: `Click on this link to verify your email ${hostUrl}/verification?token=${token}&email=${to}`
+        //     //     }
+        // })
         res.status(201).json({ message: 'Succesfully signed up', userId: result.id })
     })
     .catch(err => {
@@ -73,9 +73,8 @@ exports.signup = (req, res, next) => {
     })
 }
 
-exports.resetOtp = (req, res, next) => {
+exports.resendOtp = (req, res, next) => {
     const userId = req.params.userId;
-    const email= req.body.email;
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     console.log(otp);
     bcrypt.hash(otp, 8)
@@ -85,15 +84,16 @@ exports.resetOtp = (req, res, next) => {
             otp.update({
                 otp: hashedOtp
             })
+        })
         .catch(err => {
             throw err
         })
-        transporter.sendMail({
-            to: email,
-            from: 'eventsity@gmail.com',
-            subject: 'Reset otp!',
-            html: `<h1>Your otp ${otp}</h1>`
-        })
+        // transporter.sendMail({
+        //     to: email,
+        //     from: 'eventsity@gmail.com',
+        //     subject: 'Reset otp!',
+        //     html: `<h1>Your otp ${otp}</h1>`
+        // })
     })
     .catch(err => {
         if(!err.statusCode) {
@@ -101,7 +101,6 @@ exports.resetOtp = (req, res, next) => {
         }
         next(err);
     })
-})
 }
 
 exports.verifyUser = (req, res, next) => {
@@ -109,41 +108,45 @@ exports.verifyUser = (req, res, next) => {
     const userOtp = req.body.otp;
     Otp.findByPk(userId)
     .then(otp => {
-        setTimeout(function() {
-            otp.destroy();
-        }, 60000)
-        if (!otp) {
+        if (!otp.otp) {
             const error = new Error('Otp expired!');
             error.statusCode = 400;
             throw error;
         }
-        return bcrypt.compare(userOtp, otp.otp)
-    })
-    .then(isEqual => {
-        
-        if (!isEqual) {
-            const error = new Error('Wrong otp!');
-            error.statusCode = 401;
-            throw error;
-        }
-        return User.findByPk(userId)
-            .then(user => {
-                if (!user) {
-                    const error = new Error('Could not find user.');
-                    error.statusCode = 404;
-                    throw error;
-                }
-                user.update({
-                    isVerified: true
-                })
+        setTimeout(function() {
+            otp.update({
+                otp: ""
             })
+        }, 120000)
 
-        })
+        return bcrypt.compare(userOtp, otp.otp)
+        .then(isEqual => {
+            
+            if (!isEqual) {
+                const error = new Error('Wrong otp!');
+                error.statusCode = 401;
+                throw error;
+            }
+            return User.findByPk(userId)
+                .then(user => {
+                    if (!user) {
+                        const error = new Error('Could not find user.');
+                        error.statusCode = 404;
+                        throw error;
+                    }
+                    otp.destroy()
+                    user.update({
+                        isVerified: true
+                    })
+                })
+
+            })
 
     .then(result => {
         res.status(200).json({ message: 'User verified' })
     })
 
+    })
     .catch(err => {
         if(!err.statusCode) {
             err.statusCode = 500;
@@ -165,6 +168,41 @@ exports.login = (req, res, next) => {
                 error.statusCode = 401;
                 throw error;
             }
+            if(!user.isVerified) {
+
+                const otp = Math.floor(100000 + Math.random() * 900000).toString();
+                console.log(otp);
+                bcrypt.hash(otp, 8)
+                .then(hashedOtp => {
+                    Otp.findByPk(user.id)
+                    .then(otp => {
+                        otp.update({
+                            otp: hashedOtp
+                        })
+                    })
+                    .catch(err => {
+                        throw err
+                    })
+                    // transporter.sendMail({
+                    //     to: email,
+                    //     from: 'eventsity@gmail.com',
+                    //     subject: 'Reset otp!',
+                    //     html: `<h1>Your otp ${otp}</h1>`
+                    // })
+                })
+
+                .catch(err => {
+                    if(!err.statusCode) {
+                        err.statusCode = 500;
+                    }
+                    next(err);
+                })
+
+                const error = new Error('User is not verified');
+                error.statusCode = 401;
+                throw error;
+            }
+
             loadedUser = user;
             return bcrypt.compare(password, user.password);
         })
