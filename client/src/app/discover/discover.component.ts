@@ -63,6 +63,8 @@ export class DiscoverComponent implements OnInit {
       (response) =>{
         console.log(response.events);
         this.discover = response.events;
+        this.discoverservice.setDiscover(this.discover);
+        // console.log(this.discover);
       },
       (error) => console.log(error),
       );

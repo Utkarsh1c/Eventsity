@@ -13,6 +13,7 @@ import { ContactusComponent } from './contactus/contactus.component';
 import { DiscoverDetailsComponent } from './discover-details/discover-details.component';
 import { AuthGuard } from './guard/auth.guard';
 import { VerificationComponent } from './verification/verification.component';
+import { ResendotpComponent } from './resendotp/resendotp.component';
 
 
 
@@ -25,10 +26,13 @@ const routes: Routes = [
     //  { path:':id', component: DiscoverDetailsComponent }
    ] },
    { path:'discover/:id', component: DiscoverDetailsComponent },
-   { path:'create', component: CreateComponent, canActivate: [AuthGuard] },
+   { path:'create', component: CreateComponent, 
+  //  canActivate: [AuthGuard] 
+  },
    { path:'login', component: LoginComponent },
    { path:'signup', component: SignupComponent },
-   { path:'verify', component:VerificationComponent },
+   { path:'verify/:id', component:VerificationComponent },
+   { path:'resendotp', component:ResendotpComponent },
    { path:'aboutus', component: AboutusComponent },
    { path:'contactus', component: ContactusComponent },
 ];

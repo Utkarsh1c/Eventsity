@@ -16,7 +16,8 @@ button {
     text-decoration:none;
 }
 button:hover {
-    border : 5px solid #31FC3D;
+    transform:scale(1.01);
+    box-shadow:2px 2px 18px 5px rgba(0,0,0,0.5);
 }
 .entcat {
     background : url(../../assets/images/entertainmentdiscover.jpe);
@@ -52,7 +53,7 @@ button:hover {
     width:250px;
 }
 .org {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color:#9E36DA;
     text-align:center;
 }

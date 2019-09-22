@@ -23,6 +23,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guard/auth.guard';
 import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
 import { VerificationComponent } from './verification/verification.component';
+import { ResendotpComponent } from './resendotp/resendotp.component';
 // import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
@@ -43,6 +44,7 @@ import { VerificationComponent } from './verification/verification.component';
     DropdownDirective,
     ConfrimPasswordDirective,
     VerificationComponent,
+    ResendotpComponent,
   ],
   imports: [
     HttpClientModule,

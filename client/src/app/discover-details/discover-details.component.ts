@@ -10,7 +10,7 @@ import { DiscoverService } from '../discover/discover.service';
   styleUrls: ['./discover-details.component.css']
 })
 export class DiscoverDetailsComponent implements OnInit {
-  public discover : [];
+  discover:Discover;
   id:number;
   follow = false;
 
@@ -21,6 +21,7 @@ export class DiscoverDetailsComponent implements OnInit {
   needfollow() {
     this.follow = true;
   }
+  
   ngOnInit() {
     this.route.params
     .subscribe(

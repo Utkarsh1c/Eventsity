@@ -13,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SignupComponent implements OnInit {
   err:any;
   errorMsg:string;
-  uid:number;
+  uid:any;
 
   constructor(private serverservice : ServerService,
               private route : Router) { }
@@ -26,10 +26,11 @@ export class SignupComponent implements OnInit {
     this.serverservice.signUpUser(value.name,value.email,value.password,value.cpassword)
     .subscribe(
       (response) => {
-        // this.uid = response.id;
-        console.log(response);
+        this.uid = response.userId;
+        console.log(this.uid);
         alert('Successfully SignedUp now LogIn to continue');
-        this.route.navigate(['/verify'])
+        this.route.navigate(['/verify',this.uid])
+        // this.route.navigate(['/verify']);
         form.reset();
       },
       (error: HttpErrorResponse) =>{

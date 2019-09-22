@@ -1,4 +1,8 @@
 .main{
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     position:relative;
     background-size:cover;
     background-repeat: no-repeat;
@@ -12,20 +16,22 @@
     50%{background:url( ../../assets/images/ss2.jpe);}
     100%{background-image:url( ../../assets/images/ss5.jpe);}
 }
-.content {
+/* .content { */
     /* margin-top : 14em;
     margin-left : 20em; */
-    position : absolute;
+    /* position : relative;
     top:35%;
     left:25%;
     color : white;
-}
+} */
 .line {
     border : 7px solid white;
     box-shadow: 10px 10px 5px black;
+    position:relative;
 }
 .shadow {
     text-shadow: 10px 10px 5px black;
+    position: relative;
 }
 .ent {
     background : url(../../assets/images/entertainmenthome.jpe);
@@ -81,4 +87,14 @@
     text-align : center;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     padding : 10px;
+}
+.overlay {
+    /* position: fixed; */
+    /* display: none; */
+    width: 100%;
+    height: 95vh;
+    background-color: rgba(0,0,0,0.7);
+    position:absolute;
+    /* z-index: 2; */
+    /* cursor: pointer; */
 }

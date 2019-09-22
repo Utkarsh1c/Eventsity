@@ -50,8 +50,7 @@ export class DiscoverService {
     setDiscover(discovers: Discover[]) {
         console.log(discovers);
         this.discover = discovers;
-        console.log(this.discover.slice());
-        this.discoverChanged.next(this.discover.slice());
+        this.discoverChanged.next(this.discover);
     }
 
     getEvents() { //sending copy of array to list
@@ -63,7 +62,8 @@ export class DiscoverService {
     }
 
     adddiscover(discovers: Discover) {
-        this.discover.push(discovers);
-        this.discoverChanged.next(this.discover.slice());
+        
+        // this.discover.push(discovers);
+        // this.discoverChanged.next(this.discover.slice());
     }
 }
