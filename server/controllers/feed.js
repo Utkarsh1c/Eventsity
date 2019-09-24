@@ -9,7 +9,7 @@ exports.getEvents = (req, res, next) => {
     .then(events => {
         res.status(200).json({
             message: 'Fetched posts successfully',
-            events: events,
+            events: events
         })
     })
     .catch(err => {
@@ -175,15 +175,40 @@ exports.updateRegister = (req, res, next) => {
             error.statusCode = 404;
             throw error;
         } 
-        User.findByPk(req.userId)
-        .then(user => {
-            user.addRegister(req.userId)
+        // User.findByPk(req.userId)
+        // .then(user => {
+            event.addRegister(req.userId)
         // transporter.sendMail({
         //     to: user.email,
         //     from: req.email,
         //     subject: 'Enquiry for event!',
         //     html: `<h1>${enquiry}</h1>`
         //     })
+        // })
+        // .catch(err => {
+        //     throw err;
+        // })
+    })
+    .catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    })
+}
+
+
+exports.getRegister = (req, res, next) => {
+    User.findByPk(req.userId)
+    .then(user => {
+        user.getRegister()
+        .then(event => {
+            if (!event) {
+                const error = new Error('Could not find event.');
+                error.statusCode = 404;
+                throw error;
+            }
+            res.status(200).json({ message: 'Event fetched', event: event })
         })
         .catch(err => {
             throw err;
@@ -210,12 +235,12 @@ exports.sendEnquiry = (req, res, next) => {
         } 
         User.findByPk(event.userId)
         .then(user => {
-        // transporter.sendMail({
-        //     to: user.email,
-        //     from: req.email,
-        //     subject: 'Enquiry for event!',
-        //     html: `<h1>${enquiry}</h1>`
-        //     })
+        transporter.sendMail({
+            to: user.email,
+            from: req.email,
+            subject: 'Enquiry for event!',
+            html: `<h1>${enquiry}</h1>`
+            })
         console.log(enquiry);
         res.status(200).json({ message: 'Enquiry sent' })
         })

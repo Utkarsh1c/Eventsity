@@ -28,6 +28,8 @@ router.post('/enquiry/:eventId', isAuth, feedController.sendEnquiry)
 
 router.post('/register/:eventId', isAuth, feedController.updateRegister)
 
+router.get('/registered', isAuth, feedController.getRegister)
+
 router.delete('/delete/:eventId', feedController.deleteEvent)
 
 module.exports = router;

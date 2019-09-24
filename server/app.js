@@ -50,6 +50,7 @@ User.hasMany(Event);
 // User.hasMany(User, { as: 'followed' })
 
 Event.belongsToMany(User, { as: 'Register', through: 'Registered' });
+User.belongsToMany(Event, { as: 'Register', through: 'Registered' });
 
 // User.belongsToMany(User, { as: 'follow', through: 'Followed' });
 
