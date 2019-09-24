@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Discover } from '../discover/discover.model';
 import { DiscoverService } from '../discover/discover.service';
@@ -13,9 +13,11 @@ export class DiscoverDetailsComponent implements OnInit {
   discover:Discover;
   id:number;
   follow = false;
+  eventid:any;
 
   constructor(private discoverservice: DiscoverService,
-              private route:ActivatedRoute) {}
+              private route:ActivatedRoute,
+              private router:Router) {}
 
 
   needfollow() {
@@ -28,8 +30,16 @@ export class DiscoverDetailsComponent implements OnInit {
       (params: Params) => {
         this.id = +params['id'];
         this.discover = this.discoverservice.getEvent(this.id);
+        this.eventid = this.discover.id;
+        console.log(this.eventid);
+        // this.discoverservice.eventId(this.discover.id);
       }
     )
+  }
+
+  sendEnquiry() {
+    // console.log(this.eventid);
+    this.router.navigate(['/enquiry',this.eventid]);
   }
 
 }

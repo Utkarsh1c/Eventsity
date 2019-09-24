@@ -33,6 +33,7 @@
     </div> -->
     <div class="row">
         <div class="col-xs-12">
+            <h1>{{ discover.id }}</h1>
             <h1>{{ discover.ename }}</h1>
         </div>
     </div>
@@ -60,8 +61,15 @@
                 <div><b>ORGANISER</b></div>
                 <div>{{ discover.orgname }}</div>
                 <div>
-                 <button class="follow" (click)="needfollow()" *ngIf="!follow">+ FOLLOW</button>
-                <button class="follow" (click)="change()" *ngIf="follow">FOLLOWED</button>
+                    <button 
+                    class="userbtn" 
+                    (click)="sendEnquiry()" 
+                    style="margin-top:10px;">Send Enquiry</button>
+                </div>
+                <hr>
+                <div>
+                    <p style="font-size:15px;"><b>Interested? Register Now</b></p>
+                    <button class="userbtn">Register Now</button>
                 </div>
             </div>
         </div>

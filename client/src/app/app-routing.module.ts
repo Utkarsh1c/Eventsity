@@ -13,6 +13,7 @@ import { DiscoverDetailsComponent } from './discover-details/discover-details.co
 import { AuthGuard } from './guard/auth.guard';
 import { VerificationComponent } from './verification/verification.component';
 import { MyeventsComponent } from './myevents/myevents.component';
+import { EnquiryComponent } from './enquiry/enquiry.component';
 
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
     //  { path:':id', component: DiscoverDetailsComponent }
    ] },
    { path:'discover/:id', component: DiscoverDetailsComponent },
+   { path:'enquiry/:id', component: EnquiryComponent },
    { path:'create', component: CreateComponent, 
    canActivate: [AuthGuard] 
   },

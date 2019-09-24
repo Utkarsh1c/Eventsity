@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://a86b4ff1.ngrok.io";
+    private rootUrl = "https://5b9188d5.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -80,6 +80,17 @@ export class ServerService {
             'Authorization': `Bearer `+token,
         })
         return this.http.get(this.rootUrl+'/feed/myevents', { headers: headers });
+    }
+
+    sendenquiry(enquiry: string, id:any) {
+            const token = localStorage.getItem('token')
+            const headers = new HttpHeaders({
+                'Content-Type':'application/json',
+                'Authorization': `Bearer `+token,
+            })
+            console.log(JSON.stringify({enquiry}));
+            return this.http.post(this.rootUrl+'/feed/enquiry/'+id,JSON.stringify({enquiry}),
+            {headers: headers});
     }
 }
 

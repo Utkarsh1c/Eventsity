@@ -1,0 +1,32 @@
+<div class="container">
+<form (ngSubmit)="sendEnquiry(f)" #f="ngForm">
+<div class="row">
+    <div class="col-xs-12">
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+            placeholder="Enter message for enquiry"
+            rows="8" 
+            id="enquiry" 
+            name="enquiry"
+            class="form-control"
+            ngModel
+            required
+            #enquiry="ngModel"></textarea>
+            <span
+            class="help-block"
+            *ngIf="!enquiry.valid && enquiry.touched"
+            style="color:red;">Enter message for enquiry</span>
+        </div>
+    </div>
+</div>
+<div class="row">
+        <div class="col-xs-12 button">
+            <button 
+            type="submit" 
+            class="btn btn-success mybutton"
+            [disabled]="!f.valid" style="margin-right : 10px;">Send Enquiry</button>
+        </div>
+    </div>
+    </form>
+</div>

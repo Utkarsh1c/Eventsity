@@ -24,6 +24,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
 import { VerificationComponent } from './verification/verification.component';
 import { MyeventsComponent } from './myevents/myevents.component';
+import { EnquiryComponent } from './enquiry/enquiry.component';
 // import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
@@ -44,6 +45,7 @@ import { MyeventsComponent } from './myevents/myevents.component';
     ConfrimPasswordDirective,
     VerificationComponent,
     MyeventsComponent,
+    EnquiryComponent,
   ],
   imports: [
     HttpClientModule,

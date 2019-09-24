@@ -8,6 +8,7 @@ import { ServerService } from '../services/server.service';
 export class DiscoverService {
     discoverChanged = new Subject<Discover[]>();
     eventSelected = new EventEmitter<Discover>();
+    eventid:number;
 
     constructor(private serverservice : ServerService) {}
     name:string;
@@ -53,6 +54,10 @@ export class DiscoverService {
         this.discoverChanged.next(this.discover);
     }
 
+    eventId(id:number) {
+        this.eventid = id;
+        console.log(this.eventid);
+    }
 
     setMyEvents(discovers: Discover[]) {
         console.log(discovers);
