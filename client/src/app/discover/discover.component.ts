@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { DiscoverService } from './discover.service';
 import { Discover } from './discover.model';
 import { ServerService } from '../services/server.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-discover',
@@ -45,7 +46,8 @@ export class DiscoverComponent implements OnInit {
   }
 
   constructor(private discoverservice:DiscoverService,
-              private serverservice: ServerService) { }
+              private serverservice: ServerService,
+              private route : Router) { }
 
 
   ngOnInit() {
@@ -69,6 +71,13 @@ export class DiscoverComponent implements OnInit {
       },
       (error) => console.log(error),
       );
+
+      this.route.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        window.scrollTo(0, 0);
+      });
   }
 
 }

@@ -11,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class VerificationComponent implements OnInit {
   id:any;
   resend=false;
+  tk:any;
+  name:any;
 
   constructor(private serverservice: ServerService,
               private route: ActivatedRoute,
@@ -42,8 +44,12 @@ export class VerificationComponent implements OnInit {
     this.serverservice.verifyUser(value.otp, this.id)
     .subscribe(
       (response) =>{ 
-        console.log(response);
-        this.router.navigate(['/login']);
+        this.tk = response ;
+        this.name = response;
+        // console.log(this.name.name);
+        localStorage.setItem('token', this.tk.token);
+        localStorage.setItem('name',this.name.name);
+        this.router.navigate(['/']);
       },
       (error) => console.log(error)
     );

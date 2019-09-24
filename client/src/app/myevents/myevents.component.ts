@@ -17,7 +17,7 @@ export class MyeventsComponent implements OnInit {
               private discoverservice : DiscoverService) { }
 
   ngOnInit() {
-  this.uname=this.discoverservice.name;
+  this.uname=localStorage.getItem('name');
   // console.log(this.uname);
   this.serverservice.getMyEvents()
     .subscribe(
@@ -25,6 +25,7 @@ export class MyeventsComponent implements OnInit {
         this.res = response;
         console.log(this.res.event);
         this.discover = this.res.event;
+        console.log(this.res.event.id);
         this.discoverservice.setMyEvents(this.discover);
         // console.log(this.discover);
       },

@@ -43,3 +43,6 @@ input.ng-invalid.ng-touched {
     height : 35rem;
     width : 30rem;
 }
+.mybutton:focus {
+    outline:none;
+}

@@ -36,6 +36,7 @@
 } */
 .mybutton:hover {
     background-color: #F1B619;
+    color:white;
     border : 2px solid #F1B619;
     transition: all 0.5s ease-in-out;
 }
@@ -49,6 +50,7 @@
 }
 .mybutton2:hover {
     background-color: #F1B619;
+    color:white;
     transition: all 0.5s ease-in-out;
     border : 2px solid #F1B619;
 }
@@ -58,6 +60,9 @@
 }
 .line {
     border : 3px solid #0DBDE0;
+}
+.mybutton2:hover {
+    color:white;
 }
 .mybutton:focus {
     outline : none;

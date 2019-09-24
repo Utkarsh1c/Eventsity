@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
-            <div class="col-md-7"><img src="../../assets/images/verify.png" alt="verify1"></div>
+            <div class="col-md-7"><img src="../../assets/images/verify.png" class="img" alt="verify1"></div>
             <div class="col-md-5 box">       
             <h3 style="color:#0DBDE0;"><b>Verify Your Credentials</b></h3>
             <hr style="opacity:0;">
@@ -22,10 +22,9 @@
                             ngModel
                             required
                             #verify="ngModel">
-                            <!-- <span 
+                            <span 
                             class="help-block" 
-                            *ngIf="!otp.valid && otp.touched"
-                            style="color:red;">Enter a valid Event Name</span> -->
+                            style="color:blue;">OTP will expire within 2 minutes</span>
                         </div>
                     </div>
                 </div>

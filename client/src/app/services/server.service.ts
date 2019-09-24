@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://8c9ea39e.ngrok.io";
+    private rootUrl = "https://a86b4ff1.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -35,14 +35,14 @@ export class ServerService {
     }
 
     createEvent(ename: string,category: string,evenue: string,fevenue: string,imagePath: string, 
-        date: string) {
+        date: string, orgname: string, description: string) {
             const token = localStorage.getItem('token')
             const headers = new HttpHeaders({
                 'Content-Type':'application/json',
                 'Authorization': `Bearer `+token,
             })
-            console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date}));
-            return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date}),
+            console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}));
+            return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
             {headers: headers});
     }
 

@@ -1,5 +1,6 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=Acme|Montserrat|Poppins&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 </style>
  <div class="row">
 
@@ -38,23 +39,32 @@
     <hr>
     <div class="row">
         <div class="col-xs-12 font">
-            Venue : {{ discover.fevenue }}
+            <b>Venue</b>: {{ discover.fevenue }}
         </div>
     </div>
     <div class="row" style="color : black;">
         <div class="col-xs-12 font">
-            Date : {{ discover.date }}
+            <b>Date</b> : {{ discover.date }}
+        </div>
+    </div>
+    <hr style="opacity: 0;">
+    <div class="row" style="color : black;">
+        <div class="col-xs-12 fontdesc">
+            {{ discover.description }}
         </div>
     </div>
     </div>
     <div class="col-md-4">
-            <div class="row">
-                <div class="col-xs-12 box" style="padding-top:10px;font-family: cursive;">
-                    <!-- Organiser : {{ discover.orgname }} -->
-                    <button class="follow" (click)="needfollow()" *ngIf="!follow">+ FOLLOW</button>
-                    <button class="follow" (click)="change()" *ngIf="follow">FOLLOWED</button>
+        <div class="row">
+            <div class="col-xs-12 box" style="padding-top:10px;font-family: cursive;">
+                <div><b>ORGANISER</b></div>
+                <div>{{ discover.orgname }}</div>
+                <div>
+                 <button class="follow" (click)="needfollow()" *ngIf="!follow">+ FOLLOW</button>
+                <button class="follow" (click)="change()" *ngIf="follow">FOLLOWED</button>
                 </div>
             </div>
+        </div>
     </div>
     </div>
 </div>

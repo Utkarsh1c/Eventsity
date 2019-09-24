@@ -53,9 +53,6 @@ export class DiscoverService {
         this.discoverChanged.next(this.discover);
     }
 
-    transferUsername(uname:string) {
-        this.name = uname;
-    }
 
     setMyEvents(discovers: Discover[]) {
         console.log(discovers);

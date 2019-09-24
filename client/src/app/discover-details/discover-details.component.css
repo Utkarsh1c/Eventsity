@@ -16,15 +16,20 @@ h1 {
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
 }
+.fontdesc {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+}
 .box {
-    background-color : #EAE0E5;
+    background-color : white;
+    padding:50px;
     text-align : center;
-    height : 5em;
+    height : 8em;
     width : 20em;
     margin-left : 80px;
     margin-top : 20px;
-    border : 1px solid black;
     border-radius : 5px;
+    box-shadow: 2px 2px 18px 5px rgba(0,0,0,0.2);
 }
 .follow {
     margin-top : 5px;

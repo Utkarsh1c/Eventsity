@@ -2,10 +2,10 @@
     background-color : black;
 }
 .box:hover {
-    background-color : black;
+    background-color : #0DBDE0;
     border : 1px solid black;
     box-shadow : 5px 5px 15px black;
-    animation : increase 1s ; 
+    transition : all 0.3s ease-in-out;
 }
 .col-xs-12 {
     padding : 0px 0px;
@@ -16,8 +16,25 @@
     color:#BB0DE0;
     font-size : 45px;
 }
+.font {
+    margin-top : 50px;
+}
 .font p {
     font-family: 'Ubuntu', sans-serif;
     color : #0DBDE0;
     font-size : 25px;
+}
+.delete {
+    margin-top:10px;
+    margin-bottom: 60px;
+    border:2px solid red;
+    background-color:transparent;
+    padding : 5px 10px;
+    color:red;
+    border-radius:5px;
+}
+.delete:hover {
+    background-color: red;
+    color:white;
+    transition: all 0.5s ease-in-out;
 }

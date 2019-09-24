@@ -24,6 +24,7 @@
                         <div class="form-group formfont">
                             <label for="ename">Event Name</label>
                             <input
+                            placeholder="Event Name"
                             type="text" 
                             id="ename" 
                             name="ename"
@@ -43,6 +44,7 @@
                         <div class="form-group">
                             <label for="imagePath">Event Image URL</label>
                             <input
+                            placeholder="Image URL"
                             name="imagePath"
                             type="text" 
                             id="imagePath" 
@@ -71,15 +73,13 @@
                                 <div class="col-xs-12">
                                     <input 
                                     type="radio" 
-                                    (click)="onAddToEntertainment()"
                                     name="category"
                                     value="Entertainment"
                                     style="margin : 5px 5px;"
                                     ngModel
                                     required> Entertainment
                                     <input 
-                                    type="radio"
-                                    (click)="onAddToSocial()" 
+                                    type="radio" 
                                     name="category"
                                     value="Social"
                                     style="margin : 5px 5px;"
@@ -87,7 +87,6 @@
                                     required> Social
                                     <input 
                                     type="radio" 
-                                    (click)="onAddToSports()"
                                     name="category"
                                     value="Sports"
                                     style="margin : 5px 5px;"
@@ -95,7 +94,6 @@
                                     required> Sports
                                     <input 
                                     type="radio"
-                                    (click)="onAddToTechnology()" 
                                     name="category" 
                                     value="Technology"
                                     style="margin : 5px 5px;"
@@ -111,6 +109,7 @@
                         <div class="form-group">
                             <label for="evenue">Short Venue</label>
                             <input
+                            placeholder="Short Venue"
                             type="text" 
                             id="evenue" 
                             name="evenue"
@@ -130,6 +129,7 @@
                         <div class="form-group">
                             <label for="fevenue">Full Venue</label>
                             <input
+                            placeholder="Full Venue"
                             type="text" 
                             id="fevenue" 
                             name="fevenue"
@@ -140,7 +140,7 @@
                             <span
                             class="help-block"
                             *ngIf="!fevenue.valid && fevenue.touched"
-                            style="color:red;">Enter Detailed Address</span>
+                            style="color:red;">Enter detailed Address</span>
                         </div>
                     </div>
                 </div>
@@ -149,9 +149,11 @@
                         <div class="form-group">
                             <label for="date">Date</label>
                             <input 
+                            placeholder="dd/mm/yyyy"
                             type="text"
                             id="date"
                             name="date"
+                            pattern="\d{1,2}/\d{1,2}/\d{4}"
                             class="form-control"
                             ngModel
                             required
@@ -163,11 +165,32 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label for="description">Description of Event</label>
+                            <textarea
+                            placeholder="Enter description of event"
+                            rows="8" 
+                            id="description" 
+                            name="description"
+                            class="form-control"
+                            ngModel
+                            required
+                            #description="ngModel"></textarea>
+                            <span
+                            class="help-block"
+                            *ngIf="!description.valid && description.touched"
+                            style="color:red;">Enter description of the Event</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="orgname">Organiser Name</label>
                             <input
+                            placeholder="Organiser Name"
                             type="text" 
                             id="orgname" 
                             name="orgname"
@@ -181,7 +204,7 @@
                             style="color:red;">Enter Name of Organiser</span>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <div class="row">
                     <div class="col-xs-12 button">
                         <button 

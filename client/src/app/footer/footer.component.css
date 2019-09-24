@@ -21,6 +21,7 @@
     padding-bottom: 2rem;
 }
 .link {
+    text-decoration : none;
     color : #F81010;
     font-family: 'Manjari', sans-serif;
     letter-spacing: 0.5px;

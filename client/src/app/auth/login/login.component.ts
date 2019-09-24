@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   name:any;
   constructor(private serverservice : ServerService,
               private route: Router,
-              private discoverservice : DiscoverService) { }
+              ) { }
 
   ngOnInit() {
   }
@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
         this.tk = response ;
         this.name = response;
         // console.log(this.name.name);
-        this.discoverservice.transferUsername(this.name.name);
         localStorage.setItem('token', this.tk.token);
+        localStorage.setItem('name',this.name.name);
         this.route.navigate(['/']);
       },
       (error: HttpErrorResponse) =>{

@@ -28,7 +28,6 @@ export class SignupComponent implements OnInit {
       (response) => {
         this.uid = response;
         // console.log(this.uid.userId);
-        alert('Successfully SignedUp now LogIn to continue');
         this.route.navigate(['/verify',this.uid.userId])
         // this.route.navigate(['/verify']);
         form.reset();
