@@ -2,12 +2,12 @@ const User = require('../models/user');
 const Otp = require('../models/otp');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
-// const sendgridTransport = require('nodemailer-sendgrid-transport');
-// const transporter = nodemailer.createTransport(sendgridTransport({
-//     auth: {
-//         api_key: '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'
-//     }
-// }));
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+const transporter = nodemailer.createTransport(sendgridTransport({
+    auth: {
+        api_key: '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'
+    }
+}));
 const jwt = require('jsonwebtoken');
 
 const { validationResult } = require('express-validator');
@@ -26,7 +26,7 @@ exports.signup = (req, res, next) => {
     console.log(otp);
     const email= req.body.email;
     const name = req.body.name;
-    const password = req.body.password;
+    const password = req.body.password.trim();
     
     // var token = new Token({ userId: user._id, token: crypto.randomBytes(16).toString('hex') });
     bcrypt.hash(password, 8)
@@ -46,6 +46,11 @@ exports.signup = (req, res, next) => {
                 otp: hashedOtp,
             })
             otp.save();
+            setTimeout(() => {
+                otp.update({
+                    otp: ""
+                })
+            }, 120000)
         })
         .catch(err => {
             throw err
@@ -107,53 +112,51 @@ exports.verifyUser = (req, res, next) => {
     const userId = req.params.userId;
     const userOtp = req.body.otp;
     Otp.findByPk(userId)
-    .then(otp => {
+
+    .then(async otp => {
+
         if (!otp.otp) {
             const error = new Error('Otp expired!');
             error.statusCode = 400;
             throw error;
         }
-        setTimeout(function() {
-            otp.update({
-                otp: ""
-            })
-        }, 120000)
 
-        return bcrypt.compare(userOtp, otp.otp)
-        .then(isEqual => {
-            
-            if (!isEqual) {
-                const error = new Error('Wrong otp!');
-                error.statusCode = 401;
-                throw error;
-            }
-            return User.findByPk(userId)
-                .then(user => {
-                    if (!user) {
-                        const error = new Error('Could not find user.');
-                        error.statusCode = 404;
-                        throw error;
-                    }
-                    otp.destroy()
-                    user.update({
-                        isVerified: true
-                    })
-                })
-
-            })
-
-    .then(result => {
-        res.status(200).json({ message: 'User verified' })
-    })
-
+        
+        
+        const isEqual = await bcrypt.compare(userOtp, otp.otp);
+        if (!isEqual) {
+            const error_1 = new Error('Wrong otp!');
+            error_1.statusCode = 401;
+            throw error_1;
+        }
+        User.findByPk(userId)
+            .then(user => {
+                if (!user) {
+                    const error_2 = new Error('Could not find user.');
+                    error_2.statusCode = 404;
+                    throw error_2;
+                }
+                const token = jwt.sign({
+                    email: user.email,
+                    userId: user.id
+                }, 'somesupersecretsecret', { expiresIn: '1h' });
+                otp.destroy();
+                user.update({
+                    isVerified: true
+                });
+                res.status(200).json({ message: 'User verified', token: token, userId: user.id, name: user.name });
+            });
     })
     .catch(err => {
         if(!err.statusCode) {
             err.statusCode = 500;
         }
     next(err);
-})
+    })
+
+
 }
+
 
 
 exports.login = (req, res, next) => {
@@ -243,8 +246,7 @@ exports.login = (req, res, next) => {
 }
 
 exports.delUser = (req, res, next) => {
-    const userId = req.params.userId;
-    User.findByPk(userId)
+    User.findByPk(req.userId)
     .then(user => {
         if (!user) {
             const error = new Error('Could not find user.');
@@ -260,4 +262,15 @@ exports.delUser = (req, res, next) => {
         }
         next(err);
     })
+}
+
+
+exports.sendEnquiry = (req, res, next) => {
+
+    // transporter.sendMail({
+    //     to: req.email,
+    //     from: req.email,
+    //     subject: 'Event enquiry',
+    //     html: `<h1>${desp}</h1>`
+    // })
 }

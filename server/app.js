@@ -44,11 +44,20 @@ app.use((error, req, res, next) => {
 
 Event.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 User.hasMany(Event);
+// User.hasMany(Event, { as: 'Register', foreignKey: 'regId' })
+
+// User.hasMany(Event, { as: 'register', foreignKey: 'regId' });
+// User.hasMany(User, { as: 'followed' })
+
+Event.belongsToMany(User, { as: 'Register', through: 'Registered' });
+
+// User.belongsToMany(User, { as: 'follow', through: 'Followed' });
+
 // Otp.belongsTo(User);
 // User.hasOne(Otp)
 
 // User.hasMany(User, {as: 'Followed', through: 'Followed'});
-User.belongsToMany(Event, {through: 'Interested'});
+
 // User.belongsToMany(User, {through: 'Followed'}) 
 
 sequelize

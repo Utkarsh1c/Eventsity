@@ -24,6 +24,7 @@ module.exports = (req, res, next) => {
     // if(!decodedToken) {
     // }
     req.userId = decodedToken.userId;
+    req.email = decodedToken.email;
     console.log(req.userId, '.........................................................');
     next();
 };

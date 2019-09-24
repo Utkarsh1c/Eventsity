@@ -22,8 +22,12 @@ feedController.createEvent);
 
 router.get('/myevents', isAuth, feedController.userEvents)
 
-router.put('/posts/:eventId', feedController.updateEvent)
+router.put('/update/:eventId', feedController.updateEvent)
 
-router.delete('/posts/:eventId', feedController.deleteEvent)
+router.post('/enquiry/:eventId', isAuth, feedController.sendEnquiry)
+
+router.post('/register/:eventId', isAuth, feedController.updateRegister)
+
+router.delete('/delete/:eventId', feedController.deleteEvent)
 
 module.exports = router;

@@ -9,6 +9,10 @@ const fevents = sequelize.define('events', {
         allowNull: false,
         primaryKey: true
       },
+    description: {
+        type: Sequelize.TEXT,
+        allowNull: false
+    },
     ename: {
         type: Sequelize.STRING,
         allowNull: false
@@ -26,6 +30,10 @@ const fevents = sequelize.define('events', {
         allowNull: false
     },
     category: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    orgname: {
         type: Sequelize.STRING,
         allowNull: false
     },

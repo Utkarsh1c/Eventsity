@@ -9,7 +9,7 @@ exports.getEvents = (req, res, next) => {
     .then(events => {
         res.status(200).json({
             message: 'Fetched posts successfully',
-            events: events
+            events: events,
         })
     })
     .catch(err => {
@@ -29,20 +29,24 @@ exports.createEvent = (req, res, next) => {
         throw error;
         }
     
+    const description = req.body.description;
     const ename = req.body.ename;
     const imagePath = req.body.imagePath;
     const evenue = req.body.evenue;
     const fevenue = req.body.fevenue;
     const category = req.body.category;
+    const orgname = req.body.orgname;
     const date = req.body.date;
     User.findByPk(userId)
-        .then(user => {
+    .then(user => {
     user.createEvent({
+        description: description,
         ename: ename,
         imagePath: imagePath,
         evenue: evenue,
         fevenue: fevenue,
         category: category,
+        orgname: orgname,
         date: date,
         // userId: req.user.id
     })
@@ -102,11 +106,13 @@ exports.userEvents = (req, res, next) => {
 // }
 
 exports.updateEvent = (req, res, next) => {
+    const description = req.body.description;
     const ename = req.body.ename;
     const imagePath = req.body.imagePath;
     const evenue = req.body.evenue;
     const fevenue = req.body.fevenue;
     const category = req.body.category;
+    const orgname = req.body.orgname;
     const date = req.body.date;
     const eventId = req.params.eventId;
     Event.findByPk(eventId)
@@ -118,11 +124,13 @@ exports.updateEvent = (req, res, next) => {
             throw error;
         }
         event.update({
+            description: description,
             ename: ename,
             imagePath: imagePath,
             evenue: evenue,
             fevenue: fevenue,
             category: category,
+            orgname: orgname,
             date: date
         })
         res.status(201).json({ message: 'Event updated', event: event
@@ -156,3 +164,71 @@ exports.deleteEvent = (req, res, next) => {
         next(err);
     })
 }
+
+
+exports.updateRegister = (req, res, next) => {
+    const eventId = req.params.eventId;
+    Event.findByPk(eventId)
+    .then(event => {
+        if (!event) {
+            const error = new Error('Could not find event.');
+            error.statusCode = 404;
+            throw error;
+        } 
+        User.findByPk(req.userId)
+        .then(user => {
+            user.addRegister(req.userId)
+        // transporter.sendMail({
+        //     to: user.email,
+        //     from: req.email,
+        //     subject: 'Enquiry for event!',
+        //     html: `<h1>${enquiry}</h1>`
+        //     })
+        })
+        .catch(err => {
+            throw err;
+        })
+    })
+    .catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    })
+}
+
+
+exports.sendEnquiry = (req, res, next) => {
+    const eventId = req.params.eventId;
+    const enquiry = req.body.enquiry;
+    Event.findByPk(eventId)
+    .then(event => {
+        if (!event) {
+            const error = new Error('Could not find event.');
+            error.statusCode = 404;
+            throw error;
+        } 
+        User.findByPk(event.userId)
+        .then(user => {
+        // transporter.sendMail({
+        //     to: user.email,
+        //     from: req.email,
+        //     subject: 'Enquiry for event!',
+        //     html: `<h1>${enquiry}</h1>`
+        //     })
+        console.log(enquiry);
+        res.status(200).json({ message: 'Enquiry sent' })
+        })
+        .catch(err => {
+            throw err;
+        })
+    })
+    .catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    })
+}
+
+
