@@ -18,7 +18,7 @@ exports.getEvents = (req, res, next) => {
         }
         next(err);
     })
-    }
+}
 
 exports.createEvent = (req, res, next) => {
     const errors = validationResult(req);
@@ -38,20 +38,20 @@ exports.createEvent = (req, res, next) => {
     const date = req.body.date;
     User.findByPk(req.userId)
     .then(user => {
-    user.update({
-        isOrganiser: true
-    })
-    user.createEvent({
-        description: description,
-        ename: ename,
-        imagePath: imagePath,
-        evenue: evenue,
-        fevenue: fevenue,
-        category: category,
-        orgname: orgname,
-        date: date,
-        // userId: req.user.id
-    })
+        user.update({
+            isOrganiser: true
+        })
+        user.createEvent({
+            description: description,
+            ename: ename,
+            imagePath: imagePath,
+            evenue: evenue,
+            fevenue: fevenue,
+            category: category,
+            orgname: orgname,
+            date: date,
+            // userId: req.user.id
+        })
         .then(result => {
             res.status(201).json({
                 message: 'Event created',
