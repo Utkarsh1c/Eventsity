@@ -5,6 +5,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { DiscoverService } from 'src/app/discover/discover.service';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-login',
@@ -18,12 +19,13 @@ export class LoginComponent implements OnInit {
   name:any;
   constructor(private serverservice : ServerService,
               private route: Router,
-              ) { }
+              private ngxService: NgxUiLoaderService) { }
 
   ngOnInit() {
   }
 
   onLogin(form : NgForm) {
+    this.ngxService.start();
     console.log(JSON.stringify(form.value));
     const value = form.value;
     this.serverservice.logInUser(value.email,value.password)
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
         // console.log(this.name.name);
         localStorage.setItem('token', this.tk.token);
         localStorage.setItem('name',this.name.name);
+        this.ngxService.stop();
         Swal.fire({
           type: 'success',
           title: 'LoggedIn',
@@ -47,6 +50,7 @@ export class LoginComponent implements OnInit {
       (error: HttpErrorResponse) =>{
         console.log(error)
         this.errormsg = error.error.message;
+        this.ngxService.stop();
         if(this.errormsg === "User is not verified") {
           this.uid = error.error;
           console.log(this.uid.userId);

@@ -2,6 +2,7 @@
     @import url('https://fonts.googleapis.com/css?family=Acme|Montserrat|Poppins&display=swap');
     @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 </style>
+<ngx-ui-loader></ngx-ui-loader>
  <div class="row">
 
     
@@ -74,8 +75,8 @@
                     (click)="register()">Register Now</button>
                 </div>
             </div>
-            <div><button>Delete</button></div>
-            <div><button>Edit</button></div>
+            <div><button *ngIf="authservice.loggedIn()" (click)="onDelete()">Delete</button></div>
+            <div><button *ngIf="authservice.loggedIn()">Edit</button></div>
         </div>
     </div>
     </div>

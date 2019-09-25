@@ -1,13 +1,17 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=PT+Sans|Roboto|Ubuntu&display=swap');
 </style>
+<ngx-ui-loader></ngx-ui-loader>
 <div class="container">
+    <hr style="opacity:0;">
     <h1><b>Interested?? Go on register now and make it a memorable day</b></h1>
-    <div class="col-md-6"></div>
+    <hr style="opacity:0;">
+    <div class="col-md-6"><img src="../../assets/images/register.jpg" alt="register"></div>
     <div class="col-md-6 box">
         <div class="head">
             <h4><b>Register Here!!</b></h4>
         </div>
+        <hr>
         <form (ngSubmit)="register(f)" #f="ngForm">
             <div class="form-group formfont">
                 <label for="name">Name</label>

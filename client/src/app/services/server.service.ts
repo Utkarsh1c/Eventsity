@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://ca10d6ab.ngrok.io";
+    private rootUrl = "https://b41de16a.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -88,7 +88,7 @@ export class ServerService {
             'Content-Type': 'application/json',
             'Authorization': `Bearer `+token,
         })
-        return this.http.get(this.rootUrl+'/feed/registered', { headers: headers });
+        return this.http.get(this.rootUrl+'/user/registered', { headers: headers });
     }
 
     sendenquiry(enquiry: string, id:any) {
@@ -98,7 +98,7 @@ export class ServerService {
                 'Authorization': `Bearer `+token,
             })
             console.log(JSON.stringify({enquiry}));
-            return this.http.post(this.rootUrl+'/feed/enquiry/'+id,JSON.stringify({enquiry}),
+            return this.http.post(this.rootUrl+'/user/enquiry/'+id,JSON.stringify({enquiry}),
             {headers: headers});
     }
 
@@ -109,8 +109,17 @@ export class ServerService {
             'Authorization': `Bearer `+token,
         })
         console.log(JSON.stringify({name, email}));
-        return this.http.post(this.rootUrl+'/feed/register/'+id,JSON.stringify({name, email}),
+        return this.http.post(this.rootUrl+'/user/register/'+id,JSON.stringify({name, email}),
         {headers: headers});
+    }
+
+    deleteEvent(id:any): Observable<any> {
+        const token = localStorage.getItem('token')
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer `+token,
+        })
+        return this.http.delete(this.rootUrl+'/feed/delete/'+id, { headers: headers });
     }
 }
 

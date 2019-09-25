@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../services/server.service';
 import { Discover } from '../discover/discover.model';
 import { DiscoverService } from '../discover/discover.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-myevents',
@@ -16,11 +18,12 @@ export class MyeventsComponent implements OnInit {
   public registered : [];
 
   constructor(private serverservice : ServerService,
-              private discoverservice : DiscoverService) { }
+              private discoverservice : DiscoverService,
+              private ngxService: NgxUiLoaderService) { }
 
   ngOnInit() {
   this.uname=localStorage.getItem('name');
-  
+  this.ngxService.start();
   this.serverservice.getMyEvents()
     .subscribe(
       (response) =>{
@@ -29,9 +32,20 @@ export class MyeventsComponent implements OnInit {
         this.discover = this.res.event;
         // console.log(this.res.event.id);
         this.discoverservice.setMyEvents(this.discover);
+        this.ngxService.stop();
         // console.log(this.discover);
       },
-      (error) => console.log(error),
+      (error) =>{ 
+        console.log(error);
+        this.ngxService.stop();
+        Swal.fire({
+          type:'error',
+          title:'Oops...',
+          text: 'Something Went Wrong',
+          showConfirmButton:false,
+          timer:1500,
+        })
+      },
       );
 
   this.serverservice.getRegisteredEvents()
@@ -40,11 +54,20 @@ export class MyeventsComponent implements OnInit {
       this.reg = response;
       console.log(this.reg.event);
       this.registered = this.reg.event;
+      this.ngxService.stop();
       // console.log(this.res.event.id);
       // this.discoverservice.setRegisteredEvents(this.registered);
       // console.log(this.discover);
     },
-    (error) => console.log(error),
+    (error) =>{ 
+      console.log(error);
+      this.ngxService.stop();
+      Swal.fire({
+        type:'error',
+        title:'Oops...',
+        text: 'Something Went Wrong',
+      })
+    },
   )
   }
 }

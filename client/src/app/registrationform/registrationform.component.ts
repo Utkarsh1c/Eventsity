@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ServerService } from '../services/server.service';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-registrationform',
@@ -13,19 +14,22 @@ export class RegistrationformComponent implements OnInit {
   id:any;
 
   constructor(private route : ActivatedRoute,
-              private serverservice : ServerService) { }
+              private serverservice : ServerService,
+              private ngxService: NgxUiLoaderService) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
   }
 
   register(form : NgForm) {
+    this.ngxService.start();
     const value = form.value;
     console.log(this.id);
     this.serverservice.register(value.name, value.email, this.id)
     .subscribe(
       (response) =>{
-        console.log(response),
+        console.log(response);
+        this.ngxService.stop();
         Swal.fire({
           type: 'success',
           title: 'Successfully Registered',
@@ -34,10 +38,11 @@ export class RegistrationformComponent implements OnInit {
         })
       },
       (error) =>{
-        console.log(error)
+        console.log(error);
+        this.ngxService.stop();
         Swal.fire({
           type: 'error',
-          title: 'Not LoggedIn',
+          title: error.error.message,
         })
       }
     )

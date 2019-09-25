@@ -4,6 +4,8 @@ import { DiscoverService } from './discover.service';
 import { Discover } from './discover.model';
 import { ServerService } from '../services/server.service';
 import { Router, NavigationEnd } from '@angular/router';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-discover',
@@ -47,7 +49,8 @@ export class DiscoverComponent implements OnInit {
 
   constructor(private discoverservice:DiscoverService,
               private serverservice: ServerService,
-              private route : Router) { }
+              private route : Router,
+              private ngxService: NgxUiLoaderService) { }
 
 
   ngOnInit() {
@@ -59,6 +62,7 @@ export class DiscoverComponent implements OnInit {
     // )
     // this.discover = this.discoverservice.getEvents();
 
+    this.ngxService.start();
 
     this.serverservice.getCreatedEvents()
     .subscribe(
@@ -66,10 +70,19 @@ export class DiscoverComponent implements OnInit {
         this.res = response;
         console.log(this.res.events);
         this.discover = this.res.events;
+        this.ngxService.stop();
         this.discoverservice.setDiscover(this.discover);
         // console.log(this.discover);
       },
-      (error) => console.log(error),
+      (error) =>{
+         console.log(error);
+         this.ngxService.stop();
+         Swal.fire({
+           type: 'error',
+           title:'Oops...',
+           text:'Something Went Wrong',
+         })
+        },
       );
 
       this.route.events.subscribe((evt) => {

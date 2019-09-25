@@ -5,6 +5,9 @@ input.ng-invalid.ng-touched {
     text-align : center;
     color : #9E36DA;
 }
+.head h4 {
+    font-family: 'Lato', sans-serif;
+}
 .mybutton {
     margin-left : 8em;
     padding : 6px 20px;
@@ -14,15 +17,17 @@ input.ng-invalid.ng-touched {
     border-radius : 10px;
 }
 .mybutton:hover {
-    background-color : green;
+    background-color : black;
     color : white;
-    border : 2px solid green; 
+    border : 2px solid black;
+    transition:all 0.2s ease-in-out; 
 }
 .foot {
     text-align:center;
     padding : 10px;
 }
 .box {
+    font-family: 'Montserrat', sans-serif;
     width:35%;
     margin-left:15rem;
     padding: 20px 35px ;

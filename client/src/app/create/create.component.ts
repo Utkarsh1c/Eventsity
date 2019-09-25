@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ServerService } from '../services/server.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-create',
@@ -21,49 +22,15 @@ export class CreateComponent implements OnInit {
 
 
   constructor(private dservice : DiscoverService,
-              // private entservice : EntertainmentService,
-              // private sportsservice : SportsService,
-              // private socialservice : SocialService,
-              // private techservice : TechnologyService,
               private router : Router,
-              private serverservice : ServerService) { }
+              private serverservice : ServerService,
+              private ngxService: NgxUiLoaderService) { }
 
   ngOnInit() {
   }
 
-  // onAddToEntertainment() {
-  //   this.enttype = true;
-  //   this.sportstype=false;
-  //   this.socialtype=false;
-  //   this.techtype=false;
-  //   console.log('Enter to enttype true');
-  // }
-
-  // onAddToSports() {
-  //   this.sportstype = true;
-  //   this.enttype=false;
-  //   this.socialtype=false;
-  //   this.techtype=false;
-  //   console.log('Enter to sportstype true');
-  // }
-  
-  // onAddToSocial() {
-  //   this.socialtype = true;
-  //   this.enttype=false;
-  //   this.sportstype=false;
-  //   this.techtype=false;
-  //   console.log('Enter to socialtype true');
-  // }  
-
-  // onAddToTechnology() {
-  //   this.techtype = true;
-  //   this.enttype=false;
-  //   this.sportstype=false;
-  //   this.socialtype=false;
-  //   console.log('Enter to techtype true');
-  // }
-
   onCreate(form : NgForm) {
+    this.ngxService.start();
     console.log('Entered Create');
     const value = form.value;
     // const newDiscover = new Discover(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
@@ -75,11 +42,13 @@ export class CreateComponent implements OnInit {
       .subscribe(
         (response) =>{ 
           console.log(response);
+          this.ngxService.stop();
           this.router.navigate(['/discover']);
         },
         (error:HttpErrorResponse) =>{ 
           // console.log(error.error.message);
           this.errormsg = error.error.message;
+          this.ngxService.stop();
           Swal.fire({
             type: 'error',
             title: 'Oops...',

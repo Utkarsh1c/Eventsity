@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxUiLoaderModule } from  'ngx-ui-loader';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,6 +27,7 @@ import { VerificationComponent } from './verification/verification.component';
 import { MyeventsComponent } from './myevents/myevents.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { RegistrationformComponent } from './registrationform/registrationform.component';
+import { EditeventComponent } from './editevent/editevent.component';
 // import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
@@ -48,12 +50,14 @@ import { RegistrationformComponent } from './registrationform/registrationform.c
     MyeventsComponent,
     EnquiryComponent,
     RegistrationformComponent,
+    EditeventComponent,
   ],
   imports: [
     HttpClientModule,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    NgxUiLoaderModule,
   ],
   providers: [ServerService, DiscoverService, AuthService, AuthGuard,
   // {

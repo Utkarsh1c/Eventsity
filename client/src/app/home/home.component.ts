@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import Swal from 'sweetalert2';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +9,23 @@ import Swal from 'sweetalert2';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private authservice : AuthService) { }
+  t = false;
+  constructor(private authservice : AuthService,
+              private ngxService: NgxUiLoaderService) { }
 
   ngOnInit() {
+    this.ngxService.start();
+    setTimeout(() => {
+      this.ngxService.stop();
+    }, 1500);
+    
     if(this.authservice.loggedIn()) {
+      if(!this.t)
       setTimeout(()=>{
         localStorage.removeItem('token');
         localStorage.removeItem('name');
-      }, 7200000);
+      }, 21600000);
+      this.t = true;
     }
 
     // Swal.fire({
