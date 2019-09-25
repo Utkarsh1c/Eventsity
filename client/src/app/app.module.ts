@@ -25,6 +25,7 @@ import { ConfrimPasswordDirective } from './shared/confirm-password.directive';
 import { VerificationComponent } from './verification/verification.component';
 import { MyeventsComponent } from './myevents/myevents.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
+import { RegistrationformComponent } from './registrationform/registrationform.component';
 // import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
@@ -46,6 +47,7 @@ import { EnquiryComponent } from './enquiry/enquiry.component';
     VerificationComponent,
     MyeventsComponent,
     EnquiryComponent,
+    RegistrationformComponent,
   ],
   imports: [
     HttpClientModule,

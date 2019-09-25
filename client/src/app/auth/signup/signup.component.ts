@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ServerService } from 'src/app/services/server.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signup',
@@ -29,13 +30,16 @@ export class SignupComponent implements OnInit {
         this.uid = response;
         // console.log(this.uid.userId);
         this.route.navigate(['/verify',this.uid.userId]);
-        // this.route.navigate(['/verify']);
         form.reset();
       },
       (error: HttpErrorResponse) =>{
         console.log(error)
         this.errorMsg = error.error.data[0].msg;
-        alert(this.errorMsg || "Server Error");
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: this.errorMsg,
+        })
       },
       );
   }

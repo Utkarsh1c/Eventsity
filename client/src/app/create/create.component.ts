@@ -2,17 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { DiscoverService } from '../discover/discover.service';
 import { NgForm } from '@angular/forms';
 import { Discover } from '../discover/discover.model';
-// import { EntertainmentService } from '../services/entertainment.service';
-// import { SportsService } from '../services/sports.service';
-// import { SocialService } from '../services/social.service';
-// import { TechnologyService } from '../services/technology.service';
-// import { Entertainment } from '../model/entertainment.model';
-// import { Sports } from '../model/sports.model';
-// import { Social } from '../model/social.model';
-// import { Technology } from '../model/technology.model';
 import { Router } from '@angular/router';
 import { ServerService } from '../services/server.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create',
@@ -87,7 +80,11 @@ export class CreateComponent implements OnInit {
         (error:HttpErrorResponse) =>{ 
           // console.log(error.error.message);
           this.errormsg = error.error.message;
-          alert(this.errormsg);
+          Swal.fire({
+            type: 'error',
+            title: 'Oops...',
+            text: this.errormsg,
+          })
         },
       );
     // form.reset();

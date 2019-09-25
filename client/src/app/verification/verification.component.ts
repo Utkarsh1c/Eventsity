@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../services/server.service';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-verification',
@@ -49,9 +50,21 @@ export class VerificationComponent implements OnInit {
         // console.log(this.name.name);
         localStorage.setItem('token', this.tk.token);
         localStorage.setItem('name',this.name.name);
+        Swal.fire({
+          type: 'success',
+          title: 'Verified Successfully',
+          showConfirmButton: false,
+          timer: 2000,
+        })
         this.router.navigate(['/']);
       },
-      (error) => console.log(error)
+      (error) =>{
+        console.log(error),
+        Swal.fire({
+          type: 'error',
+          title: 'Wrong OTP!!',
+        })
+      } 
     );
   }
 }

@@ -4,6 +4,7 @@ import { ServerService } from 'src/app/services/server.service';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { DiscoverService } from 'src/app/discover/discover.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -34,6 +35,13 @@ export class LoginComponent implements OnInit {
         // console.log(this.name.name);
         localStorage.setItem('token', this.tk.token);
         localStorage.setItem('name',this.name.name);
+        Swal.fire({
+          type: 'success',
+          title: 'LoggedIn',
+          text: 'Successfully LoggedIn',
+          showConfirmButton:false,
+          timer : 2000,
+        })
         this.route.navigate(['/']);
       },
       (error: HttpErrorResponse) =>{
@@ -44,7 +52,11 @@ export class LoginComponent implements OnInit {
           console.log(this.uid.userId);
           this.route.navigate(['/verify',this.uid.userId])
         }
-        alert(this.errormsg || "Server Error");
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: this.errormsg,
+        })
       },
     );
   }

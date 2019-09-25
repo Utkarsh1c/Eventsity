@@ -7,9 +7,11 @@ export class Discover {
     public date : string;
     public orgname : string;
     public description : string;
+    public registrations : number;
 
     constructor(ename:string, category:string, evenue:string, fevenue:string, 
-                        imagePath:string, date:string, orgname:string, description : string) {
+                        imagePath:string, date:string, orgname:string, description : string, 
+                        registrations:number) {
         this.ename = ename;
         this.category = category;
         this.evenue = evenue;
@@ -18,5 +20,6 @@ export class Discover {
         this.date = date;
         this.orgname = orgname;
         this.description = description;
+        this.registrations = registrations;
     }
 }

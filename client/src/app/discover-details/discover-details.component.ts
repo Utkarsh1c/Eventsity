@@ -14,6 +14,7 @@ export class DiscoverDetailsComponent implements OnInit {
   id:number;
   follow = false;
   eventid:any;
+  forid:any;
 
   constructor(private discoverservice: DiscoverService,
               private route:ActivatedRoute,
@@ -30,7 +31,8 @@ export class DiscoverDetailsComponent implements OnInit {
       (params: Params) => {
         this.id = +params['id'];
         this.discover = this.discoverservice.getEvent(this.id);
-        this.eventid = this.discover.id;
+        this.forid = this.discover;
+        this.eventid = this.forid.id;
         console.log(this.eventid);
         // this.discoverservice.eventId(this.discover.id);
       }
@@ -40,6 +42,9 @@ export class DiscoverDetailsComponent implements OnInit {
   sendEnquiry() {
     // console.log(this.eventid);
     this.router.navigate(['/enquiry',this.eventid]);
+  }
+  register() {
+    this.router.navigate(['/register',this.eventid]);
   }
 
 }

@@ -1,15 +1,19 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Fira+Sans|Ubuntu&display=swap');
+</style>
 <div class="container">
 <div class="row">
-    <div class="col-md-4"><img src="assets/images/loginman.png" class="man" alt="Login"></div>
-    <div class="col-md-4 box">
+    <div class="col-md-7"><img src="assets/images/loginvector.png" class="man" alt="Login"></div>
+    <div class="col-md-5 box">
         <div class="head">
-            <h4>HAPPY TO SEE YOU BACK!</h4>
+            <h4><b>HAPPY TO SEE YOU BACK!</b></h4>
             <p>Let’s see how your events are doing</p>
         </div>
         <form (ngSubmit)="onLogin(f)" #f="ngForm">
             <div class="form-group">
                 <label for="email">E-Mail</label>
                 <input 
+                placeholder = "E-Mail"
                 type="email" 
                 id="email" 
                 name="email" 
@@ -25,6 +29,7 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input 
+                placeholder = "Password"
                 type="password" 
                 id="password" 
                 name="password" 
@@ -42,12 +47,11 @@
         </form>
         <p class="foot">Don't have an account ? <a routerLink='/signup'>SignUp</a></p>
     </div>
-    <div class="col-md-4"><img src="assets/images/loginman2.png" class="man2" alt="Login"></div>
 </div>
 <hr style="opacity: 0;">
 <div class="row">
     <div class="col-xs-12 head">
-        <h4>- LOGIN AND GET CONNECTED -</h4>
+        <h4><b>- LOGIN AND GET CONNECTED -</b></h4>
     </div>
 </div>
 <hr style="opacity: 0;">
