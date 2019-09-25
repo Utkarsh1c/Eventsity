@@ -3,10 +3,9 @@ const Otp = require('../models/otp');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
-const config = require('../util/config');
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth: {
-        api_key: config
+        api_key: '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'
     }
 }));
 const jwt = require('jsonwebtoken');
@@ -235,9 +234,9 @@ exports.login = (req, res, next) => {
         { expiresIn: '1h' }
         )
         res.status(200).json({ token: token, userId: user.id, name: user.name
+            })
         })
     })
-})
     .catch(err => {
         if(!err.statusCode) {
             err.statusCode = 500;

@@ -30,6 +30,6 @@ router.post('/register/:eventId', isAuth, feedController.updateRegister)
 
 router.get('/registered', isAuth, feedController.getRegister)
 
-router.delete('/delete/:eventId', feedController.deleteEvent)
+router.delete('/delete/:eventId', isAuth, feedController.deleteEvent)
 
 module.exports = router;

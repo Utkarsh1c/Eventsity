@@ -20,7 +20,11 @@ const samUser = sequelize.define('users', {
     name: {
         type: Sequelize.STRING,
         allowNull: false
-      },  
+      },
+    isOrganiser: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
     isVerified: {
         type: Sequelize.BOOLEAN,
         defaultValue: false

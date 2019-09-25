@@ -21,7 +21,6 @@ exports.getEvents = (req, res, next) => {
     }
 
 exports.createEvent = (req, res, next) => {
-    const userId = req.userId;
     const errors = validationResult(req);
     if (!errors.isEmpty()){
         const error = new Error("Validation failed, entered data is incorrect.");
@@ -37,8 +36,11 @@ exports.createEvent = (req, res, next) => {
     const category = req.body.category;
     const orgname = req.body.orgname;
     const date = req.body.date;
-    User.findByPk(userId)
+    User.findByPk(req.userId)
     .then(user => {
+    user.update({
+        isOrganiser: true
+    })
     user.createEvent({
         description: description,
         ename: ename,
@@ -154,7 +156,12 @@ exports.deleteEvent = (req, res, next) => {
             error.statusCode = 404;
             throw error;
         } 
-        res.status(200).json({ message: 'Event deleted' })
+        if (event.userId !== req.userId) {
+            const error = new Error('Forbidden to delete event.');
+            error.statusCode = 403;
+            throw error;
+        }
+        res.status(200).json({ message: 'Event deleted!' })
         return event.destroy();
     })
     .catch(err => {
@@ -168,6 +175,8 @@ exports.deleteEvent = (req, res, next) => {
 
 exports.updateRegister = (req, res, next) => {
     const eventId = req.params.eventId;
+    const name = req.body.name;
+    const email = req.body.email;
     Event.findByPk(eventId)
     .then(event => {
         if (!event) {
@@ -175,23 +184,18 @@ exports.updateRegister = (req, res, next) => {
             error.statusCode = 404;
             throw error;
         } 
-        
-        // User.findByPk(req.userId)
-        // .then(user => {
+    
             event.addRegister(req.userId)
             event.update({
                 registrations: (event.registrations+1)
             })
         // transporter.sendMail({
-        //     to: user.email,
+        //     to: email,
         //     from: req.email,
-        //     subject: 'Enquiry for event!',
-        //     html: `<h1>${enquiry}</h1>`
+        //     subject: 'Registered for event!',
+        //     html: `<h1>Hi ${name} !. You have successfully registered for this ${event.ename}</h1>`
         //     })
-        // })
-        // .catch(err => {
-        //     throw err;
-        // })
+        res.status(200).json({ message: 'Successfully registered!' })
     })
     .catch(err => {
         if (!err.statusCode) {
@@ -201,6 +205,30 @@ exports.updateRegister = (req, res, next) => {
     })
 }
 
+
+// exports.updateFollow = (req, res, next) => {
+//     const userId = req.params.userId;
+//     User.findByPk(userId)
+//     .then(user => {
+//             event.addRegister(req.userId)
+//             event.update({
+//                 registrations: (event.registrations+1)
+//             })
+//         // transporter.sendMail({
+//         //     to: email,
+//         //     from: req.email,
+//         //     subject: 'Registered for event!',
+//         //     html: `<h1>Hi ${name} !. You have successfully registered for this ${event.ename}</h1>`
+//         //     })
+//         res.status(200).json({ message: 'Successfully registered!' })
+//     })
+//     .catch(err => {
+//         if (!err.statusCode) {
+//             err.statusCode = 500;
+//         }
+//         next(err);
+//     })
+// }
 
 exports.getRegister = (req, res, next) => {
     User.findByPk(req.userId)
@@ -246,7 +274,7 @@ exports.sendEnquiry = (req, res, next) => {
         //     html: `<h1>${enquiry}</h1>`
         //     })
         console.log(enquiry);
-        res.status(200).json({ message: 'Enquiry sent' })
+        res.status(200).json({ message: 'Enquiry sent!' })
         })
         .catch(err => {
             throw err;
