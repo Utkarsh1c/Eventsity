@@ -37,6 +37,10 @@ const fevents = sequelize.define('events', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    registrations: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+    },
     date: {
         type: Sequelize.STRING,
         allowNull: false

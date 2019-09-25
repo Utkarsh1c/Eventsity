@@ -3,6 +3,7 @@ const { body } = require('express-validator');
 
 const User = require('../models/user');
 const authController = require('../controllers/auth');
+const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
@@ -43,7 +44,7 @@ router.post('/signup',
 
 router.post('/login', authController.login);
 
-router.delete('/delete/:userId', authController.delUser);
+router.delete('/delete', isAuth, authController.delUser);
 
 router.post('/verify/:userId', authController.verifyUser);
 

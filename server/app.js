@@ -49,8 +49,8 @@ User.hasMany(Event);
 // User.hasMany(Event, { as: 'register', foreignKey: 'regId' });
 // User.hasMany(User, { as: 'followed' })
 
-Event.belongsToMany(User, { as: 'Register', through: 'Registered' });
-User.belongsToMany(Event, { as: 'Register', through: 'Registered' });
+// Event.belongsToMany(User, { as: 'Register', through: 'Registered' }, { onDelete: 'CASCADE' });
+// User.belongsToMany(Event, { as: 'Register', through: 'Registered' });
 
 // User.belongsToMany(User, { as: 'follow', through: 'Followed' });
 

@@ -175,9 +175,13 @@ exports.updateRegister = (req, res, next) => {
             error.statusCode = 404;
             throw error;
         } 
+        
         // User.findByPk(req.userId)
         // .then(user => {
             event.addRegister(req.userId)
+            event.update({
+                registrations: (event.registrations+1)
+            })
         // transporter.sendMail({
         //     to: user.email,
         //     from: req.email,
@@ -235,12 +239,12 @@ exports.sendEnquiry = (req, res, next) => {
         } 
         User.findByPk(event.userId)
         .then(user => {
-        transporter.sendMail({
-            to: user.email,
-            from: req.email,
-            subject: 'Enquiry for event!',
-            html: `<h1>${enquiry}</h1>`
-            })
+        // transporter.sendMail({
+        //     to: user.email,
+        //     from: req.email,
+        //     subject: 'Enquiry for event!',
+        //     html: `<h1>${enquiry}</h1>`
+        //     })
         console.log(enquiry);
         res.status(200).json({ message: 'Enquiry sent' })
         })
