@@ -206,29 +206,26 @@ exports.updateRegister = (req, res, next) => {
 }
 
 
-// exports.updateFollow = (req, res, next) => {
-//     const userId = req.params.userId;
-//     User.findByPk(userId)
-//     .then(user => {
-//             event.addRegister(req.userId)
-//             event.update({
-//                 registrations: (event.registrations+1)
-//             })
-//         // transporter.sendMail({
-//         //     to: email,
-//         //     from: req.email,
-//         //     subject: 'Registered for event!',
-//         //     html: `<h1>Hi ${name} !. You have successfully registered for this ${event.ename}</h1>`
-//         //     })
-//         res.status(200).json({ message: 'Successfully registered!' })
-//     })
-//     .catch(err => {
-//         if (!err.statusCode) {
-//             err.statusCode = 500;
-//         }
-//         next(err);
-//     })
-// }
+exports.updateFollow = (req, res, next) => {
+    const userId = req.params.userId;
+    User.findByPk(userId)
+    .then(user => {
+            user.addFollow(req.userId)
+        // transporter.sendMail({
+        //     to: email,
+        //     from: req.email,
+        //     subject: 'Registered for event!',
+        //     html: `<h1>Hi ${name} !. You have successfully registered for this ${event.ename}</h1>`
+        //     })
+        res.status(200).json({ message: 'Successfully followed!' })
+    })
+    .catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    })
+}
 
 exports.getRegister = (req, res, next) => {
     User.findByPk(req.userId)
@@ -254,6 +251,29 @@ exports.getRegister = (req, res, next) => {
     })
 }
 
+exports.getFollow = (req, res, next) => {
+    User.findByPk(req.userId)
+    .then(user => {
+        user.getFollow()
+        .then(following => {
+            if (!following) {
+                const error = new Error('You are not following anyone yet.');
+                error.statusCode = 404;
+                throw error;
+            }
+            res.status(200).json({ message: 'Following', following: following })
+        })
+        .catch(err => {
+            throw err;
+        })
+    })
+    .catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    })
+}
 
 exports.sendEnquiry = (req, res, next) => {
     const eventId = req.params.eventId;
