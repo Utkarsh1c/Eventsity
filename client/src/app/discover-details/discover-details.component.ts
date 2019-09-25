@@ -47,4 +47,8 @@ export class DiscoverDetailsComponent implements OnInit {
     this.router.navigate(['/register',this.eventid]);
   }
 
+  onDelete() {
+    console.log(this.eventid);
+  }
+
 }

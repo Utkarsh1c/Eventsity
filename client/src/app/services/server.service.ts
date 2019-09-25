@@ -82,6 +82,15 @@ export class ServerService {
         return this.http.get(this.rootUrl+'/feed/myevents', { headers: headers });
     }
 
+    getRegisteredEvents() {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer `+token,
+        })
+        return this.http.get(this.rootUrl+'/feed/registered', { headers: headers });
+    }
+
     sendenquiry(enquiry: string, id:any) {
             const token = localStorage.getItem('token')
             const headers = new HttpHeaders({

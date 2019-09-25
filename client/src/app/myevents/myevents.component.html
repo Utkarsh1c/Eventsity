@@ -14,8 +14,9 @@
 <div class="container">
 <div class="row">
         <div class="col-xs-12">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <!-- <div class="col-md-6"></div> -->
+            <div class="col-md-6">
+                <h3>Events Created</h3>
             <div
             *ngFor="let discover of discover; index as id">
                 <a 
@@ -38,9 +39,29 @@
                 
         </div>
     </div>
-    <div class="col-md-2"
-    *ngFor="let discover of discover"><button
-    class="delete glyphicon glyphicon-trash"></button></div>
+    <div class="col-md-6">
+        <h3>Registered Events</h3>
+        <div
+        *ngFor="let registered of registered; index as id">
+            <a 
+                style="cursor : pointer;"
+                class="list-group-item clearfix box" style="margin-bottom:20px;">
+                    <div class="pull-left box1">
+                        <h4 class="list-group-item-heading" style="color:white;">{{ registered.ename }}</h4>
+                        <p class="list-group-item-text" style="color:white;">Venue : {{ registered.evenue }}</p>
+                        <p class="list-group-item-text" style="color:white;">Full Venue : {{ registered.fevenue }}</p>
+                    </div>
+                    <span class="pull-right">
+                        <img 
+                        [src] = "registered.imagePath" 
+                        alt="{{ registered.ename }}" 
+                        class="img-responsive pull-right" 
+                        style="max-height:50px;">
+                        <div><p class="list-group-item-text" style="color:white;">Event Date : {{ registered.date }}</p></div>
+                    </span>
+            </a>
+            
+    </div>
     </div>
 </div>
 </div>

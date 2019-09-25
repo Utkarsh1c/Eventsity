@@ -12,7 +12,7 @@ export class DiscoverService {
 
     constructor(private serverservice : ServerService) {}
     name:string;
-    discover : Discover[] 
+    discover : Discover[];
     // = [
     //     new Discover(
     //         'Marathon', 
