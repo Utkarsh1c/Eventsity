@@ -4,14 +4,10 @@
 </style>
 <ngx-ui-loader></ngx-ui-loader>
  <div class="row">
-
-    
-        <img 
+    <img 
         [src]="discover.imagePath" 
         alt="{{ discover.ename }}" 
-         class="img-responsive img">
-    
-
+        class="img-responsive img">
 </div>
 <div class="container">
 <div class="row">
@@ -34,7 +30,6 @@
     </div> -->
     <div class="row">
         <div class="col-xs-12">
-            <h1>Registrations : {{ discover.registrations }}</h1>
             <h1>{{ discover.ename }}</h1>
         </div>
     </div>
@@ -52,7 +47,8 @@
     <hr style="opacity: 0;">
     <div class="row" style="color : black;">
         <div class="col-xs-12 fontdesc">
-            About Event : {{ discover.description }}
+            <p><b>Registrations</b> : {{ discover.registrations }}</p>
+            <p><b>About Event</b> : {{ discover.description }}</p>
         </div>
     </div>
     </div>
@@ -75,10 +71,11 @@
                     (click)="register()">Register Now</button>
                 </div>
             </div>
-            <div><button *ngIf="authservice.loggedIn()" (click)="onDelete()">Delete</button></div>
-            <div><button *ngIf="authservice.loggedIn()">Edit</button></div>
         </div>
     </div>
     </div>
 </div>
 </div>
+
+
+<!-- *ngIf="authservice.loggedIn()" -->

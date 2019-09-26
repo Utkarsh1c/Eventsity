@@ -11,7 +11,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://b41de16a.ngrok.io";
+    private rootUrl = "https://014d33ce.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -114,12 +114,35 @@ export class ServerService {
     }
 
     deleteEvent(id:any): Observable<any> {
+        console.log(id);
         const token = localStorage.getItem('token')
         const headers = new HttpHeaders({
           'Content-Type': 'application/json',
           'Authorization': `Bearer `+token,
         })
         return this.http.delete(this.rootUrl+'/feed/delete/'+id, { headers: headers });
+    }
+
+    getEventsforEdit(eventid:any) {
+        const token = localStorage.getItem('token')
+        const headers = new HttpHeaders({
+            'Content-Type':'application/json',
+            'Authorization': `Bearer `+token,
+        })
+        return this.http.get(this.rootUrl+'/feed/getupdate/'+eventid,
+        {headers: headers});
+    }
+
+    updateevent(ename: string,category: string,evenue: string,fevenue: string,imagePath: string, 
+        date: string, orgname: string, description: string, id:any) {
+        const token = localStorage.getItem('token')
+            const headers = new HttpHeaders({
+                'Content-Type':'application/json',
+                'Authorization': `Bearer `+token,
+            })
+            console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}));
+            return this.http.put(this.rootUrl+'/feed/update/'+id,JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
+            {headers: headers});
     }
 }
 

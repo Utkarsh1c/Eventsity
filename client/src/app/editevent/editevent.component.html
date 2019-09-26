@@ -1,21 +1,27 @@
+<ngx-ui-loader></ngx-ui-loader>
 <div class="container fonts">
     <hr style="opacity: 0;">
-    <h3 style="text-align:center;color:#9E36DA;font-size:30px;"><b>LET'S CREATE YOUR EVENT</b></h3>
+    <h3 
+    style="text-align:center;color:#9E36DA;font-size:30px;">
+    <b>CHANGE OF PLAN?? NO WORRIES START EDITING YOUR EVENT HERE!!</b></h3>
     <hr>
-    <h4 style="text-align:center;color:#9E36DA;">
+    <!-- <h4 style="text-align:center;color:#9E36DA;">
         CREATE YOUR EVENT SO THAT EVERYONE MAY ACCESS OR KNOW ABOUT THE EVENT.
-    </h4>
-    <p style="text-align:center;color:#9E36DA;">
+    </h4> -->
+    <!-- <p style="text-align:center;color:#9E36DA;">
         Start creating your event by entering your details below.
-    </p>
+    </p> -->
     </div>
+    
     <hr style="opacity: 0;">
     <div class="container">
     <div class="row">
-        <div class="col-md-5"><img src="assets/images/createcartoon.png" class="man" alt="lets create"></div>
+        <div class="col-md-5">
+            <img src="assets/images/editevent.png" class="edit" alt="edit">
+        </div>
             <div class="col-md-7 box">
                 <h3>Let's Start</h3>
-                <form (ngSubmit)="onCreate(f)" #f="ngForm">
+                <form (ngSubmit)="onUpdate(f)" #f="ngForm">
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="form-group formfont">
@@ -168,7 +174,7 @@
                                 <label for="description">Description of Event</label>
                                 <textarea
                                 placeholder="Enter description of event"
-                                rows="8" 
+                                rows="5" 
                                 id="description" 
                                 name="description"
                                 class="form-control"
@@ -207,7 +213,7 @@
                             <button 
                             type="submit" 
                             class="btn btn-success mybutton"
-                            [disabled]="!f.valid" style="margin-right : 10px;">Create</button>
+                            [disabled]="!f.valid" style="margin-right : 10px;">Update Event</button>
                             <button type="button" class="btn btn-danger mybutton2"(click)="onCancel()">Cancel</button>
                         </div>
                     </div>

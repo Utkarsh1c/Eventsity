@@ -4,6 +4,8 @@ import { Discover } from '../discover/discover.model';
 import { DiscoverService } from '../discover/discover.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import Swal from 'sweetalert2';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-myevents',
@@ -16,10 +18,15 @@ export class MyeventsComponent implements OnInit {
   reg:any;
   discover : Discover[];
   public registered : [];
+  i:number;
+  j:number;
+  id:number;
+  eventarray:number[]=[];
 
   constructor(private serverservice : ServerService,
               private discoverservice : DiscoverService,
-              private ngxService: NgxUiLoaderService) { }
+              private ngxService: NgxUiLoaderService,
+              private router : Router) { }
 
   ngOnInit() {
   this.uname=localStorage.getItem('name');
@@ -30,6 +37,14 @@ export class MyeventsComponent implements OnInit {
         this.res = response;
         console.log(this.res.event);
         this.discover = this.res.event;
+        for(this.i=0; this.i<this.discover.length; this.i++) {
+          this.id = this.discover[this.i].id;
+          console.log(this.id);
+          for(this.j=this.i; this.j<this.i+1; this.j++) {
+            this.eventarray.push(this.id);
+            console.log(this.eventarray)
+          }
+        }
         // console.log(this.res.event.id);
         this.discoverservice.setMyEvents(this.discover);
         this.ngxService.stop();
@@ -52,7 +67,7 @@ export class MyeventsComponent implements OnInit {
   .subscribe(
     (response) =>{
       this.reg = response;
-      console.log(this.reg.event);
+      // console.log(this.reg.event);
       this.registered = this.reg.event;
       this.ngxService.stop();
       // console.log(this.res.event.id);
@@ -70,6 +85,34 @@ export class MyeventsComponent implements OnInit {
     },
   )
   }
+
+  onDelete(eventid:any) {
+    this.ngxService.start();
+    console.log(eventid);
+    this.serverservice.deleteEvent(eventid)
+    .subscribe(
+      (response) =>{
+        console.log(response);
+        this.ngxService.stop();
+        Swal.fire({
+          type:'success',
+          title: 'Event Deleted',
+          showConfirmButton: false,
+          timer: 1000,
+        })
+        this.router.navigate(['/discover']);
+      },
+      (error) =>{
+        console.log(error);
+        this.ngxService.stop();
+        Swal.fire({
+          type: 'error',
+          title: 'Not Authenticated To Delete',
+          showConfirmButton: false,
+          timer: 1500,
+        })
+      },
+    )
+  }
+
 }
-
-

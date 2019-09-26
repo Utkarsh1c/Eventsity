@@ -50,3 +50,12 @@ h1 {
     background-color : #FA0580;
     transition: all 0.3s ease-in-out;
 }
+.authbutton {
+    border : 2px solid #FF0915;
+    color : #FF0915;
+    background-color : transparent;
+    
+}
+.authbutton:focus {
+    outline:none;
+}

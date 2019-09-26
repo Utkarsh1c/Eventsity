@@ -15,6 +15,7 @@ import { VerificationComponent } from './verification/verification.component';
 import { MyeventsComponent } from './myevents/myevents.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { RegistrationformComponent } from './registrationform/registrationform.component';
+import { EditeventComponent } from './editevent/editevent.component';
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
    { path:'discover/:id', component: DiscoverDetailsComponent },
    { path:'enquiry/:id', component: EnquiryComponent },
    { path:'register/:id', component: RegistrationformComponent },
+   { path:'editevent/:id', component: EditeventComponent },
    { path:'create', component: CreateComponent, 
    canActivate: [AuthGuard] 
   },

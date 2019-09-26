@@ -61,8 +61,8 @@ export class DiscoverService {
 
     setMyEvents(discovers: Discover[]) {
         console.log(discovers);
-        this.discover = discovers;
-        this.discoverChanged.next(this.discover);
+        return this.discover = discovers;
+        // this.discoverChanged.next(this.discover);
     }
 
     getEvents() { //sending copy of array to list
