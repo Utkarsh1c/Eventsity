@@ -22,7 +22,6 @@ export class DiscoverComponent implements OnInit {
   res:any;
   
   needentertainment() {
-    console.log('Entertainment is true');
     this.ent = true;
     this.soc = false;
     this.spo = false;
@@ -54,22 +53,13 @@ export class DiscoverComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.discoverservice.eventSelected
-    // .subscribe(
-    //   (discover: Discover) => {
-    //     this.selectedEvent = discover;
-    //   }
-    // )
-    // this.discover = this.discoverservice.getEvents();
-
     this.ngxService.start();
-
     this.serverservice.getCreatedEvents()
     .subscribe(
       (response) =>{
         this.res = response;
-        console.log(this.res.events);
-        this.discover = this.res.events;
+        console.log(this.res.event);
+        this.discover = this.res.event;
         this.ngxService.stop();
         this.discoverservice.setDiscover(this.discover);
         // console.log(this.discover);

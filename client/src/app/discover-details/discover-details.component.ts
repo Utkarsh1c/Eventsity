@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
 
 import { Discover } from '../discover/discover.model';
 import { DiscoverService } from '../discover/discover.service';
@@ -28,6 +28,12 @@ export class DiscoverDetailsComponent implements OnInit {
   }
   
   ngOnInit() {
+    this.router.events.subscribe((evt) => {
+      if (!(evt instanceof NavigationEnd)) {
+          return;
+      }
+      window.scrollTo(0, 0);
+    });
      this.route.params
     .subscribe(
       (params: Params) => {

@@ -12,6 +12,10 @@
     box-shadow : 5px 5px 15px black;
     transition : all 0.3s ease-in-out;
 } */
+.box1 {
+    height:14rem;
+    width:50rem;
+}
 .col-xs-12 {
     padding : 0px 0px;
 }

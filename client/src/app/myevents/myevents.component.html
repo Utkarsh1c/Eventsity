@@ -14,44 +14,48 @@
 <hr style="opacity : 0;">
 <div class="container">
 <div class="row">
-        <div class="col-xs-12">
-            <!-- <div class="col-md-6"></div> -->
-            <div class="col-md-6">
-                <h3>Events Created</h3>
-                <hr style="opacity:0;">
-            <div
-            *ngFor="let discover of discover; index as id">
-                <div
-                    style="cursor : pointer;"
-                    class="list-group-item clearfix " style="margin-bottom:20px;">
-                        <div class="pull-left box1">
-                            <h4 
+    <div class="col-xs-12">
+        <div class="col-md-6">
+            <h3>Events Created</h3>
+            <hr style="opacity:0;">
+        <div
+        *ngFor="let discover of discover; index as id">
+            <a
+                style="cursor : pointer;"
+                [routerLink]="['/discover',id]"
+                class="list-group-item clearfix box1" style="margin-bottom:20px;">
+                    <div class="pull-left">
+                        <h4 
                             class="list-group-item-heading" 
-                            style="color:white;"><a
-                            style="cursor : pointer;"
-                            [routerLink]="['/discover',id]">{{ discover.ename }}</a></h4>
-                            <p class="list-group-item-text" style="color:black">Venue : {{ discover.evenue }}</p>
-                            <p class="list-group-item-text" style="color:black">Full Venue : {{ discover.fevenue }}</p>
-                            <p class="list-group-item-text" style="color:black">Description : {{ discover.description }}</p>
-                        </div>
-                        <span class="pull-right">
-                            <img 
+                            style="color:white;">
+                            {{ discover.ename }}
+                        </h4>
+                        <p class="list-group-item-text" style="color:black">Venue : {{ discover.evenue }}</p>
+                        <p class="list-group-item-text" style="color:black">Full Venue : {{ discover.fevenue }}</p>
+                    </div>
+                    <span class="pull-right">
+                        <img 
                             [src] = "discover.imagePath" 
                             alt="{{ discover.ename }}" 
                             class="img-responsive" 
                             style="max-height:70px;
-                                    margin-bottom:2px;">
+                                 margin-bottom:2px;">
                         <div>
-                            <button (click)="onDelete(eventarray[id])" class="glyphicon glyphicon-remove delete"></button>
-                            <a [routerLink]="['/editevent',eventarray[id]]"><button class="glyphicon glyphicon-pencil edit"></button></a>
+                            <a 
+                            [routerLink]="['/editevent',eventarray[id]]"><button 
+                            class="glyphicon glyphicon-pencil pull-right edit"></button></a>
+                            <button 
+                            (click)="onDelete(eventarray[id])" 
+                            class="glyphicon glyphicon-remove delete"></button>
                         </div>
-                        </span>
-                    </div>
-                
+                    </span>
+                </a>
+            
         </div>
     </div>
     <div class="col-md-6 boxparent">
-        <h3>Registered Events</h3>
+        <h2>Registered Events</h2>
+        <h3>Upcoming Events</h3>
         <hr style="opacity:0;">
         <div
         *ngFor="let registered of registered; index as id">
@@ -74,8 +78,32 @@
                         style="max-height:100px;">
                     </span>
             </div>
-            
-    </div>
+        </div>
+        <hr style="opacity:0;">
+        <h3>Events You Have Visited</h3>
+        <hr style="opacity:0;">
+        <div
+        *ngFor="let earlierregistered of earlierregistered; index as id">
+            <div 
+                style="cursor : pointer;"
+                class="list-group-item clearfix box" style="margin-bottom:20px;">
+                    <div class="pull-left ">
+                        <h4 class="list-group-item-heading" style="color:white;">{{ earlierregistered.ename }}</h4>
+                        <hr>
+                        <p class="list-group-item-text" style="color:white;">Venue : {{ earlierregistered.evenue }}</p>
+                        <p class="list-group-item-text" style="color:white;">Full Venue : {{ earlierregistered.fevenue }}</p>
+                        <p class="list-group-item-text" style="color:white;">Organiser : {{ earlierregistered.orgname }}</p>
+                        <p class="list-group-item-text" style="color:white;">Event Date : {{ earlierregistered.date }}</p>
+                    </div>
+                    <span class="pull-right">
+                        <img 
+                        [src] = "earlierregistered.imagePath" 
+                        alt="{{ earlierregistered.ename }}" 
+                        class="img-responsive pull-right" 
+                        style="max-height:100px;">
+                    </span>
+            </div>
+        </div>
     </div>
 </div>
 </div>

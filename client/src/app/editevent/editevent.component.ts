@@ -86,4 +86,8 @@ export class EditeventComponent implements OnInit {
     );
   }
 
+  onCancel() {
+    this.router.navigate(['/discover']);
+  }
+
 }

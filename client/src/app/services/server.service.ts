@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
 
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Discover } from '../discover/discover.model';
-import { DiscoverService } from '../discover/discover.service';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -11,7 +8,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://014d33ce.ngrok.io";
+    private rootUrl = "https://46644356.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -36,13 +33,13 @@ export class ServerService {
 
     createEvent(ename: string,category: string,evenue: string,fevenue: string,imagePath: string, 
         date: string, orgname: string, description: string) {
-            const token = localStorage.getItem('token')
-            const headers = new HttpHeaders({
-                'Content-Type':'application/json',
-                'Authorization': `Bearer `+token,
-            })
-            console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}));
-            return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
+         const token = localStorage.getItem('token')
+         const headers = new HttpHeaders({
+           'Content-Type':'application/json',
+            'Authorization': `Bearer `+token,
+         })
+        console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}));
+        return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
             {headers: headers});
     }
 
@@ -88,18 +85,27 @@ export class ServerService {
             'Content-Type': 'application/json',
             'Authorization': `Bearer `+token,
         })
-        return this.http.get(this.rootUrl+'/user/registered', { headers: headers });
+        return this.http.get(this.rootUrl+'/user/registered/upcoming', { headers: headers });
+    }
+
+    getEarlierRegisteredEvents() {
+        const token = localStorage.getItem('token');
+        const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer `+token,
+        })
+        return this.http.get(this.rootUrl+'/user/registered/visited', { headers: headers }); 
     }
 
     sendenquiry(enquiry: string, id:any) {
-            const token = localStorage.getItem('token')
-            const headers = new HttpHeaders({
-                'Content-Type':'application/json',
-                'Authorization': `Bearer `+token,
-            })
-            console.log(JSON.stringify({enquiry}));
-            return this.http.post(this.rootUrl+'/user/enquiry/'+id,JSON.stringify({enquiry}),
-            {headers: headers});
+        const token = localStorage.getItem('token')
+        const headers = new HttpHeaders({
+            'Content-Type':'application/json',
+            'Authorization': `Bearer `+token,
+        })
+        console.log(JSON.stringify({enquiry}));
+        return this.http.post(this.rootUrl+'/user/enquiry/'+id,JSON.stringify({enquiry}),
+        {headers: headers});
     }
 
     register(name: string, email: string, id:any) {
@@ -136,14 +142,14 @@ export class ServerService {
     updateevent(ename: string,category: string,evenue: string,fevenue: string,imagePath: string, 
         date: string, orgname: string, description: string, id:any) {
         const token = localStorage.getItem('token')
-            const headers = new HttpHeaders({
-                'Content-Type':'application/json',
-                'Authorization': `Bearer `+token,
-            })
-            console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}));
-            return this.http.put(this.rootUrl+'/feed/update/'+id,JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
-            {headers: headers});
+        const headers = new HttpHeaders({
+            'Content-Type':'application/json',
+            'Authorization': `Bearer `+token,
+        })
+        console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}));
+        return this.http.put(this.rootUrl+'/feed/update/'+id,JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
+        {headers: headers});
     }
-}
 
-// <{access_token: string}>
+
+}

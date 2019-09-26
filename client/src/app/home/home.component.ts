@@ -10,18 +10,10 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 })
 export class HomeComponent implements OnInit {
   t = false;
-  s = false;
   constructor(private authservice : AuthService,
               private ngxService: NgxUiLoaderService) { }
 
   ngOnInit() {
-    if(this.s === false) {
-    this.ngxService.start();
-    setTimeout(() => {
-      this.ngxService.stop();
-    }, 1500);
-    this.s = true;
-  }
     if(this.authservice.loggedIn()) {
       if(!this.t)
       setTimeout(()=>{

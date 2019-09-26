@@ -4,8 +4,7 @@ import { Discover } from '../discover/discover.model';
 import { DiscoverService } from '../discover/discover.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import Swal from 'sweetalert2';
-import { Route } from '@angular/compiler/src/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-myevents',
@@ -16,8 +15,10 @@ export class MyeventsComponent implements OnInit {
   uname:string;
   res:any;
   reg:any;
+  ereg:any;
   discover : Discover[];
   public registered : [];
+  public earlierregistered : [];
   i:number;
   j:number;
   id:number;
@@ -30,7 +31,16 @@ export class MyeventsComponent implements OnInit {
 
   ngOnInit() {
   this.uname=localStorage.getItem('name');
+
   this.ngxService.start();
+
+  this.router.events.subscribe((evt) => {
+    if (!(evt instanceof NavigationEnd)) {
+        return;
+    }
+    window.scrollTo(0, 0);
+  });
+
   this.serverservice.getMyEvents()
     .subscribe(
       (response) =>{
@@ -84,6 +94,29 @@ export class MyeventsComponent implements OnInit {
       })
     },
   )
+
+  this.serverservice.getEarlierRegisteredEvents()
+  .subscribe(
+    (response) =>{
+      this.ereg = response;
+      // console.log(this.reg.event);
+      this.earlierregistered = this.ereg.event;
+      this.ngxService.stop();
+      // console.log(this.res.event.id);
+      // this.discoverservice.setRegisteredEvents(this.registered);
+      // console.log(this.discover);
+    },
+    (error) =>{ 
+      console.log(error);
+      this.ngxService.stop();
+      Swal.fire({
+        type:'error',
+        title:'Oops...',
+        text: 'Something Went Wrong',
+      })
+    },
+  ) 
+  
   }
 
   onDelete(eventid:any) {
