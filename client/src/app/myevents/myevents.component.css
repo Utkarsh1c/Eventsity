@@ -1,9 +1,26 @@
 .box {
-    background: url(../../assets/images/ticket.png);
+    background: url(../../assets/images/ticketminimilistic.jpg);
     background-size : cover;
-    /* box-shadow : 2px 2px 18px 5px rgba(0,0,0,0.1); */
+    border : 0px;
+    font-family: 'Ubuntu', sans-serif;
+}
+.robo {
+    height : 25rem; 
+    margin-left : 20rem;
 }
 .boxparent {
+    font-family: 'PT Sans', sans-serif;
+    padding : 5px 15px;
+    width : 95%;
+    background-color: #FFB0EC;
+    box-shadow : 2px 2px 18px 5px rgba(0,0,0,0.1);
+    text-align : center;
+}
+.boxparent2 {
+    font-family: 'PT Sans', sans-serif;
+    padding : 5px 15px;
+    width : 95%;
+    background-color: #FFFB85;
     box-shadow : 2px 2px 18px 5px rgba(0,0,0,0.1);
     text-align : center;
 }
@@ -15,6 +32,11 @@
 .box1 {
     height:14rem;
     width:50rem;
+    border:0;
+}
+.box1:hover {
+    background-color : #FEE700;
+    transition:all 0.7s ease-in-out;
 }
 .col-xs-12 {
     padding : 0px 0px;

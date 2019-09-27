@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
 import { Discover } from '../discover/discover.model';
 import { DiscoverService } from '../discover/discover.service';
 import { ServerService } from '../services/server.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -12,45 +13,57 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./discover-details.component.css']
 })
 export class DiscoverDetailsComponent implements OnInit {
-  discover:Discover;
+  public discover : [];
+  // discover:Discover[];
   id:number;
+  res:any;
   follow = false;
   eventid:any;
   forid:any;
 
-  constructor(private discoverservice: DiscoverService,
-              private route:ActivatedRoute,
-              private router:Router,) {}
+  constructor(private route:ActivatedRoute,
+              private router:Router,
+              private serverservice:ServerService,
+              private ngxService: NgxUiLoaderService,) {}
 
-
-  needfollow() {
-    this.follow = true;
-  }
   
   ngOnInit() {
+    this.ngxService.start();
+
+    this.eventid = this.route.snapshot.params.id;
+
     this.router.events.subscribe((evt) => {
       if (!(evt instanceof NavigationEnd)) {
-          return;
+        return;
       }
       window.scrollTo(0, 0);
     });
-     this.route.params
+
+    this.serverservice.getEventDetails(this.eventid)
     .subscribe(
-      (params: Params) => {
-        this.id = +params['id'];
-        this.discover = this.discoverservice.getEvent(this.id);
-        this.forid = this.discover;
-        this.eventid = this.forid.id;
-        console.log(this.eventid);
-      }
-    )
+      (response) =>{
+        this.res=response
+        console.log(this.res.event);
+        this.discover = this.res.event;
+        this.ngxService.stop();
+      },
+      (error) =>{
+        console.log(error);
+        this.ngxService.stop();
+      },
+    );
+
   }
 
   sendEnquiry() {
-    // console.log(this.eventid);
     this.router.navigate(['/enquiry',this.eventid]);
   }
+  
   register() {
     this.router.navigate(['/register',this.eventid]);
+  }
+
+  back() {
+    this.router.navigate(['/discover']);
   }
 }

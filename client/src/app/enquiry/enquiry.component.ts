@@ -50,4 +50,9 @@ export class EnquiryComponent implements OnInit {
       },
     )
   }
+
+  back() {
+    this.router.navigate(['/discover',this.id]);
+  }
+
 }

@@ -4,26 +4,24 @@
 <ngx-ui-loader></ngx-ui-loader>
 <div class="container fonts">
     <hr style="opacity: 0;">
-    <h3 style="font-size:30px;">
-    <b>CHANGE OF PLAN?? NO WORRIES START EDITING YOUR EVENT HERE!!</b></h3>
-    <h2 style="color:#1DD5D8;">We will update it for you..</h2>
+    <div class="col-md-2">
+        <button class="glyphicon glyphicon-arrow-left back" (click)="back()"></button>
+    </div>
+    <div class="col-md-8">
+        <h3 style="font-size:30px;">
+        <b>CHANGE OF PLAN?? NO WORRIES START EDITING YOUR EVENT HERE!!</b></h3>
+        <h2 style="color:#1DD5D8;">We will update it for you..</h2>
+    </div>
     <hr>
-    <!-- <h4 style="text-align:center;color:#9E36DA;">
-        CREATE YOUR EVENT SO THAT EVERYONE MAY ACCESS OR KNOW ABOUT THE EVENT.
-    </h4> -->
-    <!-- <p style="text-align:center;color:#9E36DA;">
-        Start creating your event by entering your details below.
-    </p> -->
 </div>
-    
-    <hr style="opacity: 0;">
-    <div class="container">
+<hr style="opacity: 0;">
+<div class="container">
     <div class="row">
         <div class="col-md-5">
             <img src="assets/images/editevent.png" class="edit" alt="edit">
         </div>
-            <div class="col-md-7 box">
-                <h3 style="text-align:center;">Start Editing Here</h3>
+        <div class="col-md-7 box">
+            <h3 style="text-align:center;">Start Editing Here</h3>
                 <form (ngSubmit)="onUpdate(f)" #f="ngForm">
                     <div class="row">
                         <div class="col-xs-12">
@@ -66,11 +64,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-xs-12">
-                            <img [src]="imagePath.value" class="image-responsive">
-                        </div>
-                    </div> -->
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="form-group">
@@ -217,7 +210,10 @@
                             type="submit" 
                             class="btn btn-success mybutton"
                             [disabled]="!f.valid" style="margin-right : 10px;">Update Event</button>
-                            <button type="button" class="btn btn-danger mybutton2"(click)="onCancel()">Cancel</button>
+                            <button 
+                            type="button" 
+                            class="btn btn-danger mybutton2"
+                            (click)="onCancel()">Cancel</button>
                         </div>
                     </div>
                 </form>

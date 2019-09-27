@@ -15,12 +15,9 @@ import { NgForm } from '@angular/forms';
 export class EditeventComponent implements OnInit {
 @ViewChild('f', { static:false }) editform : NgForm
   id:any;
-  // discover:Discover[];
   res:any;
-  // public discovers:[];
 
   constructor(private route : ActivatedRoute,
-              private discoverservice : DiscoverService,
               private serverservice : ServerService,
               private ngxService: NgxUiLoaderService,
               private router : Router) { }
@@ -34,7 +31,6 @@ export class EditeventComponent implements OnInit {
       (response) =>{
         this.res = response;
         console.log(this.res.event);
-        // this.discover = this.res.events;
         this.editform.setValue({
           ename : this.res.event.ename,
           imagePath : this.res.event.imagePath,
@@ -46,8 +42,6 @@ export class EditeventComponent implements OnInit {
           orgname : this.res.event.orgname,
         })
         this.ngxService.stop();
-        // this.discoverservice.setDiscover(this.discover);
-        // console.log(this.discover);
       },
       (error) =>{
          console.log(error);
@@ -88,6 +82,10 @@ export class EditeventComponent implements OnInit {
 
   onCancel() {
     this.router.navigate(['/discover']);
+  }
+
+  back() {
+    this.router.navigate(['/myevents']);
   }
 
 }

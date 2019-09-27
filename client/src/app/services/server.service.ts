@@ -8,7 +8,7 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class ServerService {
 
-    private rootUrl = "https://46644356.ngrok.io";
+    private rootUrl = "https://19b6ae49.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -38,13 +38,21 @@ export class ServerService {
            'Content-Type':'application/json',
             'Authorization': `Bearer `+token,
          })
-        console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}));
+        // console.log(fd);
         return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
             {headers: headers});
     }
 
     getCreatedEvents() {
          return this.http.get(this.rootUrl+'/feed/posts');
+    }
+
+    getEventDetails(id:any) {
+        const headers = new HttpHeaders({
+            'Content-Type':'application/json',
+        })
+        return this.http.get(this.rootUrl+'/feed/posts/'+id,
+        {headers: headers});
     }
 
     getLoggedInUser(): Observable<any> {
@@ -150,6 +158,5 @@ export class ServerService {
         return this.http.put(this.rootUrl+'/feed/update/'+id,JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
         {headers: headers});
     }
-
 
 }

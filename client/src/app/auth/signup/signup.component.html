@@ -3,15 +3,15 @@
 </style>
 <ngx-ui-loader></ngx-ui-loader>
 <div class="container">
-<hr style="opacity:0;">
-<div class="row">
-    <div class="col-md-5"><img src="assets/images/signupman.png" class="man" alt="signup"></div>
-    <div class="col-md-7 box">
-        <div class="head">
-            <h4><b>LET'S CREATE YOUR ACCOUNT</b></h4>
-            <p>It won't take more than a few minutes, we promise :)</p>
-        </div>
-        <form (ngSubmit)="onSignup(f)" #f="ngForm">
+    <hr style="opacity:0;">
+    <div class="row">
+        <div class="col-md-5"><img src="assets/images/signupman.png" class="man" alt="signup"></div>
+        <div class="col-md-7 box">
+            <div class="head">
+                <h4><b>LET'S CREATE YOUR ACCOUNT</b></h4>
+                <p>It won't take more than a few minutes, we promise :)</p>
+            </div>
+            <form (ngSubmit)="onSignup(f)" #f="ngForm">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input
@@ -85,10 +85,10 @@
                     !cpassword.errors?.required" 
                     style="color:red;">Password doesn't match</span>
                 </div>
-            <button type="submit" class="btn btn-success mybutton"  [disabled]="!f.valid">SignUp</button>
-        </form>
-        <p class="foot">Already on EventSity ? <a routerLink='/login'>LogIn</a></p>
+                <button type="submit" class="btn btn-success mybutton"  [disabled]="!f.valid">SignUp</button>
+            </form>
+            <p class="foot">Already on EventSity ? <a routerLink='/login'>LogIn</a></p>
+        </div>
     </div>
-</div>
-<hr style="opacity:0;">
+    <hr style="opacity:0;">
 </div>

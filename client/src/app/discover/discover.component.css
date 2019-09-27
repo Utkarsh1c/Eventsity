@@ -36,7 +36,7 @@ button:hover {
     background-size : cover;
 }
 .box {
-    background-color : black;
+    background:url(../../assets/images/sellticket.png);
 }
 .box:hover {
     background-color : black;

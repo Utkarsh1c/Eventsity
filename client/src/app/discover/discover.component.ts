@@ -15,11 +15,15 @@ import Swal from 'sweetalert2';
 export class DiscoverComponent implements OnInit {
   selectedEvent : Discover;
   discover: Discover[];
+  eventarray:number[]=[];
   ent = false;
   soc = false;
   spo = false;
   tech = false;
   res:any;
+  i:number;
+  j:number;
+  id:number;
   
   needentertainment() {
     this.ent = true;
@@ -60,9 +64,15 @@ export class DiscoverComponent implements OnInit {
         this.res = response;
         console.log(this.res.event);
         this.discover = this.res.event;
+        for(this.i=0; this.i<this.discover.length; this.i++) {
+          this.id = this.discover[this.i].id;
+          console.log(this.id);
+          for(this.j=this.i; this.j<this.i+1; this.j++) {
+            this.eventarray.push(this.id);
+            console.log(this.eventarray)
+          }
+        }
         this.ngxService.stop();
-        this.discoverservice.setDiscover(this.discover);
-        // console.log(this.discover);
       },
       (error) =>{
          console.log(error);
@@ -81,11 +91,7 @@ export class DiscoverComponent implements OnInit {
         }
         window.scrollTo(0, 0);
       });
+
   }
 
 }
-
-// (response) => {
-//   console.log(response);
-//   this.discoverservice.setDiscover(this.discover);
-// }

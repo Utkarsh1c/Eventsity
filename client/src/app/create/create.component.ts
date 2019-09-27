@@ -19,10 +19,10 @@ export class CreateComponent implements OnInit {
   socialtype=false;
   techtype=false;
   errormsg:string;
+  selectedFile = null;
 
 
-  constructor(private dservice : DiscoverService,
-              private router : Router,
+  constructor(private router : Router,
               private serverservice : ServerService,
               private ngxService: NgxUiLoaderService) { }
 
@@ -33,10 +33,6 @@ export class CreateComponent implements OnInit {
     this.ngxService.start();
     console.log('Entered Create');
     const value = form.value;
-    // const newDiscover = new Discover(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
-    //   value.date);
-    //   console.log(value);
-    // this.dservice.adddiscover(newDiscover);
     this.serverservice.createEvent(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
       value.date, value.orgname, value.description)
       .subscribe(
@@ -48,16 +44,28 @@ export class CreateComponent implements OnInit {
         (error:HttpErrorResponse) =>{ 
           // console.log(error.error.message);
           this.errormsg = error.error.message;
+          if(this.errormsg === "Not authenticated.") {
+            localStorage.removeItem('token');
+            localStorage.removeItem('name');
+            Swal.fire({
+              type:'warning',
+              title:'Not Authenticated',
+              text: 'LogIn again to continue',
+              showConfirmButton:false,
+              timer:1500,
+            })  
+            this.router.navigate(['/']);
+          }
           this.ngxService.stop();
+          if(this.errormsg != 'Not authenticated.') {
           Swal.fire({
             type: 'error',
             title: 'Oops...',
             text: this.errormsg,
           })
+        }
         },
       );
-    // form.reset();
-    
   }
   onCancel() {
     this.router.navigate(['/discover']);

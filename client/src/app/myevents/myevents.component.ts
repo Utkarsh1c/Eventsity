@@ -5,6 +5,7 @@ import { DiscoverService } from '../discover/discover.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import Swal from 'sweetalert2';
 import { Router, NavigationEnd } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-myevents',
@@ -55,14 +56,24 @@ export class MyeventsComponent implements OnInit {
             console.log(this.eventarray)
           }
         }
-        // console.log(this.res.event.id);
-        this.discoverservice.setMyEvents(this.discover);
         this.ngxService.stop();
-        // console.log(this.discover);
       },
-      (error) =>{ 
-        console.log(error);
+      (error : HttpErrorResponse) =>{ 
+        console.log(error.error.message);
+        if(error.error.message === "Not authenticated.") {
+          localStorage.removeItem('token');
+          localStorage.removeItem('name');
+          Swal.fire({
+            type:'error',
+            title:'Not Authenticated',
+            text: 'LogIn again to continue',
+            showConfirmButton:false,
+            timer:1500,
+          })  
+          this.router.navigate(['/']);
+        }
         this.ngxService.stop();
+        if(error.error.message != 'Not authenticated.') {
         Swal.fire({
           type:'error',
           title:'Oops...',
@@ -70,6 +81,7 @@ export class MyeventsComponent implements OnInit {
           showConfirmButton:false,
           timer:1500,
         })
+      }
       },
       );
 
@@ -131,7 +143,7 @@ export class MyeventsComponent implements OnInit {
           type:'success',
           title: 'Event Deleted',
           showConfirmButton: false,
-          timer: 1000,
+          timer: 1500,
         })
         this.router.navigate(['/discover']);
       },

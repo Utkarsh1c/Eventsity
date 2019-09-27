@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServerService } from '../services/server.service';
 import Swal from 'sweetalert2';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -15,7 +15,8 @@ export class RegistrationformComponent implements OnInit {
 
   constructor(private route : ActivatedRoute,
               private serverservice : ServerService,
-              private ngxService: NgxUiLoaderService) { }
+              private ngxService: NgxUiLoaderService,
+              private router : Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
@@ -46,6 +47,10 @@ export class RegistrationformComponent implements OnInit {
         })
       }
     )
+  }
+
+  back() {
+    this.router.navigate(['/discover',this.id]);
   }
 
 }
