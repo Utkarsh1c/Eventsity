@@ -3,9 +3,10 @@ const Otp = require('../models/otp');
 const bcrypt = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
+const config = require('../util/config');
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth: {
-        api_key: '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'
+        api_key: config
     }
 }));
 const jwt = require('jsonwebtoken');
@@ -139,7 +140,7 @@ exports.verifyUser = (req, res, next) => {
                 const token = jwt.sign({
                     email: user.email,
                     userId: user.id
-                }, 'somesupersecretsecret', { expiresIn: '1h' });
+                }, 'somesupersecretsecret', { expiresIn: '6h' });
                 otp.destroy();
                 user.update({
                     isVerified: true
@@ -231,7 +232,7 @@ exports.login = (req, res, next) => {
             userId: user.id
         },
         'somesupersecretsecret',
-        { expiresIn: '1h' }
+        { expiresIn: '6h' }
         )
         res.status(200).json({ token: token, userId: user.id, name: user.name
             })
@@ -264,13 +265,3 @@ exports.delUser = (req, res, next) => {
     })
 }
 
-
-exports.sendEnquiry = (req, res, next) => {
-
-    // transporter.sendMail({
-    //     to: req.email,
-    //     from: req.email,
-    //     subject: 'Event enquiry',
-    //     html: `<h1>${desp}</h1>`
-    // })
-}

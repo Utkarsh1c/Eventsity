@@ -56,6 +56,7 @@ User.belongsToMany(User, { as: 'Follow', through: 'Followed' });
 
 
 
+
 // Otp.belongsTo(User);
 // User.hasOne(Otp)
 
