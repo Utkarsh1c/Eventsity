@@ -1,6 +1,8 @@
+//requiring sequelize and utility file
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
+//defining otp schema
 const samOtp = sequelize.define('otps', {
 
   id: {

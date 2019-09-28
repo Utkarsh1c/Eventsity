@@ -1,6 +1,11 @@
+//requiring user and otp model
 const User = require('../models/user');
 const Otp = require('../models/otp');
+
+//requiring module for hashing 
 const bcrypt = require('bcryptjs');
+
+//requiring modules necessary for sending mails
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const config = require('../util/config');
@@ -9,19 +14,23 @@ const transporter = nodemailer.createTransport(sendgridTransport({
         api_key: config
     }
 }));
+
+//requiring jason web token module
 const jwt = require('jsonwebtoken');
 
+//requiring validation result from routes
 const { validationResult } = require('express-validator');
 
+//signing up users
 exports.signup = (req, res, next) => {
     const errors = validationResult(req);
+
     if( !errors.isEmpty()){
         const error = new Error('Validation failed.');
         error.statusCode = 422;
         error.data = errors.array();
         throw error;
     }
-
         
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     console.log(otp);
@@ -29,19 +38,21 @@ exports.signup = (req, res, next) => {
     const name = req.body.name;
     const password = req.body.password.trim();
     
-    // var token = new Token({ userId: user._id, token: crypto.randomBytes(16).toString('hex') });
     bcrypt.hash(password, 8)
     .then(hashedPw => {
+
         const user = new User({
             email: email,
             password: hashedPw,
             name: name
         })
+
         return user.save();
     })
     .then(result => {
-        // const hostUrl = process.env.hostURL;
+
         bcrypt.hash(otp, 8)
+
         .then(hashedOtp => {
             const otp = new Otp({
                 otp: hashedOtp,
@@ -63,13 +74,8 @@ exports.signup = (req, res, next) => {
             subject: 'New signup',
             html: `<h1>Thanks for signing up with EventSity</h1>
                    <h1>Here is your otp ${otp}</h1>`
-
-        //     // content: [
-        //     //     {
-        //     //       type: 'text/plain',
-        //     //       value: `Click on this link to verify your email ${hostUrl}/verification?token=${token}&email=${to}`
-        //     //     }
         })
+
         res.status(201).json({ message: 'Succesfully signed up', userId: result.id })
     })
     .catch(err => {
@@ -80,7 +86,9 @@ exports.signup = (req, res, next) => {
     })
 }
 
+//resend otp to user
 exports.resendOtp = (req, res, next) => {
+
     const userId = req.params.userId;
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     console.log(otp);
@@ -90,6 +98,7 @@ exports.resendOtp = (req, res, next) => {
         .then(hashedOtp => {
             Otp.findByPk(userId)
             .then(otp => {
+                
                 otp.update({
                     otp: hashedOtp
                 })
@@ -102,6 +111,7 @@ exports.resendOtp = (req, res, next) => {
             .catch(err => {
                 throw err
             })
+
             transporter.sendMail({
                 to: user.email,
                 from: 'eventsity@gmail.com',
@@ -109,6 +119,7 @@ exports.resendOtp = (req, res, next) => {
                 html: `<h1>Thanks for signing up with EventSity</h1>
                     <h1>Here is your otp ${otp}</h1>`
             })
+
         })
         res.status(200).json({ message: 'Otp resent!'})
     })
@@ -120,7 +131,9 @@ exports.resendOtp = (req, res, next) => {
     })
 }
 
+//verify user otp
 exports.verifyUser = (req, res, next) => {
+
     const userId = req.params.userId;
     const userOtp = req.body.otp;
     Otp.findByPk(userId)
@@ -132,8 +145,6 @@ exports.verifyUser = (req, res, next) => {
             error.statusCode = 400;
             throw error;
         }
-
-        
         
         const isEqual = await bcrypt.compare(userOtp, otp.otp);
         if (!isEqual) {
@@ -143,11 +154,13 @@ exports.verifyUser = (req, res, next) => {
         }
         User.findByPk(userId)
             .then(user => {
+
                 if (!user) {
                     const error_2 = new Error('Could not find user.');
                     error_2.statusCode = 404;
                     throw error_2;
                 }
+
                 const token = jwt.sign({
                     email: user.email,
                     userId: user.id
@@ -156,6 +169,7 @@ exports.verifyUser = (req, res, next) => {
                 user.update({
                     isVerified: true
                 });
+
                 res.status(200).json({ message: 'User verified', token: token, userId: user.id, name: user.name });
             });
     })
@@ -169,22 +183,21 @@ exports.verifyUser = (req, res, next) => {
 
 }
 
-
-
+//logging in authorized user
 exports.login = (req, res, next) => {
+
     const email = req.body.email;
     const password = req.body.password.trim();
-    // let loadedUser;
-
-
     User.findOne({ where: { email: email }})
     .then(user => 
         {
+
             if(!user) {
                 const error = new Error('A user with this email could not be found.');
                 error.statusCode = 401;
                 throw error;
             }
+
             if(!user.isVerified) {
 
                 const otp = Math.floor(100000 + Math.random() * 900000).toString();
@@ -193,6 +206,7 @@ exports.login = (req, res, next) => {
                 .then(hashedOtp => {
                     Otp.findByPk(user.id)
                     .then(otp => {
+
                         otp.update({
                             otp: hashedOtp
                         })
@@ -201,10 +215,12 @@ exports.login = (req, res, next) => {
                                 otp: ""
                             })
                         }, 120000)
+
                     })
                     .catch(err => {
                         throw err
                     })
+
                     transporter.sendMail({
                         to: email,
                         from: 'eventsity@gmail.com',
@@ -212,6 +228,7 @@ exports.login = (req, res, next) => {
                         html: `<h1>Thanks for signing up with EventSity</h1>
                                <h1>Here is your otp ${otp}</h1>`
                     })
+
                 })
                 
                 .catch(err => {
@@ -226,24 +243,18 @@ exports.login = (req, res, next) => {
                 .json({
                     message: 'User is not verified',
                     userId: user.id
-            })
-
-                // const error = new Error('User is not verified');
-                // error.userId = user.id;
-                // error.statusCode = 401;
-                // throw error;
+                })
             }
 
-            // loadedUser = user;
             return bcrypt.compare(password, user.password)
-        
     .then(isEqual => {
+
         if (!isEqual) {
-            // console.log('pass................');
             const error = new Error('Wrong password!');
             error.statusCode = 403;
             throw error;
         }
+
         const token = jwt.sign({
             email: user.email,
             userId: user.id
@@ -251,14 +262,11 @@ exports.login = (req, res, next) => {
         'somesupersecretsecret',
         { expiresIn: '6h' }
         )
+
         user.update({
             isLoggedIn: true
         })
-        // setTimeout(() => {
-        //     user.update({
-        //         isLoggedIn: false
-        //     })
-        // }, 21600000)
+    
         res.status(200).json({ token: token, userId: user.id, name: user.name
             })
         })
@@ -271,26 +279,31 @@ exports.login = (req, res, next) => {
     })
 }
 
-
+//deactivating user account
 exports.delUser = (req, res, next) => {
+    
     const password = req.body.password.trim();
     var loadedUser;
     User.findByPk(req.userId)
     .then(user => {
+
         if (!user) {
             const error = new Error('Could not find user.');
             error.statusCode = 404;
             throw error;
         } 
+
         loadedUser = user;
         return bcrypt.compare(password, user.password)
     })
     .then(isEqual => {
+        
         if (!isEqual) {
             const error = new Error('Wrong password!');
             error.statusCode = 403;
             throw error;
         }
+
         res.status(200).json({ message: 'User deleted' })
         return loadedUser.destroy();
     })
@@ -302,20 +315,22 @@ exports.delUser = (req, res, next) => {
     })
 }
 
-
+//logging out user from all devices
 exports.logoutFromAllUser = (req, res, next) => {
 
     User.findByPk(req.userId)
     .then(user => {
+
         if (!user) {
             const error = new Error('Could not find user.');
             error.statusCode = 404;
             throw error;
         } 
+
         user.update({
             isLoggedIn: false
         })
-        console.log(user.isLoggedIn, '......................................')
+
         res.status(200).json({ message: 'Logged out from all devices.' })
     })
     .catch(err => {

@@ -1,26 +1,20 @@
 const express = require('express');
-// const { body } = require('express-validator');
- 
+
+ //requiring feed controller
 const feedController = require('../controllers/feed');
+
+//requiring middleware for authorization purpose
 const isAuth = require('../middleware/is-auth');
 
+//router defined in express
 const router = express.Router();
 
+//handling user post and get requests
 router.get('/posts', feedController.getEvents);
 
 router.get('/posts/:eventId', feedController.getEvent);
 
-router.post(
-    '/posts', isAuth,
-//    [
-//     body('title')
-//     .trim()
-//     .isLength({ min:5 }),
-//     body('content')
-//     .trim()
-//     .isLength({ min:5 }),
-//    ],
-feedController.createEvent);
+router.post('/posts', isAuth, feedController.createEvent);
 
 router.get('/myevents', isAuth, feedController.userEvents)
 

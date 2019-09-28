@@ -1,12 +1,21 @@
 const express = require('express');
+
+//destructuring body in express validator
 const { body } = require('express-validator');
 
+//requiring user model
 const User = require('../models/user');
+
+//requiring auth controller
 const authController = require('../controllers/auth');
+
+//requiring middleware for authorization purpose
 const isAuth = require('../middleware/is-auth');
 
+//router defined in express
 const router = express.Router();
 
+//handling user post and get requests plus necessary validation
 router.post('/signup',
  
 [

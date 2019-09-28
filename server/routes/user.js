@@ -1,12 +1,15 @@
 const express = require('express');
  
-const feedController = require('../controllers/feed');
+//requiring middleware for authorization purpose
 const isAuth = require('../middleware/is-auth');
 
+//requiring user controller
 const userController = require('../controllers/user');
 
+//router defined in express
 const router = express.Router();
 
+//handling user post and get requests
 router.post('/enquiry/:eventId', isAuth, userController.sendEnquiry)
 
 router.post('/register/:eventId', isAuth, userController.updateRegister)
