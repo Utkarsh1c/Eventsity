@@ -46,7 +46,7 @@ router.post('/login', authController.login);
 
 router.post('/logoutAll', isAuth, authController.logoutFromAllUser);
 
-router.delete('/delete', isAuth, authController.delUser);
+router.post('/delete', isAuth, authController.delUser);
 
 router.post('/verify/:userId', authController.verifyUser);
 

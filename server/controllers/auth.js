@@ -57,18 +57,19 @@ exports.signup = (req, res, next) => {
             throw err
         })
         
-        // transporter.sendMail({
-        //     to: email,
-        //     from: 'eventsity@gmail.com',
-        //     subject: 'Signup succeeded!',
-        //     html: `<h1>Your otp ${otp}</h1>`
+        transporter.sendMail({
+            to: email,
+            from: 'eventsity@gmail.com',
+            subject: 'New signup',
+            html: `<h1>Thanks for signing up with EventSity</h1>
+                   <h1>Here is your otp ${otp}</h1>`
 
         //     // content: [
         //     //     {
         //     //       type: 'text/plain',
         //     //       value: `Click on this link to verify your email ${hostUrl}/verification?token=${token}&email=${to}`
         //     //     }
-        // })
+        })
         res.status(201).json({ message: 'Succesfully signed up', userId: result.id })
     })
     .catch(err => {
@@ -83,28 +84,33 @@ exports.resendOtp = (req, res, next) => {
     const userId = req.params.userId;
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     console.log(otp);
-    bcrypt.hash(otp, 8)
-    .then(hashedOtp => {
-        Otp.findByPk(userId)
-        .then(otp => {
-            otp.update({
-                otp: hashedOtp
-            })
-            setTimeout(() => {
+    User.findByPk(userId)
+    .then(user => {
+        bcrypt.hash(otp, 8)
+        .then(hashedOtp => {
+            Otp.findByPk(userId)
+            .then(otp => {
                 otp.update({
-                    otp: ""
+                    otp: hashedOtp
                 })
-            }, 120000)
+                setTimeout(() => {
+                    otp.update({
+                        otp: ""
+                    })
+                }, 120000)
+            })
+            .catch(err => {
+                throw err
+            })
+            transporter.sendMail({
+                to: user.email,
+                from: 'eventsity@gmail.com',
+                subject: 'Resend otp',
+                html: `<h1>Thanks for signing up with EventSity</h1>
+                    <h1>Here is your otp ${otp}</h1>`
+            })
         })
-        .catch(err => {
-            throw err
-        })
-        // transporter.sendMail({
-        //     to: email,
-        //     from: 'eventsity@gmail.com',
-        //     subject: 'Reset otp!',
-        //     html: `<h1>Your otp ${otp}</h1>`
-        // })
+        res.status(200).json({ message: 'Otp resent!'})
     })
     .catch(err => {
         if(!err.statusCode) {
@@ -199,12 +205,13 @@ exports.login = (req, res, next) => {
                     .catch(err => {
                         throw err
                     })
-                    // transporter.sendMail({
-                    //     to: email,
-                    //     from: 'eventsity@gmail.com',
-                    //     subject: 'Reset otp!',
-                    //     html: `<h1>Your otp ${otp}</h1>`
-                    // })
+                    transporter.sendMail({
+                        to: email,
+                        from: 'eventsity@gmail.com',
+                        subject: 'Resend otp',
+                        html: `<h1>Thanks for signing up with EventSity</h1>
+                               <h1>Here is your otp ${otp}</h1>`
+                    })
                 })
                 
                 .catch(err => {
@@ -234,7 +241,7 @@ exports.login = (req, res, next) => {
         if (!isEqual) {
             // console.log('pass................');
             const error = new Error('Wrong password!');
-            error.statusCode = 401;
+            error.statusCode = 403;
             throw error;
         }
         const token = jwt.sign({
@@ -266,6 +273,8 @@ exports.login = (req, res, next) => {
 
 
 exports.delUser = (req, res, next) => {
+    const password = req.body.password.trim();
+    var loadedUser;
     User.findByPk(req.userId)
     .then(user => {
         if (!user) {
@@ -273,8 +282,17 @@ exports.delUser = (req, res, next) => {
             error.statusCode = 404;
             throw error;
         } 
+        loadedUser = user;
+        return bcrypt.compare(password, user.password)
+    })
+    .then(isEqual => {
+        if (!isEqual) {
+            const error = new Error('Wrong password!');
+            error.statusCode = 403;
+            throw error;
+        }
         res.status(200).json({ message: 'User deleted' })
-        return user.destroy();
+        return loadedUser.destroy();
     })
     .catch(err => {
         if (!err.statusCode) {
@@ -298,7 +316,7 @@ exports.logoutFromAllUser = (req, res, next) => {
             isLoggedIn: false
         })
         console.log(user.isLoggedIn, '......................................')
-        res.status(200).json({ message: 'All users logged out.' })
+        res.status(200).json({ message: 'Logged out from all devices.' })
     })
     .catch(err => {
         if (!err.statusCode) {

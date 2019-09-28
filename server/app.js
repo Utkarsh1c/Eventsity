@@ -67,7 +67,7 @@ User.belongsToMany(User, { as: 'Follow', through: 'Followed' });
 sequelize
   // .sync({ force: true })
   .sync()
-  .then(cart => {
+  .then(() => {
     app.listen(8080);
   })
   .catch(err => {
