@@ -1,5 +1,6 @@
 <style>
     @import url('https://fonts.googleapis.com/css?family=Bree+Serif|Josefin+Sans|Montserrat|Poppins|Roboto&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 </style>
 <ngx-ui-loader></ngx-ui-loader>
 <div class="container">
@@ -43,7 +44,7 @@
                 <div class="col-md-8">
                     <div
                     *ngFor="let discover of discover; index as id">
-                        <div *ngIf="discover.category === 'Entertainment'" class="background">
+                        <div *ngIf="discover.category === 'Entertainment'">
                             <a 
                             style="cursor : pointer;"
                             [routerLink]="['/discover',eventarray[id]]"   

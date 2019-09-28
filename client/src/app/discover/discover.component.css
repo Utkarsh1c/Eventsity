@@ -14,10 +14,12 @@ button {
     border : 0px;
     border-radius: 10px;
     text-decoration:none;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 2px;
 }
 button:hover {
-    box-shadow:2px 2px 18px 5px rgba(0,0,0,0.5);
-    transition: all 0.3s ease-in-out;
+    box-shadow:2px 2px 15px 5px rgba(0,0,0,0.3);
+    transition: all 0.4s ease-in-out;
 }
 .entcat {
     background : url(../../assets/images/entertainmentdiscover.jpe);
@@ -32,16 +34,17 @@ button:hover {
     background-size : cover;
 }
 .sportscat {
-    background : url(../../assets/images/sportsdiscover.jpe);
+    background : url(../../assets/images/sportsbutton.jpg);
     background-size : cover;
 }
 .box {
-    background:url(../../assets/images/sellticket.png);
+    background:url(../../assets/images/parentbackground.jpg);
+    border:0px;
 }
 .box:hover {
     background-color : black;
     border : 1px solid black;
-    box-shadow : 5px 5px 15px black;
+    box-shadow : 5px 5px 15px rgba(0,0,0,0.5);
     animation : increase 1s ; 
 }
 @keyframes increase {
@@ -57,9 +60,9 @@ button:hover {
     color:#9E36DA;
     text-align:center;
 }
-.background {
+/* .background {
     background: url('../../assets/images/parentbackground.jpe');
-}
+} */
 .overlay {
     position:absolute;
     /* padding:1px 6px; */

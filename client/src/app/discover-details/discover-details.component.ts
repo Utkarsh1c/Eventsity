@@ -20,6 +20,7 @@ export class DiscoverDetailsComponent implements OnInit {
   follow = false;
   eventid:any;
   forid:any;
+  show = false;
 
   constructor(private route:ActivatedRoute,
               private router:Router,
@@ -45,6 +46,7 @@ export class DiscoverDetailsComponent implements OnInit {
         this.res=response
         console.log(this.res.event);
         this.discover = this.res.event;
+        this.show = true;
         this.ngxService.stop();
       },
       (error) =>{

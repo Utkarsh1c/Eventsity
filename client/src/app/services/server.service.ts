@@ -7,8 +7,9 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class ServerService {
+    body:{};
 
-    private rootUrl = "https://19b6ae49.ngrok.io";
+    private rootUrl = "https://5319e088.ngrok.io";
 
     constructor(private http: HttpClient,
                 private authservice:AuthService,
@@ -62,6 +63,15 @@ export class ServerService {
           'Authorization': `Bearer `+token,
         })
         return this.http.get(this.rootUrl+'/auth/login', { headers: headers });
+    }
+
+    logallout() {
+        const token = localStorage.getItem('token')
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer `+token,
+        })
+        return this.http.post(this.rootUrl+'/auth/logoutAll', this.body, { headers: headers });
     }
 
     verifyUser(otp:string, id:any) {

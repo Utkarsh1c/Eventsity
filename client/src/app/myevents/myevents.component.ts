@@ -132,6 +132,19 @@ export class MyeventsComponent implements OnInit {
   }
 
   onDelete(eventid:any) {
+    Swal.fire({
+      type:'warning',
+      title:'Are you sure!!',
+      showCancelButton:true,
+      confirmButtonText:'Yes, delete it',
+    }).then((onConfirmDelete)=>{
+      if(onConfirmDelete.value) {
+        this.onConfirmDelete(eventid);
+      }
+    })
+  }
+
+  onConfirmDelete(eventid:any) {
     this.ngxService.start();
     console.log(eventid);
     this.serverservice.deleteEvent(eventid)
@@ -155,6 +168,51 @@ export class MyeventsComponent implements OnInit {
           title: 'Not Authenticated To Delete',
           showConfirmButton: false,
           timer: 1500,
+        })
+      },
+    )
+  }
+
+  logOutfromall() {
+    Swal.fire({
+      type:'warning',
+      title:'Are you sure!!',
+      showCancelButton:true,
+      cancelButtonColor:'red',
+      confirmButtonText:'LogOut from all Devices',
+    }).then((onConfirmDelete)=>{
+      if(onConfirmDelete.value) {
+        this.onConfirmLogoutall();
+      }
+    })
+  }
+
+  onConfirmLogoutall() {
+    this.ngxService.start();
+    this.serverservice.logallout()
+    .subscribe(
+      (response) =>{
+        console.log(response);
+        this.ngxService.stop();
+        localStorage.removeItem('token');
+        localStorage.removeItem('name');
+        this.router.navigate(['/']);
+        Swal.fire({
+          type:'success',
+          title:'Successfully logged out from all devices',
+          showConfirmButton:false,
+          timer:1500,
+        })
+      },
+      (error) =>{
+        console.log(error);
+        this.ngxService.stop();
+        Swal.fire({
+          type:'error',
+          title:'Oops....',
+          text:'Something went wrong',
+          showConfirmButton:false,
+          timer:1500,
         })
       },
     )

@@ -5,7 +5,16 @@
 <ngx-ui-loader></ngx-ui-loader>
 <hr style="opacity:0;">
 <div class="container-fluid">
-    <div class="col-md-5"><img src="../../assets/images/myevents.png" class="robo" alt="hello"></div>
+    <div class="col-md-5">
+        <div class="col-sm-6">
+            <button class="btn btn-primary" (click)="logOutfromall()">Log Out From all devices</button>
+            <hr style="opacity:0;">
+            <button class="btn btn-danger">Deactivate Account</button>
+        </div>
+        <div class="col-sm-6">
+            <img src="../../assets/images/myevents.png" class="robo" alt="hello">
+        </div>
+    </div>
     <div class="col-md-7 font">
         <h2>So how's you doing {{ uname }}</h2>
         <hr style="opacity:0;">
@@ -24,16 +33,16 @@
                     <hr style="opacity:0;">
                     <div
                     *ngFor="let discover of discover; index as id">
-                        <a
+                        <div
                         style="cursor : pointer;"
-                        [routerLink]="['/discover',eventarray[id]]"
                         class="list-group-item clearfix box1" style="margin-bottom:20px;">
                         <div class="pull-left">
-                            <h4 
+                            <a [routerLink]="['/discover',eventarray[id]]">
+                            <h3 
                             class="list-group-item-heading" 
                             style="color:black;">
                                 <b>{{ discover.ename }}</b>
-                            </h4>
+                            </h3></a>
                             <p 
                             class="list-group-item-text" 
                             style="color:black">Venue : {{ discover.evenue }}</p>
@@ -45,7 +54,7 @@
                                 [routerLink]="['/editevent',eventarray[id]]"><button 
                                 class="glyphicon glyphicon-pencil pull-right edit"></button></a>
                                 <button 
-                                (click)="onDelete(eventarray[id])" 
+                                (click)="onDelete(eventarray[id])"
                                 class="glyphicon glyphicon-remove delete"></button>
                             </div>
                         </div>
@@ -57,7 +66,7 @@
                             style="max-height:70px;
                              margin-bottom:2px;">
                         </span>
-                        </a>
+                    </div>
                     </div>
                 </div>
             </div>
