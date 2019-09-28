@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get('/posts', feedController.getEvents);
 
+router.get('/posts/:eventId', feedController.getEvent);
+
 router.post(
     '/posts', isAuth,
 //    [

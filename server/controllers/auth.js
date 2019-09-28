@@ -90,6 +90,11 @@ exports.resendOtp = (req, res, next) => {
             otp.update({
                 otp: hashedOtp
             })
+            setTimeout(() => {
+                otp.update({
+                    otp: ""
+                })
+            }, 120000)
         })
         .catch(err => {
             throw err
@@ -185,6 +190,11 @@ exports.login = (req, res, next) => {
                         otp.update({
                             otp: hashedOtp
                         })
+                        setTimeout(() => {
+                            otp.update({
+                                otp: ""
+                            })
+                        }, 120000)
                     })
                     .catch(err => {
                         throw err
@@ -234,6 +244,14 @@ exports.login = (req, res, next) => {
         'somesupersecretsecret',
         { expiresIn: '6h' }
         )
+        user.update({
+            isLoggedIn: true
+        })
+        // setTimeout(() => {
+        //     user.update({
+        //         isLoggedIn: false
+        //     })
+        // }, 21600000)
         res.status(200).json({ token: token, userId: user.id, name: user.name
             })
         })
@@ -245,6 +263,7 @@ exports.login = (req, res, next) => {
         next(err);
     })
 }
+
 
 exports.delUser = (req, res, next) => {
     User.findByPk(req.userId)
@@ -264,4 +283,29 @@ exports.delUser = (req, res, next) => {
         next(err);
     })
 }
+
+
+exports.logoutFromAllUser = (req, res, next) => {
+
+    User.findByPk(req.userId)
+    .then(user => {
+        if (!user) {
+            const error = new Error('Could not find user.');
+            error.statusCode = 404;
+            throw error;
+        } 
+        user.update({
+            isLoggedIn: false
+        })
+        console.log(user.isLoggedIn, '......................................')
+        res.status(200).json({ message: 'All users logged out.' })
+    })
+    .catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    })
+}
+
 

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
-const samUser = sequelize.define('otps', {
+const samOtp = sequelize.define('otps', {
 
   id: {
     type: Sequelize.INTEGER,
@@ -16,4 +16,4 @@ const samUser = sequelize.define('otps', {
 
 })
 
-module.exports = samUser;
+module.exports = samOtp;

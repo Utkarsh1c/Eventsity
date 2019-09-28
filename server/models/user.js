@@ -21,9 +21,9 @@ const samUser = sequelize.define('users', {
         type: Sequelize.STRING,
         allowNull: false
       },
-    isOrganiser: {
+    isLoggedIn: {
         type: Sequelize.BOOLEAN,
-        defaultValue: false
+        defaultValue: true
       },
     isVerified: {
         type: Sequelize.BOOLEAN,

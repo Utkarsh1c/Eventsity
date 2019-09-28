@@ -25,14 +25,14 @@ exports.getEvents = (req, res, next) => {
                 loadedEvent.push(element);
         });
 
-        if (!event) {
-            const error = new Error('Could not find events.');
-            error.statusCode = 404;
-            throw error;
-        }
+        // if (!event) {
+        //     const error = new Error('Could not find events.');
+        //     error.statusCode = 404;
+        //     throw error;
+        // }
 
         res.status(200).json({
-            message: 'Fetched posts successfully',
+            message: 'Fetched events successfully',
             event: loadedEvent
         })
     })
@@ -43,6 +43,25 @@ exports.getEvents = (req, res, next) => {
         next(err);
     })
 }
+
+
+exports.getEvent = (req, res, next) => {
+    const eventId = req.params.eventId;
+    Event.findByPk(eventId)
+    .then(event => {
+        res.status(200).json({
+            message: 'Fetched event successfully',
+            event: event
+        })
+    })
+    .catch(err => {
+        if (!err.statusCode) {
+            err.statusCode = 500;
+        }
+        next(err);
+    })
+}
+
 
 exports.createEvent = (req, res, next) => {
     const errors = validationResult(req);
@@ -62,9 +81,9 @@ exports.createEvent = (req, res, next) => {
     const date = req.body.date;
     User.findByPk(req.userId)
     .then(user => {
-        user.update({
-            isOrganiser: true
-        })
+        // user.update({
+        //     isOrganiser: true
+        // })
         user.createEvent({
             description: description,
             ename: ename,
@@ -74,7 +93,6 @@ exports.createEvent = (req, res, next) => {
             category: category,
             orgname: orgname,
             date: date,
-            // userId: req.user.id
         })
         .then(result => {
             res.status(201).json({
@@ -92,14 +110,19 @@ exports.createEvent = (req, res, next) => {
     .catch(err => console.log(err))
 }
 
+
 exports.userEvents = (req, res, next) => {
     Event.findAll({ where: { userId: req.userId }})
     .then(event => {
-        if (!event) {
-            const error = new Error('Could not find events.');
-            error.statusCode = 404;
-            throw error;
-        }
+        // if (!event) {
+        //     const error = new Error('Could not find events.');
+        //     error.statusCode = 404;
+        //     throw error;
+        // }
+        // event.forEach(element => {
+        //     if ((parseInt(element.date.split('/')[2]*10000) + parseInt(element.date.split('/')[1]*100) + parseInt(element.date.split('/')[0])) >= (today.getFullYear()*10000 + (today.getMonth()+1)*100 + today.getDate()))
+        //         loadedUpcoming.push(element);
+        // });
         res.status(200).json({ message: 'Event fetched', event: event })
     })
     .catch(err => {
@@ -110,18 +133,22 @@ exports.userEvents = (req, res, next) => {
     })
 }
 
-// exports.getEvent = (req, res, next) => {
-//     // const eventId = req.params.eventId;
-//     // req.user.getEvents({ where: {userId: eventId}})
-//     req.user.getEvents()
-//     // Event.findAll({ where: {userId: eventId}})
+
+// exports.userPassedEvents = (req, res, next) => {
+//     const today = new Date();
+//     var loadedPassed = [];
+//     Event.findAll({ where: { userId: req.userId }})
 //     .then(event => {
-//         if (!event) {
-//             const error = new Error('Could not find event.');
-//             error.statusCode = 404;
-//             throw error;
-//         }
-//         res.status(200).json({ message: 'Event fetched', event: event })
+//         // if (!event) {
+//         //     const error = new Error('Could not find events.');
+//         //     error.statusCode = 404;
+//         //     throw error;
+//         // }
+//         event.forEach(element => {
+//             if ((parseInt(element.date.split('/')[2]*10000) + parseInt(element.date.split('/')[1]*100) + parseInt(element.date.split('/')[0])) < (today.getFullYear()*10000 + (today.getMonth()+1)*100 + today.getDate()))
+//                 loadedPassed.push(element);
+//         });
+//         res.status(200).json({ message: 'Event fetched', event: loadedPassed })
 //     })
 //     .catch(err => {
 //         if (!err.statusCode) {
@@ -130,6 +157,7 @@ exports.userEvents = (req, res, next) => {
 //         next(err);
 //     })
 // }
+
 
 exports.updateEvent = (req, res, next) => {
     const description = req.body.description;
