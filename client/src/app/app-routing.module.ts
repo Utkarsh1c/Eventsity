@@ -16,6 +16,7 @@ import { MyeventsComponent } from './myevents/myevents.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { RegistrationformComponent } from './registrationform/registrationform.component';
 import { EditeventComponent } from './editevent/editevent.component';
+import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccount.component';
 
 
 
@@ -38,6 +39,7 @@ const routes: Routes = [
    { path:'signup', component: SignupComponent },
    { path:'verify/:id', component:VerificationComponent },
    { path:'myevents', component:MyeventsComponent, canActivate: [AuthGuard] },
+   { path:'deactivate', component: DeactivateaccountComponent, canActivate: [AuthGuard] },
    { path:'aboutus', component: AboutusComponent },
    { path:'contactus', component: ContactusComponent },
 ];

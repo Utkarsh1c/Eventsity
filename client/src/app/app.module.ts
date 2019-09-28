@@ -28,6 +28,7 @@ import { MyeventsComponent } from './myevents/myevents.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { RegistrationformComponent } from './registrationform/registrationform.component';
 import { EditeventComponent } from './editevent/editevent.component';
+import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccount.component';
 // import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
@@ -51,6 +52,7 @@ import { EditeventComponent } from './editevent/editevent.component';
     EnquiryComponent,
     RegistrationformComponent,
     EditeventComponent,
+    DeactivateaccountComponent,
   ],
   imports: [
     HttpClientModule,

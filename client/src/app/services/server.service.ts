@@ -2,19 +2,15 @@ import { Injectable } from '@angular/core';
 
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 
 
 @Injectable()
 export class ServerService {
     body:{};
 
-    private rootUrl = "https://5319e088.ngrok.io";
+    private rootUrl = "https://4d426504.ngrok.io";
 
-    constructor(private http: HttpClient,
-                private authservice:AuthService,
-                // private discoverservice: DiscoverService
-                ) {}
+    constructor(private http: HttpClient) {}
 
 
     signUpUser(name:string,email:string,password:string,cpassword:string) {
@@ -39,7 +35,6 @@ export class ServerService {
            'Content-Type':'application/json',
             'Authorization': `Bearer `+token,
          })
-        // console.log(fd);
         return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
             {headers: headers});
     }
@@ -72,6 +67,16 @@ export class ServerService {
           'Authorization': `Bearer `+token,
         })
         return this.http.post(this.rootUrl+'/auth/logoutAll', this.body, { headers: headers });
+    }
+
+    deactivateUser(password:string) {
+        const token = localStorage.getItem('token')
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer `+token,
+        })
+        return this.http.post(this.rootUrl+'/auth/delete', JSON.stringify({password}), 
+            { headers: headers }); 
     }
 
     verifyUser(otp:string, id:any) {

@@ -24,6 +24,7 @@ export class MyeventsComponent implements OnInit {
   j:number;
   id:number;
   eventarray:number[]=[];
+  activity = false;
 
   constructor(private serverservice : ServerService,
               private discoverservice : DiscoverService,
@@ -131,11 +132,20 @@ export class MyeventsComponent implements OnInit {
   
   }
 
+  onShowActivity() {
+    this.activity = true;
+  }
+
+  hideActivity() {
+    this.activity = false;
+  }
+
   onDelete(eventid:any) {
     Swal.fire({
       type:'warning',
       title:'Are you sure!!',
       showCancelButton:true,
+      cancelButtonColor:'red',
       confirmButtonText:'Yes, delete it',
     }).then((onConfirmDelete)=>{
       if(onConfirmDelete.value) {
@@ -216,6 +226,10 @@ export class MyeventsComponent implements OnInit {
         })
       },
     )
+  }
+
+  wantDeactivate() {
+    this.router.navigate(['/deactivate']);
   }
 
 }

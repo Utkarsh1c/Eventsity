@@ -6,10 +6,18 @@
 <hr style="opacity:0;">
 <div class="container-fluid">
     <div class="col-md-5">
-        <div class="col-sm-6">
-            <button class="btn btn-primary" (click)="logOutfromall()">Log Out From all devices</button>
-            <hr style="opacity:0;">
-            <button class="btn btn-danger">Deactivate Account</button>
+        <div class="col-sm-6 account">
+            <div *ngIf="!activity">
+                <button class="btn show" (click)="onShowActivity()">Show Account Actions</button>
+            </div>
+            <div *ngIf="activity">
+            <h4 class="text-center"><b>Account Actions</b></h4>
+            <hr>
+            <button class="btn logoutall" (click)="logOutfromall()">Log Out From all devices</button>
+            <!-- <hr style="opacity:0;"> -->
+            <button class="btn deactivate" (click)="wantDeactivate()">Deactivate Account</button>
+            <button class="btn hideb" (click)="hideActivity()">Hide</button>
+            </div>
         </div>
         <div class="col-sm-6">
             <img src="../../assets/images/myevents.png" class="robo" alt="hello">
