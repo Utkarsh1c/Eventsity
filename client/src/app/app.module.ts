@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgxUiLoaderModule } from  'ngx-ui-loader';
 
 
@@ -29,7 +29,6 @@ import { EnquiryComponent } from './enquiry/enquiry.component';
 import { RegistrationformComponent } from './registrationform/registrationform.component';
 import { EditeventComponent } from './editevent/editevent.component';
 import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccount.component';
-// import { HttpinterceptorService } from './interceptor/httpinterceptor.service';
 
 
 @NgModule({
@@ -61,13 +60,7 @@ import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccoun
     AppRoutingModule,
     NgxUiLoaderModule,
   ],
-  providers: [ServerService, DiscoverService, AuthService, AuthGuard,
-  // {
-  //   provide : HTTP_INTERCEPTORS,
-  //   useClass : HttpinterceptorService,
-  //   multi : true
-  // }
-],
+  providers: [ServerService, DiscoverService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

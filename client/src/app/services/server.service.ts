@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ServerService {
     body:{};
 
-    private rootUrl = "https://4d426504.ngrok.io";
+    private rootUrl = "https://d891bce2.ngrok.io";
 
     constructor(private http: HttpClient) {}
 
@@ -35,7 +35,8 @@ export class ServerService {
            'Content-Type':'application/json',
             'Authorization': `Bearer `+token,
          })
-        return this.http.post(this.rootUrl+'/feed/posts',JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
+        return this.http.post(this.rootUrl+'/feed/posts',
+            JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
             {headers: headers});
     }
 
@@ -126,7 +127,7 @@ export class ServerService {
             'Content-Type':'application/json',
             'Authorization': `Bearer `+token,
         })
-        console.log(JSON.stringify({enquiry}));
+        // console.log(JSON.stringify({enquiry}));
         return this.http.post(this.rootUrl+'/user/enquiry/'+id,JSON.stringify({enquiry}),
         {headers: headers});
     }
@@ -137,7 +138,7 @@ export class ServerService {
             'Content-Type':'application/json',
             'Authorization': `Bearer `+token,
         })
-        console.log(JSON.stringify({name, email}));
+        // console.log(JSON.stringify({name, email}));
         return this.http.post(this.rootUrl+'/user/register/'+id,JSON.stringify({name, email}),
         {headers: headers});
     }
@@ -169,9 +170,10 @@ export class ServerService {
             'Content-Type':'application/json',
             'Authorization': `Bearer `+token,
         })
-        console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}));
-        return this.http.put(this.rootUrl+'/feed/update/'+id,JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
-        {headers: headers});
+        // console.log(JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}));
+        return this.http.put(this.rootUrl+'/feed/update/'+id,
+            JSON.stringify({ename, category, evenue, fevenue, imagePath, date, orgname, description}),
+            {headers: headers});
     }
 
 }

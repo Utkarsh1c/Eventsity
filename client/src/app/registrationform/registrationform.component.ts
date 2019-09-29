@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { ServerService } from '../services/server.service';
 import Swal from 'sweetalert2';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -25,11 +26,11 @@ export class RegistrationformComponent implements OnInit {
   register(form : NgForm) {
     this.ngxService.start();
     const value = form.value;
-    console.log(this.id);
+    // console.log(this.id);
     this.serverservice.register(value.name, value.email, this.id)
     .subscribe(
       (response) =>{
-        console.log(response);
+        // console.log(response);
         this.ngxService.stop();
         Swal.fire({
           type: 'success',
@@ -37,9 +38,10 @@ export class RegistrationformComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000,
         })
+        this.router.navigate(['/discover',this.id]);
       },
       (error) =>{
-        console.log(error);
+        // console.log(error);
         this.ngxService.stop();
         Swal.fire({
           type: 'error',

@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit {
   }
   onSignup(form : NgForm) {
     this.ngxService.start();
-    console.log(JSON.stringify(form.value));
+    // console.log(JSON.stringify(form.value));
     const value = form.value;
     this.serverservice.signUpUser(value.name,value.email,value.password,value.cpassword)
     .subscribe(
@@ -37,7 +37,7 @@ export class SignupComponent implements OnInit {
         form.reset();
       },
       (error: HttpErrorResponse) =>{
-        console.log(error)
+        // console.log(error);
         this.errorMsg = error.error.data[0].msg;
         this.ngxService.stop();
         Swal.fire({

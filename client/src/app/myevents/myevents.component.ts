@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ServerService } from '../services/server.service';
 import { Discover } from '../discover/discover.model';
-import { DiscoverService } from '../discover/discover.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import Swal from 'sweetalert2';
 import { Router, NavigationEnd } from '@angular/router';
@@ -27,7 +26,6 @@ export class MyeventsComponent implements OnInit {
   activity = false;
 
   constructor(private serverservice : ServerService,
-              private discoverservice : DiscoverService,
               private ngxService: NgxUiLoaderService,
               private router : Router) { }
 
@@ -47,20 +45,20 @@ export class MyeventsComponent implements OnInit {
     .subscribe(
       (response) =>{
         this.res = response;
-        console.log(this.res.event);
+        // console.log(this.res.event);
         this.discover = this.res.event;
         for(this.i=0; this.i<this.discover.length; this.i++) {
           this.id = this.discover[this.i].id;
-          console.log(this.id);
+          // console.log(this.id);
           for(this.j=this.i; this.j<this.i+1; this.j++) {
             this.eventarray.push(this.id);
-            console.log(this.eventarray)
+            // console.log(this.eventarray)
           }
         }
         this.ngxService.stop();
       },
       (error : HttpErrorResponse) =>{ 
-        console.log(error.error.message);
+        // console.log(error.error.message);
         if(error.error.message === "Not authenticated.") {
           localStorage.removeItem('token');
           localStorage.removeItem('name');

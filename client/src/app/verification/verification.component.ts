@@ -38,7 +38,7 @@ export class VerificationComponent implements OnInit {
     this.serverservice.resendOtp(this.id)
     .subscribe(
       (response) =>{
-         console.log(response);
+        //  console.log(response);
          this.ngxService.stop();
          Swal.fire({
            type:'success',
@@ -48,12 +48,12 @@ export class VerificationComponent implements OnInit {
          })
         },
       (error) =>{ 
-        console.log(error);
+        // console.log(error);
         this.ngxService.stop();
         Swal.fire({
           type:'error',
           title:'Oops..',
-          text:'Something went wrong',
+          text:error.error.message,
           showConfirmButton:false,
           timer:1500,
         })
@@ -64,7 +64,7 @@ export class VerificationComponent implements OnInit {
   Verify(form : NgForm) {
     this.ngxService.start();
     const value = form.value;
-    console.log(this.id);
+    // console.log(this.id);
     this.serverservice.verifyUser(value.otp, this.id)
     .subscribe(
       (response) =>{ 
@@ -83,7 +83,7 @@ export class VerificationComponent implements OnInit {
         this.router.navigate(['/']);
       },
       (error) =>{
-        console.log(error),
+        // console.log(error),
         this.ngxService.stop();
         Swal.fire({
           type: 'error',

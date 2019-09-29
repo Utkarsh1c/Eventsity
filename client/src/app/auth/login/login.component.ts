@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
 
   onLogin(form : NgForm) {
     this.ngxService.start();
-    console.log(JSON.stringify(form.value));
+    // console.log(JSON.stringify(form.value));
     const value = form.value;
     this.serverservice.logInUser(value.email,value.password)
     .subscribe(
       (response) => {
-        console.log(response);
+        // console.log(response);
         this.tk = response ;
         this.name = response;
         // console.log(this.name.name);
@@ -48,12 +48,12 @@ export class LoginComponent implements OnInit {
         this.route.navigate(['/']);
       },
       (error: HttpErrorResponse) =>{
-        console.log(error)
+        // console.log(error)
         this.errormsg = error.error.message;
         this.ngxService.stop();
         if(this.errormsg === "User is not verified") {
           this.uid = error.error;
-          console.log(this.uid.userId);
+          // console.log(this.uid.userId);
           this.route.navigate(['/verify',this.uid.userId])
         }
         Swal.fire({

@@ -24,17 +24,12 @@ import { DeactivateaccountComponent } from './deactivateaccount/deactivateaccoun
 
 const routes: Routes = [
    { path:'', component: HomeComponent },
-   { path:'discover', component: DiscoverComponent, children: [
-    //  { path:'', component : DiscoverHomeComponent },
-    //  { path:':id', component: DiscoverDetailsComponent }
-   ] },
+   { path:'discover', component: DiscoverComponent },
    { path:'discover/:id', component: DiscoverDetailsComponent },
    { path:'enquiry/:id', component: EnquiryComponent },
    { path:'register/:id', component: RegistrationformComponent },
    { path:'editevent/:id', component: EditeventComponent },
-   { path:'create', component: CreateComponent, 
-   canActivate: [AuthGuard] 
-  },
+   { path:'create', component: CreateComponent, canActivate: [AuthGuard] },
    { path:'login', component: LoginComponent },
    { path:'signup', component: SignupComponent },
    { path:'verify/:id', component:VerificationComponent },

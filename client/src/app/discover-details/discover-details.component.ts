@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
 
-import { Discover } from '../discover/discover.model';
-import { DiscoverService } from '../discover/discover.service';
 import { ServerService } from '../services/server.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { AuthService } from '../services/auth.service';
+
 
 @Component({
   selector: 'app-discover-details',
@@ -14,7 +12,6 @@ import { AuthService } from '../services/auth.service';
 })
 export class DiscoverDetailsComponent implements OnInit {
   public discover : [];
-  // discover:Discover[];
   id:number;
   res:any;
   follow = false;
@@ -44,13 +41,13 @@ export class DiscoverDetailsComponent implements OnInit {
     .subscribe(
       (response) =>{
         this.res=response
-        console.log(this.res.event);
+        // console.log(this.res.event);
         this.discover = this.res.event;
         this.show = true;
         this.ngxService.stop();
       },
       (error) =>{
-        console.log(error);
+        // console.log(error);
         this.ngxService.stop();
       },
     );

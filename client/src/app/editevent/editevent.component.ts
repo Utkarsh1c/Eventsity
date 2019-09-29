@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+
 import { ActivatedRoute, Router } from '@angular/router';
-import { Discover } from '../discover/discover.model';
-import { DiscoverService } from '../discover/discover.service';
 import { ServerService } from '../services/server.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import Swal from 'sweetalert2';
@@ -13,7 +12,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./editevent.component.css']
 })
 export class EditeventComponent implements OnInit {
-@ViewChild('f', { static:false }) editform : NgForm
+  @ViewChild('f', { static:false }) editform : NgForm
   id:any;
   res:any;
 
@@ -25,12 +24,12 @@ export class EditeventComponent implements OnInit {
   ngOnInit() {
     this.ngxService.start();
     this.id = this.route.snapshot.params.id;
-    console.log(this.id);
+    // console.log(this.id);
     this.serverservice.getEventsforEdit(this.id)
     .subscribe(
       (response) =>{
         this.res = response;
-        console.log(this.res.event);
+        // console.log(this.res.event);
         this.editform.setValue({
           ename : this.res.event.ename,
           imagePath : this.res.event.imagePath,
@@ -44,7 +43,7 @@ export class EditeventComponent implements OnInit {
         this.ngxService.stop();
       },
       (error) =>{
-         console.log(error);
+        //  console.log(error);
          this.ngxService.stop();
          Swal.fire({
            type: 'error',
@@ -62,12 +61,12 @@ export class EditeventComponent implements OnInit {
       value.date, value.orgname, value.description, this.id)
     .subscribe(
       (response) => { 
-        console.log(response);
+        // console.log(response);
         this.ngxService.stop();
-        this.router.navigate(['/discover']);
+        this.router.navigate(['/myevents']);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
         this.ngxService.stop();
         Swal.fire({
           type: 'error',

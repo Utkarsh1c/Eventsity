@@ -20,7 +20,7 @@ export class AuthService {
             title: 'Successfully logged out!!',
             showConfirmButton: false,
             timer: 2000,
-          })
+        })
     }
 
     getToken() {

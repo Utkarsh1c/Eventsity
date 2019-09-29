@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DiscoverService } from '../discover/discover.service';
 import { NgForm } from '@angular/forms';
-import { Discover } from '../discover/discover.model';
 import { Router } from '@angular/router';
 import { ServerService } from '../services/server.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -31,13 +29,13 @@ export class CreateComponent implements OnInit {
 
   onCreate(form : NgForm) {
     this.ngxService.start();
-    console.log('Entered Create');
+    // console.log('Entered Create');
     const value = form.value;
     this.serverservice.createEvent(value.ename, value.category, value.evenue, value.fevenue, value.imagePath, 
       value.date, value.orgname, value.description)
       .subscribe(
         (response) =>{ 
-          console.log(response);
+          // console.log(response);
           this.ngxService.stop();
           this.router.navigate(['/discover']);
         },

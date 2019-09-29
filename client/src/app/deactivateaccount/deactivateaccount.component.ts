@@ -19,6 +19,10 @@ export class DeactivateaccountComponent implements OnInit {
   ngOnInit() {
   }
 
+  back() {
+    this.router.navigate(['/myevents']);
+  }
+
   onDeactivate(form:NgForm) {
     this.ngxService.start();
     const value = form.value;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { DiscoverService } from './discover.service';
 import { Discover } from './discover.model';
 import { ServerService } from '../services/server.service';
 import { Router, NavigationEnd } from '@angular/router';
@@ -50,8 +49,7 @@ export class DiscoverComponent implements OnInit {
     this.tech = true;
   }
 
-  constructor(private discoverservice:DiscoverService,
-              private serverservice: ServerService,
+  constructor(private serverservice: ServerService,
               private route : Router,
               private ngxService: NgxUiLoaderService) { }
 
@@ -62,25 +60,25 @@ export class DiscoverComponent implements OnInit {
     .subscribe(
       (response) =>{
         this.res = response;
-        console.log(this.res.event);
+        // console.log(this.res.event);
         this.discover = this.res.event;
         for(this.i=0; this.i<this.discover.length; this.i++) {
           this.id = this.discover[this.i].id;
-          console.log(this.id);
+          // console.log(this.id);
           for(this.j=this.i; this.j<this.i+1; this.j++) {
             this.eventarray.push(this.id);
-            console.log(this.eventarray)
+            // console.log(this.eventarray)
           }
         }
         this.ngxService.stop();
       },
       (error) =>{
-         console.log(error);
+        //  console.log(error);
          this.ngxService.stop();
          Swal.fire({
            type: 'error',
            title:'Oops...',
-           text:'Something Went Wrong',
+           text:'Server Error',
          })
         },
       );

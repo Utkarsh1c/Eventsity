@@ -20,7 +20,7 @@ textarea.ng-invalid.ng-touched {
     width: 50rem;
 }
 .button {
-    margin-left : 13rem;
+    margin-left : 12.5rem;
 }
 .mybutton {
     border: 2px solid yellowgreen;
@@ -32,11 +32,17 @@ textarea.ng-invalid.ng-touched {
     background-color : transparent;
     color : red;
 }
-.mybuton2:hover {
-    background-color: green;
+.mybutton:hover {
+    background-color: yellowgreen;
     color:white;
-    border : 2px solid green;
-    transition: all 0.8 ease-in-out;
+    border : 2px solid yellowgreen;
+    transition: all 0.4s ease-in-out;
+}
+.mybutton2:hover {
+    background-color: red;
+    color:white;
+    border : 2px solid red;
+    transition: all 0.4s ease-in-out;
 }
 .fonts h3 {
     font-family: 'Mansalva', cursive;
