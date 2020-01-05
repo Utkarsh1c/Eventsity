@@ -71,12 +71,11 @@ sequelize
   .sync()
   .then(() => {
     
-    app.set( 'port', ( process.env.PORT || 5000 ));
+    app.listen(process.env.PORT || 3000, function(){
+      console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+    });
 
-// Start node server
-  app.listen( app.get( 'port' ), function() {
-  console.log( 'Node server is running on port ' + app.get( 'port' ));
-  });
+    // Start node server
     // app.listen(8080);
   })
   .catch(err => {
