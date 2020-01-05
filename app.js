@@ -71,9 +71,9 @@ sequelize
   .sync()
   .then(() => {
     
-    // const port = process.env.PORT || '8080';
-    // app.listen(port, () => console.log(`API running on localhost:${port}`));
-    app.listen(8080);
+    const port = process.env.PORT || '8080';
+    app.listen(port, () => console.log(`API running on localhost:${port}`));
+    // app.listen(8080);
   })
   .catch(err => {
     console.log(err)
