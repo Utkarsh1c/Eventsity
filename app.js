@@ -71,8 +71,12 @@ sequelize
   .sync()
   .then(() => {
     
-    const port = process.env.PORT || '8080';
-    app.listen(port, () => console.log(`API running on localhost:${port}`));
+    app.set( 'port', ( process.env.PORT || 5000 ));
+
+// Start node server
+  app.listen( app.get( 'port' ), function() {
+  console.log( 'Node server is running on port ' + app.get( 'port' ));
+  });
     // app.listen(8080);
   })
   .catch(err => {
