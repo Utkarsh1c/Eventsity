@@ -41,7 +41,7 @@ app.use('/admin', adminRoutes);
 
 
 
-app.use('*', (req, res) => {
+app.use('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/Eventsity/index.html'));
 });
 
