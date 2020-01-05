@@ -8,10 +8,10 @@ const bcrypt = require('bcryptjs');
 //requiring modules necessary for sending mails
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
-const config = require('../util/config');
+// const config = require('../util/config');
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth: {
-        api_key: config
+        api_key: 'ddfsdfs'
     }
 }));
 
@@ -270,6 +270,7 @@ exports.login = (req, res, next) => {
         res.status(200).json({ token: token, userId: user.id, name: user.name
             })
         })
+        
     })
     .catch(err => {
         if(!err.statusCode) {

@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
-    "admin-bro": "^1.2.0",
+    "admin-bro": "^1.6.0",
     "admin-bro-expressjs": "^0.2.0",
     "admin-bro-sequelizejs": "^0.2.6",
     "bcryptjs": "^2.4.3",

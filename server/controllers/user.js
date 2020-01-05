@@ -5,10 +5,10 @@ const User = require('../models/user');
 //requiring modules necessary for sending mails
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
-const config = require('../util/config');
+// const config = require('../util/config');
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth: {
-        api_key: config
+        api_key: 'dasdasdasd'
     }
 }));
 

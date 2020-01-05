@@ -1,6 +1,7 @@
 //requiring express and database
 const express = require('express');
 const sequelize = require('./util/database');
+const path = require('path');
 
 //requiring models
 const User = require('./models/user');
@@ -27,11 +28,23 @@ app.use((req, res, next) => {
     next();  
 })
 
+
+//deployment
+app.use(express.static(path.join(__dirname, 'dist/Eventsity')));
+
+
 //redirecting to routes
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/admin', adminRoutes);
+
+
+
+app.use('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/Eventsity/index.html'));
+});
+
 
 //middleware error handler
 app.use((error, req, res, next) => {
@@ -50,14 +63,18 @@ User.belongsToMany(Event, { as: 'Register', through: 'Registered' });
 
 //For additional feature
 User.belongsToMany(User, { as: 'Follow', through: 'Followed' });
+ 
 
 //starting server
 sequelize
   // .sync({ force: true })
   .sync()
   .then(() => {
+    
+    // const port = process.env.PORT || '8080';
+    // app.listen(port, () => console.log(`API running on localhost:${port}`));
     app.listen(8080);
   })
   .catch(err => {
-    next(err)
+    console.log(err)
   });
