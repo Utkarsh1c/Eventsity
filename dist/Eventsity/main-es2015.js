@@ -2271,7 +2271,7 @@ __webpack_require__.r(__webpack_exports__);
 let ServerService = class ServerService {
     constructor(http) {
         this.http = http;
-        this.rootUrl = "http://localhost:8080";
+        this.rootUrl = "./";
     }
     signUpUser(name, email, password, cpassword) {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'application/json' });
@@ -2695,4 +2695,3 @@ module.exports = __webpack_require__(/*! C:\Users\hp\Desktop\Github\Eventsity\cl
 /***/ })
 
 },[[0,"runtime","vendor"]]]);
-//# sourceMappingURL=main-es2015.js.map

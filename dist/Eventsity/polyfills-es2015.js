@@ -6377,4 +6377,3 @@ module.exports = __webpack_require__(/*! C:\Users\hp\Desktop\Github\Eventsity\cl
 /***/ })
 
 },[[2,"runtime"]]]);
-//# sourceMappingURL=polyfills-es2015.js.map

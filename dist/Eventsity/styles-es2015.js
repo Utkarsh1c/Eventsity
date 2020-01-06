@@ -383,4 +383,3 @@ module.exports = __webpack_require__(/*! C:\Users\hp\Desktop\Github\Eventsity\cl
 /***/ })
 
 },[[3,"runtime"]]]);
-//# sourceMappingURL=styles-es2015.js.map
