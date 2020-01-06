@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router, NavigationEnd } from '@angular/router';
 
 import { ServerService } from '../services/server.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Discover } from '../discover/discover.model';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
   styleUrls: ['./discover-details.component.css']
 })
 export class DiscoverDetailsComponent implements OnInit {
-  public discover : [];
+  public discover : Discover;
   id:number;
   res:any;
   follow = false;

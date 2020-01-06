@@ -8,6 +8,7 @@ export class Discover {
     public orgname : string;
     public description : string;
     public registrations : number;
+    public id : number;
 
     constructor(ename:string, category:string, evenue:string, fevenue:string, 
                         imagePath:string, date:string, orgname:string, description : string, 

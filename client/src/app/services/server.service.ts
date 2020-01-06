@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class ServerService {
     body:{};
 
-    private rootUrl = "https://d891bce2.ngrok.io";
+    private rootUrl = "./";
 
     constructor(private http: HttpClient) {}
 
@@ -41,7 +41,7 @@ export class ServerService {
     }
 
     getCreatedEvents() {
-         return this.http.get(this.rootUrl+'/feed/posts');
+        return this.http.get(this.rootUrl+'/feed/posts');
     }
 
     getEventDetails(id:any) {
